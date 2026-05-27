@@ -36,6 +36,12 @@ const CUISINE_FILTERS: { label: string; tag: CuisineTag; emoji: string; color: s
   { label: 'Mediterranean', tag: 'mediterranean', emoji: '🫒', color: '#00695C' },
 ];
 
+function getHighProteinRecipes(limit = 8) {
+  return RECIPES.filter(r => r.dietTags.includes('high-protein'))
+    .sort(() => Math.random() - 0.5)
+    .slice(0, limit);
+}
+
 // Map cuisine tags to recipe IDs for fast lookup
 const CUISINE_RECIPE_IDS: Record<CuisineTag, string[]> = {
   japanese: ['r021','r022','r023','r061','r062'],
@@ -95,8 +101,8 @@ export default function DiscoverScreen() {
         {/* Header */}
         <View style={[styles.header, { paddingTop: 8 }]}>
           <View>
-            <Text style={[styles.greeting, { color: colors.muted }]}>Good morning 👋</Text>
-            <Text style={[styles.headerTitle, { color: colors.foreground }]}>What are you cooking?</Text>
+            <Text style={[styles.greeting, { color: colors.muted }]}>Fuel your body 💪</Text>
+            <Text style={[styles.headerTitle, { color: colors.foreground }]}>High-Protein Recipes</Text>
           </View>
           <Pressable
             style={({ pressed }) => [
@@ -136,19 +142,19 @@ export default function DiscoverScreen() {
           <IconSymbol name="chevron.right" size={18} color="#388E3C" />
         </Pressable>
 
-        {/* Import Recipe Banner */}
+        {/* My Recipe Links Banner */}
         <Pressable
           style={({ pressed }) => [
             styles.fridgeBanner,
             { backgroundColor: '#E3F2FD', borderColor: '#90CAF9' },
             pressed && { opacity: 0.85 },
           ]}
-          onPress={() => router.push('/import-recipe' as any)}
+          onPress={() => router.push('/my-links' as any)}
         >
-          <Text style={styles.fridgeBannerEmoji}>📲</Text>
+          <Text style={styles.fridgeBannerEmoji}>🔗</Text>
           <View style={styles.fridgeBannerText}>
-            <Text style={[styles.fridgeBannerTitle, { color: '#0D47A1' }]}>Import from Social Media</Text>
-            <Text style={[styles.fridgeBannerSub, { color: '#1565C0' }]}>TikTok, Instagram, YouTube, Pinterest & more</Text>
+            <Text style={[styles.fridgeBannerTitle, { color: '#0D47A1' }]}>My Recipe Links</Text>
+            <Text style={[styles.fridgeBannerSub, { color: '#1565C0' }]}>Save links from YouTube, Instagram, TikTok & more</Text>
           </View>
           <IconSymbol name="chevron.right" size={18} color="#1565C0" />
         </Pressable>
@@ -268,6 +274,25 @@ export default function DiscoverScreen() {
               </View>
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalList}>
                 {featured.map(recipe => (
+                  <RecipeCard
+                    key={recipe.id}
+                    recipe={recipe}
+                    style={{ width: 260, marginRight: 12 }}
+                  />
+                ))}
+              </ScrollView>
+            </View>
+
+            {/* High Protein Picks */}
+            <View style={styles.section}>
+              <View style={styles.sectionHeader}>
+                <Text style={[styles.sectionTitle, { color: colors.foreground }]}>💪 High Protein Picks</Text>
+                <Pressable onPress={() => {}}>
+                  <Text style={[styles.seeAll, { color: colors.primary }]}>See all</Text>
+                </Pressable>
+              </View>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalList}>
+                {getHighProteinRecipes(8).map(recipe => (
                   <RecipeCard
                     key={recipe.id}
                     recipe={recipe}

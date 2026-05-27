@@ -81,7 +81,20 @@ export function RecipeCard({ recipe, style, horizontal = false }: RecipeCardProp
           <Text style={styles.premiumText}>PRO</Text>
         </View>
       )}
-      <View style={styles.cardContent}>
+        <View style={styles.cardContent}>
+        <View style={styles.badgeRow}>
+          {recipe.dietTags.includes('high-protein') && (
+            <View style={[styles.proteinBadge]}>
+              <Text style={styles.proteinBadgeText}>💪 {recipe.nutrition.protein}g protein</Text>
+            </View>
+          )}
+          {recipe.isPremium && (
+            <View style={[styles.premiumBadgeSmall, { backgroundColor: colors.accent }]}>
+              <IconSymbol name="crown.fill" size={10} color="#fff" />
+              <Text style={styles.premiumBadgeText}>PRO</Text>
+            </View>
+          )}
+        </View>
         <View style={styles.tagRow}>
           {recipe.tasteTags.slice(0, 2).map(tag => (
             <View key={tag} style={[styles.tag, { backgroundColor: getTagColor(tag, colors) }]}>
@@ -129,6 +142,26 @@ function formatTag(tag: string): string {
 }
 
 const styles = StyleSheet.create({
+  badgeRow: {
+    flexDirection: 'row', gap: 6, marginBottom: 6,
+  },
+  proteinBadge: {
+    flexDirection: 'row', alignItems: 'center',
+    backgroundColor: '#2D9B4E',
+    paddingHorizontal: 10, paddingVertical: 5,
+    borderRadius: 20,
+  },
+  proteinBadgeText: {
+    color: '#fff', fontSize: 11, fontWeight: '700',
+  },
+  premiumBadgeSmall: {
+    flexDirection: 'row', alignItems: 'center',
+    paddingHorizontal: 8, paddingVertical: 4,
+    borderRadius: 20, gap: 3,
+  },
+  premiumBadgeText: {
+    color: '#fff', fontSize: 10, fontWeight: '700',
+  },
   card: {
     borderRadius: 16,
     overflow: 'hidden',

@@ -833,7 +833,8 @@ const _BASE_RECIPES: Recipe[] = [
 ];
 
 import { NEW_RECIPES } from './recipes-new';
-export const RECIPES: Recipe[] = [..._BASE_RECIPES, ...NEW_RECIPES];
+import { HIGH_PROTEIN_RECIPES } from './recipes-highprotein';
+export const RECIPES: Recipe[] = [..._BASE_RECIPES, ...NEW_RECIPES, ...HIGH_PROTEIN_RECIPES];
 export const ALL_RECIPES: Recipe[] = RECIPES;
 
 // Helper functions
