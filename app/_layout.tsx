@@ -66,6 +66,12 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={26} name="person.fill" color={color} />,
         }}
       />
+      {/* Hide non-tab routes from tab bar */}
+      <Tabs.Screen name="[id]" options={{ href: null }} />
+      <Tabs.Screen name="add-link" options={{ href: null }} />
+      <Tabs.Screen name="my-links" options={{ href: null }} />
+      <Tabs.Screen name="onboarding" options={{ href: null }} />
+      <Tabs.Screen name="premium" options={{ href: null }} />
     </Tabs>
   );
 }

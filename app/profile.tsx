@@ -7,7 +7,6 @@ import { ScreenContainer } from '@/components/screen-container';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { useColors } from '@/hooks/use-colors';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import { useThemeContext } from '@/lib/theme-provider';
 import {
   getSavedRecipeIds, getDietaryPrefs, saveDietaryPrefs, getTastePrefs, saveTastePrefs,
   getIsPremium, setIsPremium, getUnitPref, saveUnitPref, DietaryPrefs, TastePrefs,
@@ -18,8 +17,6 @@ import { RECIPES } from '@/lib/data/recipes';
 export default function ProfileScreen() {
   const router = useRouter();
   const colors = useColors();
-  const { colorScheme: currentScheme, setColorScheme } = useThemeContext();
-  const toggleColorScheme = () => setColorScheme(currentScheme === 'dark' ? 'light' : 'dark');
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
 
@@ -236,12 +233,12 @@ export default function ProfileScreen() {
                   {isDark ? '🌙 Dark Mode' : '☀️ Light Mode'}
                 </Text>
                 <Text style={[styles.settingSubtitle, { color: colors.muted }]}>
-                  {isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+                  Follows system setting
                 </Text>
               </View>
               <Switch
                 value={isDark}
-                onValueChange={toggleColorScheme}
+                disabled={true}
                 trackColor={{ false: colors.border, true: colors.primary + '80' }}
                 thumbColor={isDark ? colors.primary : colors.muted}
               />
