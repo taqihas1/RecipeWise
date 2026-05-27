@@ -181,7 +181,7 @@ export default function ProfileScreen() {
                     { backgroundColor: colors.surface, borderColor: colors.border },
                     pressed && { opacity: 0.8 },
                   ]}
-                  onPress={() => router.push(`/recipe/${recipe.id}` as any)}
+                  onPress={() => router.push(`/${recipe.id}` as any)}
                 >
                   <Image source={{ uri: recipe.imageUrl }} style={styles.savedImage} />
                   <Text style={[styles.savedTitle, { color: colors.foreground }]} numberOfLines={2}>

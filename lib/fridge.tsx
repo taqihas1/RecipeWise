@@ -365,7 +365,7 @@ export default function FridgeScreen() {
                     key={match.recipe.id}
                     match={match}
                     colors={colors}
-                    onPress={() => router.push(`/recipe/${match.recipe.id}` as any)}
+                    onPress={() => router.push(`/${match.recipe.id}` as any)}
                   />
                 ))}
               </>

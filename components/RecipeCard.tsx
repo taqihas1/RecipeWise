@@ -26,7 +26,7 @@ export function RecipeCard({ recipe, style, horizontal = false }: RecipeCardProp
           pressed && { opacity: 0.85 },
           style,
         ]}
-        onPress={() => router.push(`/recipe/${recipe.id}` as any)}
+        onPress={() => router.push(`/${recipe.id}` as any)}
       >
         <Image
           source={{ uri: recipe.imageUrl }}
@@ -68,7 +68,7 @@ export function RecipeCard({ recipe, style, horizontal = false }: RecipeCardProp
         pressed && { opacity: 0.85 },
         style,
       ]}
-      onPress={() => router.push(`/recipe/${recipe.id}` as any)}
+      onPress={() => router.push(`/${recipe.id}` as any)}
     >
       <Image
         source={{ uri: recipe.imageUrl }}
