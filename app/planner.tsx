@@ -1,387 +1,268 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  View, Text, ScrollView, Pressable, StyleSheet, Modal, FlatList, Image, Alert
+  View, Text, Pressable, StyleSheet, ScrollView, Alert
 } from 'react-native';
+import { useRouter } from 'expo-router';
 import { ScreenContainer } from '@/components/screen-container';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { useColors } from '@/hooks/use-colors';
-import { RECIPES, MealType } from '@/lib/data/recipes';
+import { RECIPES } from '@/lib/data/recipes';
+import { RecipeCard } from '@/components/RecipeCard';
 import {
-  getMealPlan, addMealToPlan, removeMealFromPlan, saveShoppingList,
-  getShoppingList, MealPlanDay, ShoppingItem
+  getMealPlan, saveMealPlan, addMealToPlan, removeMealFromPlan,
+  type MealPlanDay, type MealType
 } from '@/lib/store';
 import * as Haptics from 'expo-haptics';
-import { Platform } from 'react-native';
 
-const MEAL_SLOTS: { type: MealType; label: string; emoji: string }[] = [
-  { type: 'breakfast', label: 'Breakfast', emoji: '🌅' },
-  { type: 'lunch', label: 'Lunch', emoji: '☀️' },
-  { type: 'dinner', label: 'Dinner', emoji: '🌙' },
-];
+const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const FULL_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const MEAL_TYPES: MealType[] = ['breakfast', 'lunch', 'dinner'];
 
-function getWeekDays(): { date: string; label: string; dayName: string }[] {
-  const days = [];
+function getWeekDates(): string[] {
   const today = new Date();
-  for (let i = 0; i < 7; i++) {
-    const d = new Date(today);
-    d.setDate(today.getDate() + i);
-    const dateStr = d.toISOString().split('T')[0];
-    const dayName = d.toLocaleDateString('en-US', { weekday: 'short' });
-    const label = i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    days.push({ date: dateStr, label, dayName });
-  }
-  return days;
+  const dayOfWeek = today.getDay(); // 0 = Sunday
+  const monday = new Date(today);
+  monday.setDate(today.getDate() - ((dayOfWeek + 6) % 7));
+  return Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    return d.toISOString().split('T')[0];
+  });
 }
 
-export default function PlannerScreen() {
+export default function MealPlannerScreen() {
+  const router = useRouter();
   const colors = useColors();
-  const [mealPlan, setMealPlan] = useState<MealPlanDay[]>([]);
+  const [plan, setPlan] = useState<MealPlanDay[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedDay, setSelectedDay] = useState(0);
-  const [showRecipePicker, setShowRecipePicker] = useState(false);
-  const [pickingForSlot, setPickingForSlot] = useState<MealType | null>(null);
-  const weekDays = getWeekDays();
+  const weekDates = getWeekDates();
 
   useEffect(() => {
-    getMealPlan().then(setMealPlan);
+    loadPlan();
   }, []);
 
-  const getMealsForDay = useCallback((date: string, mealType: MealType) => {
-    const day = mealPlan.find(d => d.date === date);
-    if (!day) return [];
-    return day.meals.filter(m => m.mealType === mealType).map(m => RECIPES.find(r => r.id === m.recipeId)).filter(Boolean);
-  }, [mealPlan]);
+  async function loadPlan() {
+    const data = await getMealPlan();
+    setPlan(data);
+    setLoading(false);
+  }
 
-  const getDayCalories = useCallback((date: string) => {
-    const day = mealPlan.find(d => d.date === date);
-    if (!day) return 0;
-    return day.meals.reduce((sum, m) => {
-      const recipe = RECIPES.find(r => r.id === m.recipeId);
-      return sum + (recipe?.nutrition.calories || 0);
-    }, 0);
-  }, [mealPlan]);
+  function getDayPlan(date: string): MealPlanDay | undefined {
+    return plan.find(d => d.date === date);
+  }
 
-  const handleAddMeal = useCallback(async (recipeId: string) => {
-    if (!pickingForSlot) return;
-    const date = weekDays[selectedDay].date;
-    await addMealToPlan(date, recipeId, pickingForSlot);
-    const updated = await getMealPlan();
-    setMealPlan(updated);
-    setShowRecipePicker(false);
-    setPickingForSlot(null);
-    if (Platform.OS !== 'web') {
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    }
-  }, [pickingForSlot, selectedDay, weekDays]);
+  async function addRecipe(date: string, mealType: MealType) {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    // Navigate to search with pre-filled meal type
+    router.push({ pathname: '/search', params: { planner: '1', date, mealType } });
+  }
 
-  const handleRemoveMeal = useCallback(async (date: string, recipeId: string, mealType: MealType) => {
+  async function removeMeal(date: string, recipeId: string, mealType: MealType) {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     await removeMealFromPlan(date, recipeId, mealType);
     const updated = await getMealPlan();
-    setMealPlan(updated);
-  }, []);
+    setPlan(updated);
+  }
 
-  const generateShoppingList = useCallback(async () => {
-    const allMeals: string[] = [];
-    weekDays.forEach(day => {
-      const dayPlan = mealPlan.find(d => d.date === day.date);
-      if (dayPlan) {
-        dayPlan.meals.forEach(m => allMeals.push(m.recipeId));
-      }
-    });
-
-    if (allMeals.length === 0) {
-      Alert.alert('No meals planned', 'Add some recipes to your meal plan first!');
-      return;
-    }
-
-    // Use a counter to guarantee unique IDs even within the same millisecond
-    let idCounter = 0;
-    const makeId = () => `shop_${Date.now()}_${++idCounter}_${Math.random().toString(36).slice(2, 7)}`;
-
-    const ingredientMap = new Map<string, ShoppingItem>();
-    allMeals.forEach(recipeId => {
-      const recipe = RECIPES.find(r => r.id === recipeId);
-      if (!recipe) return;
-      recipe.ingredients.forEach(ing => {
-        const key = `${ing.name.toLowerCase()}_${ing.unit}`;
-        if (ingredientMap.has(key)) {
-          const existing = ingredientMap.get(key)!;
-          ingredientMap.set(key, { ...existing, amount: existing.amount + ing.amount });
-        } else {
-          ingredientMap.set(key, {
-            id: makeId(),
-            name: ing.name,
-            amount: ing.amount,
-            unit: ing.unit,
-            checked: false,
-            recipeId,
-            category: getCategoryForIngredient(ing.name),
-          });
-        }
-      });
-    });
-
-    const newItems = Array.from(ingredientMap.values());
-    const existing = await getShoppingList();
-    const merged = [...existing];
-    let addedCount = 0;
-    newItems.forEach(item => {
-      if (!merged.find(e => e.name.toLowerCase() === item.name.toLowerCase())) {
-        merged.push({ ...item, id: makeId() });
-        addedCount++;
-      }
-    });
-    await saveShoppingList(merged);
-    Alert.alert(
-      '✅ Shopping List Updated!',
-      addedCount > 0
-        ? `Added ${addedCount} new ingredients from your meal plan.`
-        : 'All ingredients are already in your shopping list!'
+  if (loading) {
+    return (
+      <ScreenContainer>
+        <View style={[styles.loading, { backgroundColor: colors.background }]}>
+          <Text style={{ color: colors.foreground }}>Loading planner...</Text>
+        </View>
+      </ScreenContainer>
     );
-  }, [mealPlan, weekDays]);
+  }
 
-  const currentDate = weekDays[selectedDay].date;
-  const dayCalories = getDayCalories(currentDate);
+  const selectedDate = weekDates[selectedDay];
+  const dayPlan = getDayPlan(selectedDate);
 
   return (
-    <ScreenContainer containerClassName="bg-background">
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 20 }}>
-        {/* Header */}
-        <View style={styles.header}>
-          <Text style={[styles.pageTitle, { color: colors.foreground }]}>Meal Planner</Text>
-          <Pressable
-            style={({ pressed }) => [
-              styles.shopBtn,
-              { backgroundColor: colors.primary },
-              pressed && { opacity: 0.85 },
-            ]}
-            onPress={generateShoppingList}
-          >
-            <IconSymbol name="cart" size={16} color="#fff" />
-            <Text style={styles.shopBtnText}>Generate List</Text>
-          </Pressable>
-        </View>
+    <ScreenContainer>
+      <View style={styles.header}>
+        <Pressable onPress={() => router.back()} style={styles.backBtn}>
+          <IconSymbol name="chevron.left" size={24} color={colors.foreground} />
+        </Pressable>
+        <Text style={[styles.title, { color: colors.foreground }]}>Meal Planner</Text>
+        <View style={{ width: 40 }} />
+      </View>
 
-        {/* Week Selector */}
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.weekRow}
-        >
-          {weekDays.map((day, i) => {
-            const dayCalories = getDayCalories(day.date);
-            const isSelected = i === selectedDay;
-            return (
-              <Pressable
-                key={day.date}
-                style={({ pressed }) => [
-                  styles.dayChip,
-                  {
-                    backgroundColor: isSelected ? colors.primary : colors.surface,
-                    borderColor: isSelected ? colors.primary : colors.border,
-                  },
-                  pressed && { opacity: 0.8 },
-                ]}
-                onPress={() => setSelectedDay(i)}
-              >
-                <Text style={[styles.dayName, { color: isSelected ? 'rgba(255,255,255,0.8)' : colors.muted }]}>
-                  {day.dayName}
-                </Text>
-                <Text style={[styles.dayLabel, { color: isSelected ? '#fff' : colors.foreground }]}>
-                  {day.label}
-                </Text>
-                {dayCalories > 0 && (
-                  <Text style={[styles.dayCalories, { color: isSelected ? 'rgba(255,255,255,0.8)' : colors.muted }]}>
-                    {dayCalories} cal
-                  </Text>
-                )}
-              </Pressable>
-            );
-          })}
-        </ScrollView>
+      <Text style={[styles.subtitle, { color: colors.muted }]}>
+        Plan your week, hit your protein goals
+      </Text>
 
-        {/* Daily Summary */}
-        {dayCalories > 0 && (
-          <View style={[styles.daySummary, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-            <Text style={[styles.summaryLabel, { color: colors.muted }]}>Total calories today</Text>
-            <Text style={[styles.summaryValue, { color: colors.primary }]}>{dayCalories} kcal</Text>
-          </View>
-        )}
-
-        {/* Meal Slots */}
-        {MEAL_SLOTS.map(slot => {
-          const meals = getMealsForDay(currentDate, slot.type);
+      {/* Day Selector */}
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.daySelector}>
+        {DAYS.map((day, index) => {
+          const isSelected = index === selectedDay;
+          const dateNum = new Date(weekDates[index]).getDate();
           return (
-            <View key={slot.type} style={[styles.mealSlot, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-              <View style={styles.slotHeader}>
-                <Text style={styles.slotEmoji}>{slot.emoji}</Text>
-                <Text style={[styles.slotTitle, { color: colors.foreground }]}>{slot.label}</Text>
-                <Pressable
-                  style={({ pressed }) => [
-                    styles.addMealBtn,
-                    { backgroundColor: colors.primary + '20', borderColor: colors.primary + '40' },
-                    pressed && { opacity: 0.7 },
-                  ]}
-                  onPress={() => {
-                    setPickingForSlot(slot.type);
-                    setShowRecipePicker(true);
-                  }}
-                >
-                  <IconSymbol name="plus" size={14} color={colors.primary} />
-                  <Text style={[styles.addMealText, { color: colors.primary }]}>Add</Text>
-                </Pressable>
-              </View>
-
-              {meals.length === 0 ? (
-                <Pressable
-                  style={[styles.emptySlot, { borderColor: colors.border }]}
-                  onPress={() => {
-                    setPickingForSlot(slot.type);
-                    setShowRecipePicker(true);
-                  }}
-                >
-                  <Text style={[styles.emptySlotText, { color: colors.muted }]}>Tap to add a recipe</Text>
-                </Pressable>
-              ) : (
-                <View style={styles.mealsList}>
-                  {meals.map((recipe: any) => (
-                    <View key={recipe.id} style={[styles.mealItem, { borderColor: colors.border }]}>
-                      <Image source={{ uri: recipe.imageUrl }} style={styles.mealThumb} />
-                      <View style={styles.mealInfo}>
-                        <Text style={[styles.mealName, { color: colors.foreground }]} numberOfLines={1}>
-                          {recipe.title}
-                        </Text>
-                        <Text style={[styles.mealMeta, { color: colors.muted }]}>
-                          {recipe.cookTimeMinutes + recipe.prepTimeMinutes} min · {recipe.nutrition.calories} cal
-                        </Text>
-                      </View>
-                      <Pressable
-                        style={({ pressed }) => [pressed && { opacity: 0.6 }]}
-                        onPress={() => handleRemoveMeal(currentDate, recipe.id, slot.type)}
-                      >
-                        <IconSymbol name="xmark.circle.fill" size={20} color={colors.muted} />
-                      </Pressable>
-                    </View>
-                  ))}
-                </View>
-              )}
-            </View>
+            <Pressable
+              key={day}
+              onPress={() => setSelectedDay(index)}
+              style={[
+                styles.dayPill,
+                {
+                  backgroundColor: isSelected ? colors.primary : colors.card,
+                  borderColor: isSelected ? colors.primary : colors.border,
+                },
+              ]}
+            >
+              <Text style={[styles.dayPillDay, { color: isSelected ? '#fff' : colors.muted }]}>
+                {day}
+              </Text>
+              <Text style={[styles.dayPillDate, { color: isSelected ? '#fff' : colors.foreground }]}>
+                {dateNum}
+              </Text>
+            </Pressable>
           );
         })}
       </ScrollView>
 
-      {/* Recipe Picker Modal */}
-      <Modal visible={showRecipePicker} animationType="slide" presentationStyle="pageSheet">
-        <View style={[styles.modal, { backgroundColor: colors.background }]}>
-          <View style={styles.modalHeader}>
-            <Text style={[styles.modalTitle, { color: colors.foreground }]}>
-              Add to {MEAL_SLOTS.find(s => s.type === pickingForSlot)?.label}
+      <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
+        {/* Selected Day Summary */}
+        <View style={[styles.dayCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <Text style={[styles.dayCardTitle, { color: colors.foreground }]}>
+            {FULL_DAYS[selectedDay]}
+          </Text>
+
+          {MEAL_TYPES.map(mealType => {
+            const meals = dayPlan?.meals.filter(m => m.mealType === mealType) || [];
+            return (
+              <View key={mealType} style={styles.mealSection}>
+                <View style={styles.mealHeader}>
+                  <Text style={[styles.mealTypeLabel, { color: colors.muted }]}>
+                    {mealType.charAt(0).toUpperCase() + mealType.slice(1)}
+                  </Text>
+                  {meals.length === 0 && (
+                    <Pressable
+                      onPress={() => addRecipe(selectedDate, mealType)}
+                      style={[styles.addBtn, { backgroundColor: colors.primary + '15' }]}
+                    >
+                      <IconSymbol name="plus" size={14} color={colors.primary} />
+                      <Text style={[styles.addBtnText, { color: colors.primary }]}>Add</Text>
+                    </Pressable>
+                  )}
+                </View>
+
+                {meals.length === 0 ? (
+                  <Pressable
+                    onPress={() => addRecipe(selectedDate, mealType)}
+                    style={[styles.emptySlot, { borderColor: colors.border }]}
+                  >
+                    <IconSymbol name="fork.knife" size={20} color={colors.muted + '60'} />
+                    <Text style={[styles.emptyText, { color: colors.muted }]}>
+                      Tap to add a recipe
+                    </Text>
+                  </Pressable>
+                ) : (
+                  meals.map(slot => {
+                    const recipe = RECIPES.find(r => r.id === slot.recipeId);
+                    if (!recipe) return null;
+                    return (
+                      <View key={slot.recipeId} style={styles.recipeSlot}>
+                        <RecipeCard recipe={recipe} style={{ flex: 1 }} />
+                        <Pressable
+                          onPress={() => removeMeal(selectedDate, slot.recipeId, mealType)}
+                          style={styles.removeBtn}
+                        >
+                          <IconSymbol name="xmark.circle.fill" size={22} color={colors.muted} />
+                        </Pressable>
+                      </View>
+                    );
+                  })
+                )}
+              </View>
+            );
+          })}
+        </View>
+
+        {/* Weekly Protein Summary */}
+        <View style={[styles.proteinCard, { backgroundColor: colors.primary + '08', borderColor: colors.primary + '30' }]}>
+          <View style={styles.proteinHeader}>
+            <IconSymbol name="flame.fill" size={20} color={colors.primary} />
+            <Text style={[styles.proteinTitle, { color: colors.foreground }]}>
+              Weekly Protein Preview
             </Text>
-            <Pressable onPress={() => setShowRecipePicker(false)}>
-              <IconSymbol name="xmark" size={22} color={colors.foreground} />
-            </Pressable>
           </View>
-          <FlatList
-            data={RECIPES}
-            keyExtractor={item => item.id}
-            contentContainerStyle={{ padding: 16, gap: 10 }}
-            renderItem={({ item }) => (
-              <Pressable
-                style={({ pressed }) => [
-                  styles.pickerItem,
-                  { backgroundColor: colors.surface, borderColor: colors.border },
-                  pressed && { opacity: 0.8 },
-                ]}
-                onPress={() => handleAddMeal(item.id)}
-              >
-                <Image source={{ uri: item.imageUrl }} style={styles.pickerThumb} />
-                <View style={styles.pickerInfo}>
-                  <Text style={[styles.pickerName, { color: colors.foreground }]} numberOfLines={1}>{item.title}</Text>
-                  <Text style={[styles.pickerMeta, { color: colors.muted }]}>
-                    {item.cookTimeMinutes + item.prepTimeMinutes} min · {item.nutrition.calories} cal
+          <View style={styles.proteinGrid}>
+            {weekDates.map((date, idx) => {
+              const day = plan.find(d => d.date === date);
+              const totalProtein = day?.meals.reduce((sum, m) => {
+                const r = RECIPES.find(rec => rec.id === m.recipeId);
+                return sum + (r?.nutrition.protein || 0);
+              }, 0) || 0;
+              return (
+                <View key={date} style={styles.proteinDay}>
+                  <Text style={[styles.proteinDayLabel, { color: colors.muted }]}>{DAYS[idx]}</Text>
+                  <Text style={[styles.proteinDayValue, { color: totalProtein > 0 ? colors.primary : colors.muted }]}>
+                    {totalProtein}g
                   </Text>
                 </View>
-                <IconSymbol name="plus.circle.fill" size={24} color={colors.primary} />
-              </Pressable>
-            )}
-          />
+              );
+            })}
+          </View>
         </View>
-      </Modal>
+
+        <View style={{ height: 40 }} />
+      </ScrollView>
     </ScreenContainer>
   );
 }
 
-function getCategoryForIngredient(name: string): string {
-  const lower = name.toLowerCase();
-  if (['chicken', 'beef', 'pork', 'salmon', 'fish', 'bacon', 'shrimp'].some(m => lower.includes(m))) return 'Meat & Seafood';
-  if (['milk', 'cheese', 'butter', 'cream', 'yogurt', 'egg'].some(m => lower.includes(m))) return 'Dairy & Eggs';
-  if (['tomato', 'onion', 'garlic', 'pepper', 'carrot', 'lettuce', 'spinach', 'avocado', 'cauliflower', 'cucumber', 'mango', 'banana', 'berry', 'lemon', 'lime'].some(m => lower.includes(m))) return 'Produce';
-  if (['flour', 'sugar', 'salt', 'pepper', 'oil', 'vinegar', 'sauce', 'soy', 'honey', 'maple', 'vanilla', 'baking'].some(m => lower.includes(m))) return 'Pantry';
-  if (['rice', 'pasta', 'bread', 'oat', 'lentil', 'quinoa'].some(m => lower.includes(m))) return 'Grains & Legumes';
-  return 'Other';
-}
-
 const styles = StyleSheet.create({
+  loading: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   header: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+    paddingHorizontal: 16, paddingTop: 8, paddingBottom: 8,
+  },
+  backBtn: { padding: 4 },
+  title: { fontSize: 22, fontWeight: '700' },
+  subtitle: { fontSize: 14, marginHorizontal: 16, marginBottom: 12 },
+  daySelector: { paddingHorizontal: 16, marginBottom: 12 },
+  dayPill: {
+    width: 52, height: 64, borderRadius: 14, alignItems: 'center', justifyContent: 'center',
+    marginRight: 10, borderWidth: 1.5,
+  },
+  dayPillDay: { fontSize: 12, fontWeight: '600', marginBottom: 2 },
+  dayPillDate: { fontSize: 18, fontWeight: '700' },
+  scroll: { flex: 1, paddingHorizontal: 16 },
+  dayCard: {
+    borderRadius: 20, padding: 16, marginBottom: 16, borderWidth: 1,
+  },
+  dayCardTitle: { fontSize: 20, fontWeight: '700', marginBottom: 12 },
+  mealSection: { marginBottom: 14 },
+  mealHeader: {
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-    paddingHorizontal: 16, paddingTop: 8, paddingBottom: 12,
+    marginBottom: 8,
   },
-  pageTitle: { fontSize: 24, fontWeight: '800' },
-  shopBtn: {
-    flexDirection: 'row', alignItems: 'center', gap: 6,
-    paddingHorizontal: 14, paddingVertical: 8, borderRadius: 20,
-  },
-  shopBtnText: { color: '#fff', fontSize: 13, fontWeight: '700' },
-  weekRow: { paddingHorizontal: 16, paddingBottom: 12, gap: 8 },
-  dayChip: {
-    paddingHorizontal: 14, paddingVertical: 10, borderRadius: 14, borderWidth: 1,
-    alignItems: 'center', minWidth: 80,
-  },
-  dayName: { fontSize: 11, fontWeight: '600' },
-  dayLabel: { fontSize: 13, fontWeight: '700', marginTop: 2 },
-  dayCalories: { fontSize: 10, marginTop: 2 },
-  daySummary: {
-    marginHorizontal: 16, marginBottom: 12, borderRadius: 12, borderWidth: 1,
-    padding: 12, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-  },
-  summaryLabel: { fontSize: 13 },
-  summaryValue: { fontSize: 18, fontWeight: '800' },
-  mealSlot: {
-    marginHorizontal: 16, marginBottom: 12, borderRadius: 16, borderWidth: 1, padding: 14,
-  },
-  slotHeader: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 },
-  slotEmoji: { fontSize: 18 },
-  slotTitle: { flex: 1, fontSize: 16, fontWeight: '700' },
-  addMealBtn: {
+  mealTypeLabel: { fontSize: 14, fontWeight: '700', textTransform: 'capitalize' },
+  addBtn: {
     flexDirection: 'row', alignItems: 'center', gap: 4,
-    paddingHorizontal: 10, paddingVertical: 5, borderRadius: 20, borderWidth: 1,
+    paddingHorizontal: 10, paddingVertical: 5, borderRadius: 12,
   },
-  addMealText: { fontSize: 12, fontWeight: '600' },
+  addBtnText: { fontSize: 12, fontWeight: '600' },
   emptySlot: {
-    borderWidth: 1.5, borderStyle: 'dashed', borderRadius: 10,
-    padding: 16, alignItems: 'center',
+    borderRadius: 14, borderWidth: 1.5, borderStyle: 'dashed',
+    paddingVertical: 24, alignItems: 'center', gap: 6,
   },
-  emptySlotText: { fontSize: 13 },
-  mealsList: { gap: 8 },
-  mealItem: {
-    flexDirection: 'row', alignItems: 'center', gap: 10,
-    borderWidth: 1, borderRadius: 10, overflow: 'hidden',
+  emptyText: { fontSize: 14, fontWeight: '500' },
+  recipeSlot: {
+    flexDirection: 'row', alignItems: 'center', gap: 8,
   },
-  mealThumb: { width: 60, height: 60 },
-  mealInfo: { flex: 1, padding: 8 },
-  mealName: { fontSize: 13, fontWeight: '600' },
-  mealMeta: { fontSize: 11, marginTop: 2 },
-  modal: { flex: 1 },
-  modalHeader: {
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-    padding: 16, paddingTop: 20,
+  removeBtn: { padding: 4 },
+  proteinCard: {
+    borderRadius: 20, padding: 16, borderWidth: 1, marginBottom: 16,
   },
-  modalTitle: { fontSize: 20, fontWeight: '800' },
-  pickerItem: {
-    flexDirection: 'row', alignItems: 'center', gap: 12,
-    borderRadius: 14, borderWidth: 1, overflow: 'hidden',
+  proteinHeader: {
+    flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12,
   },
-  pickerThumb: { width: 70, height: 70 },
-  pickerInfo: { flex: 1, paddingVertical: 8 },
-  pickerName: { fontSize: 14, fontWeight: '600' },
-  pickerMeta: { fontSize: 12, marginTop: 2 },
+  proteinTitle: { fontSize: 16, fontWeight: '700' },
+  proteinGrid: {
+    flexDirection: 'row', justifyContent: 'space-between',
+  },
+  proteinDay: { alignItems: 'center', flex: 1 },
+  proteinDayLabel: { fontSize: 11, fontWeight: '600', marginBottom: 4 },
+  proteinDayValue: { fontSize: 14, fontWeight: '700' },
 });

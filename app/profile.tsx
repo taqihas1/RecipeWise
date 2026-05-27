@@ -10,7 +10,8 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useThemeContext } from '@/lib/theme-provider';
 import {
   getSavedRecipeIds, getDietaryPrefs, saveDietaryPrefs, getTastePrefs, saveTastePrefs,
-  getIsPremium, setIsPremium, getUnitPref, saveUnitPref, DietaryPrefs, TastePrefs
+  getIsPremium, setIsPremium, getUnitPref, saveUnitPref, DietaryPrefs, TastePrefs,
+  getDailyLog
 } from '@/lib/store';
 import { RECIPES } from '@/lib/data/recipes';
 
@@ -31,6 +32,8 @@ export default function ProfileScreen() {
   });
   const [isPremium, setIsPremiumState] = useState(false);
   const [unitPref, setUnitPrefState] = useState<'metric' | 'imperial'>('imperial');
+  const [todayProtein, setTodayProtein] = useState(0);
+  const proteinGoal = 150; // Default daily protein goal
 
   useEffect(() => {
     getSavedRecipeIds().then(setSavedIds);
@@ -38,6 +41,15 @@ export default function ProfileScreen() {
     getTastePrefs().then(setTastePrefs);
     getIsPremium().then(setIsPremiumState);
     getUnitPref().then(setUnitPrefState);
+    // Load today's protein
+    const today = new Date().toISOString().split('T')[0];
+    getDailyLog(today).then(log => {
+      const total = log.reduce((sum, entry) => {
+        const recipe = RECIPES.find(r => r.id === entry.recipeId);
+        return sum + (recipe?.nutrition.protein || 0) * entry.servings;
+      }, 0);
+      setTodayProtein(Math.round(total));
+    });
   }, []);
 
   const savedRecipes = savedIds.map(id => RECIPES.find(r => r.id === id)).filter(Boolean);
@@ -66,6 +78,34 @@ export default function ProfileScreen() {
         {/* Header */}
         <View style={styles.header}>
           <Text style={[styles.pageTitle, { color: colors.foreground }]}>Profile</Text>
+        </View>
+
+        {/* Protein Tracker Card */}
+        <View style={[styles.proteinCard, { backgroundColor: colors.primary + '10', borderColor: colors.primary + '30' }]}>
+          <View style={styles.proteinCardHeader}>
+            <View style={[styles.proteinIconCircle, { backgroundColor: colors.primary }]}>
+              <IconSymbol name="flame.fill" size={20} color="#fff" />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.proteinCardTitle, { color: colors.foreground }]}>Protein Tracker</Text>
+              <Text style={[styles.proteinCardSubtitle, { color: colors.muted }]}>Daily Goal: {proteinGoal}g</Text>
+            </View>
+            <Text style={[styles.proteinValue, { color: colors.primary }]}>{todayProtein}g</Text>
+          </View>
+          <View style={styles.proteinBarBg}>
+            <View
+              style={[
+                styles.proteinBarFill,
+                {
+                  width: `${Math.min((todayProtein / proteinGoal) * 100, 100)}%`,
+                  backgroundColor: colors.primary,
+                },
+              ]}
+            />
+          </View>
+          <Text style={[styles.proteinPercent, { color: colors.muted }]}>
+            {Math.round((todayProtein / proteinGoal) * 100)}% of daily goal
+          </Text>
         </View>
 
         {/* Premium Banner */}
@@ -269,6 +309,29 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   header: { paddingHorizontal: 16, paddingTop: 8, paddingBottom: 12 },
   pageTitle: { fontSize: 24, fontWeight: '800' },
+  proteinCard: {
+    marginHorizontal: 16, marginBottom: 16, borderRadius: 20, padding: 16,
+    borderWidth: 1,
+  },
+  proteinCardHeader: {
+    flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 12,
+  },
+  proteinIconCircle: {
+    width: 40, height: 40, borderRadius: 20,
+    justifyContent: 'center', alignItems: 'center',
+  },
+  proteinCardTitle: { fontSize: 16, fontWeight: '700' },
+  proteinCardSubtitle: { fontSize: 12, marginTop: 2 },
+  proteinValue: { fontSize: 28, fontWeight: '800' },
+  proteinBarBg: {
+    height: 8, borderRadius: 4, backgroundColor: '#E0E0E0', overflow: 'hidden',
+  },
+  proteinBarFill: {
+    height: '100%', borderRadius: 4,
+  },
+  proteinPercent: {
+    fontSize: 12, marginTop: 8, textAlign: 'right', fontWeight: '600',
+  },
   premiumBanner: {
     marginHorizontal: 16, marginBottom: 16, borderRadius: 16, padding: 16,
     flexDirection: 'row', alignItems: 'center', gap: 12,

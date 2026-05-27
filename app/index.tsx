@@ -12,7 +12,7 @@ import {
   getQuickRecipes, MealType, TasteTag, ALL_RECIPES
 } from '@/lib/data/recipes';
 import { NEW_RECIPES } from '@/lib/data/recipes-new';
-import { isOnboardingDone } from '@/lib/store';
+import { isOnboardingDone, getSavedRecipeIds } from '@/lib/store';
 import { AdBanner } from '@/components/AdBanner';
 
 const MEAL_CATEGORIES: { label: string; type: MealType; emoji: string }[] = [
@@ -72,6 +72,7 @@ export default function DiscoverScreen() {
   const [selectedMeal, setSelectedMeal] = useState<MealType | null>(null);
   const [selectedTaste, setSelectedTaste] = useState<TasteTag | null>(null);
   const [selectedCuisine, setSelectedCuisine] = useState<CuisineTag | null>(null);
+  const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
   const checkedOnboarding = useRef(false);
 
   useEffect(() => {
@@ -80,11 +81,13 @@ export default function DiscoverScreen() {
     isOnboardingDone().then(done => {
       if (!done) router.replace('/onboarding' as any);
     });
+    getSavedRecipeIds().then(setFavoriteIds);
   }, []);
 
   const featured = getFeaturedRecipes();
   const trending = getTrendingRecipes();
   const quickMeals = getQuickRecipes(30);
+  const favoriteRecipes = RECIPES.filter(r => favoriteIds.includes(r.id)).slice(0, 8);
 
   const displayedRecipes = (selectedMeal || selectedTaste || selectedCuisine)
     ? RECIPES.filter(r => {
@@ -283,6 +286,37 @@ export default function DiscoverScreen() {
               </ScrollView>
             </View>
 
+            {/* My Favorites */}
+            <View style={styles.section}>
+              <View style={styles.sectionHeader}>
+                <Text style={[styles.sectionTitle, { color: colors.foreground }]}>❤️ My Favorites</Text>
+                <Pressable onPress={() => router.push('/search?filter=favorites')}>
+                  <Text style={[styles.seeAll, { color: colors.primary }]}>See all</Text>
+                </Pressable>
+              </View>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalList}>
+                {favoriteRecipes.length > 0 ? (
+                  favoriteRecipes.map(recipe => (
+                    <RecipeCard
+                      key={recipe.id}
+                      recipe={recipe}
+                      style={{ width: 260, marginRight: 12 }}
+                    />
+                  ))
+                ) : (
+                  <Pressable
+                    onPress={() => router.push('/search')}
+                    style={[styles.emptyFavorites, { borderColor: colors.border }]}
+                  >
+                    <IconSymbol name="heart" size={28} color={colors.muted + '60'} />
+                    <Text style={[styles.emptyFavoritesText, { color: colors.muted }]} numberOfLines={2}>
+                      No favorites yet.\nTap the heart on any recipe!
+                    </Text>
+                  </Pressable>
+                )}
+              </ScrollView>
+            </View>
+
             {/* High Protein Picks */}
             <View style={styles.section}>
               <View style={styles.sectionHeader}>
@@ -374,6 +408,13 @@ const styles = StyleSheet.create({
     borderRadius: 14, borderWidth: 1,
   },
   searchPlaceholder: { fontSize: 14 },
+  emptyFavorites: {
+    width: 260, height: 140, borderRadius: 16, borderWidth: 1.5, borderStyle: 'dashed',
+    justifyContent: 'center', alignItems: 'center', padding: 16, gap: 8,
+  },
+  emptyFavoritesText: {
+    fontSize: 13, fontWeight: '600', textAlign: 'center', lineHeight: 18,
+  },
   section: { paddingHorizontal: 16, marginBottom: 4 },
   sectionHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 },
   sectionTitle: { fontSize: 17, fontWeight: '700', marginBottom: 12 },
