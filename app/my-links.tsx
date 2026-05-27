@@ -33,7 +33,7 @@ const SOURCE_META: Record<string, { name: string; emoji: string; color: string; 
 
 const LINKS_STORAGE_KEY = 'recipewise_my_links';
 
-function detectSource(url: string): RecipeLink['source'] {
+export function detectSource(url: string): RecipeLink['source'] {
   const lower = url.toLowerCase();
   if (lower.includes('youtube.com') || lower.includes('youtu.be')) return 'youtube';
   if (lower.includes('instagram.com')) return 'instagram';
