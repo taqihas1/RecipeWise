@@ -79,7 +79,7 @@ export default function AddLinkScreen() {
       Alert.alert(
         '✅ Link Saved!',
         `"${trimmedTitle}" has been added to your recipe links.`,
-        [{ text: 'Done', onPress: () => router.back() }]
+        [{ text: 'Done', onPress: () => router.push('/my-links' as any) }]
       );
     } catch {
       Alert.alert('Error', 'Could not save the link. Please try again.');

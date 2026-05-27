@@ -12,6 +12,7 @@ import {
   getIsPremium, setIsPremium, getUnitPref, saveUnitPref, DietaryPrefs, TastePrefs,
   getDailyLog
 } from '@/lib/store';
+import { getSavedLinks, RecipeLink } from './my-links';
 import { RECIPES } from '@/lib/data/recipes';
 
 export default function ProfileScreen() {
@@ -21,6 +22,7 @@ export default function ProfileScreen() {
   const isDark = colorScheme === 'dark';
 
   const [savedIds, setSavedIds] = useState<string[]>([]);
+  const [savedLinks, setSavedLinks] = useState<RecipeLink[]>([]);
   const [dietaryPrefs, setDietaryPrefs] = useState<DietaryPrefs>({
     vegan: false, vegetarian: false, keto: false, glutenFree: false, dairyFree: false,
   });
@@ -34,6 +36,7 @@ export default function ProfileScreen() {
 
   useEffect(() => {
     getSavedRecipeIds().then(setSavedIds);
+    getSavedLinks().then(setSavedLinks);
     getDietaryPrefs().then(setDietaryPrefs);
     getTastePrefs().then(setTastePrefs);
     getIsPremium().then(setIsPremiumState);
@@ -131,6 +134,31 @@ export default function ProfileScreen() {
             </View>
           </View>
         )}
+
+        {/* My Recipe Links */}
+        <Pressable
+          style={({ pressed }) => [
+            styles.linksCard,
+            { backgroundColor: colors.surface, borderColor: colors.border },
+            pressed && { opacity: 0.85 },
+          ]}
+          onPress={() => router.push('/my-links' as any)}
+        >
+          <View style={styles.linksCardLeft}>
+            <View style={[styles.linksIconCircle, { backgroundColor: '#E1306C' }]}>
+              <IconSymbol name="link" size={18} color="#fff" />
+            </View>
+            <View>
+              <Text style={[styles.linksCardTitle, { color: colors.foreground }]}>
+                My Recipe Links
+              </Text>
+              <Text style={[styles.linksCardSubtitle, { color: colors.muted }]}>
+                {savedLinks.length} saved {savedLinks.length === 1 ? 'link' : 'links'}
+              </Text>
+            </View>
+          </View>
+          <IconSymbol name="chevron.right" size={20} color={colors.muted} />
+        </Pressable>
 
         {/* Saved Recipes */}
         <View style={styles.section}>
@@ -352,4 +380,18 @@ const styles = StyleSheet.create({
   },
   savedImage: { width: '100%', height: 90 },
   savedTitle: { fontSize: 12, fontWeight: '600', padding: 8, lineHeight: 16 },
+  linksCard: {
+    marginHorizontal: 16, marginBottom: 16,
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+    borderRadius: 16, borderWidth: 1, padding: 16,
+  },
+  linksCardLeft: {
+    flexDirection: 'row', alignItems: 'center', gap: 12,
+  },
+  linksIconCircle: {
+    width: 40, height: 40, borderRadius: 20,
+    justifyContent: 'center', alignItems: 'center',
+  },
+  linksCardTitle: { fontSize: 16, fontWeight: '700' },
+  linksCardSubtitle: { fontSize: 12, marginTop: 2 },
 });
