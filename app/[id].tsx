@@ -314,7 +314,7 @@ export default function RecipeDetailScreen() {
             { backgroundColor: colors.primary },
             pressed && { opacity: 0.85, transform: [{ scale: 0.98 }] },
           ]}
-          onPress={() => router.push(`/cooking/${recipe.id}` as any)}
+          onPress={() => setActiveTab('steps')}
         >
           <IconSymbol name="play.fill" size={20} color="#fff" />
           <Text style={styles.cookingButtonText}>Start Cooking</Text>
