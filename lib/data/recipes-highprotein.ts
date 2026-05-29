@@ -3,6 +3,7 @@ import type { Recipe } from './recipes';
 // ─── 35 NEW HIGH-PROTEIN RECIPES — r181 to r215 ───────────────────────────
 // No pork/ham. Focus: chicken, beef, fish, eggs, tofu, protein shakes, meal prep.
 // Positioning: RecipeWise = High-Protein Recipe Hub
+// Images handled by lib/image-resolver.ts (AI + Unsplash curated photos)
 
 export const HIGH_PROTEIN_RECIPES: Recipe[] = [
   // ===== CHICKEN (10 recipes) =====
@@ -165,9 +166,7 @@ export const HIGH_PROTEIN_RECIPES: Recipe[] = [
     ],
     nutrition: { calories: 380, protein: 38, carbs: 6, fat: 20, fiber: 2 },
     tips: [
-      'Double the batch and freeze cooked tenders for quick protein snacks.',
-      'Swap almond flour for crushed pork rinds for zero-carb breading.',
-      'Air fryer models vary — check at 10 minutes to avoid overcooking.',
+      'Double the batch and freeze cooked tenders for quick protein snacks.',      'Air fryer models vary — check at 10 minutes to avoid overcooking.',
     ],
   },
   {
@@ -371,9 +370,7 @@ export const HIGH_PROTEIN_RECIPES: Recipe[] = [
     nutrition: { calories: 480, protein: 42, carbs: 14, fat: 26, fiber: 4 },
     tips: [
       'Baked meatballs option: 400°F for 18-20 minutes on a sheet pan.',
-      'Double the batch and freeze half for emergency high-protein dinners.',
-      'Substitute ground turkey or a beef-pork blend for different flavors.',
-    ],
+      'Double the batch and freeze half for emergency high-protein dinners.',    ],
   },
   {
     id: 'r190',
@@ -492,9 +489,7 @@ export const HIGH_PROTEIN_RECIPES: Recipe[] = [
     nutrition: { calories: 580, protein: 38, carbs: 32, fat: 28, fiber: 4 },
     tips: [
       'Wrap in foil and freeze for grab-and-go breakfasts all week.',
-      'Add black beans and rice for a heartier burrito bowl version.',
-      'Swap in turkey sausage or bacon for a different protein profile.',
-    ],
+      'Add black beans and rice for a heartier burrito bowl version.',    ],
   },
 
   // ===== FISH & SEAFOOD (7 recipes) =====
@@ -810,9 +805,7 @@ export const HIGH_PROTEIN_RECIPES: Recipe[] = [
       { stepNumber: 5, instruction: 'Crumble feta over the top. Fold and slide onto a plate.' },
     ],
     nutrition: { calories: 240, protein: 28, carbs: 6, fat: 10, fiber: 2 },
-    tips: [
-      'Add turkey sausage or chicken breast for an even bigger protein boost.',
-      'Prep chopped veggies the night before for a 5-minute breakfast.',
+    tips: [      'Prep chopped veggies the night before for a 5-minute breakfast.',
       'Swap feta for goat cheese or nutritional yeast for different flavors.',
     ],
   },
@@ -929,9 +922,7 @@ export const HIGH_PROTEIN_RECIPES: Recipe[] = [
       { stepNumber: 6, instruction: 'Store in fridge up to 5 days or freeze up to 1 month. Microwave 45 seconds to reheat.' },
     ],
     nutrition: { calories: 160, protein: 20, carbs: 4, fat: 8, fiber: 1 },
-    tips: [
-      'Add diced ham or bacon bits for extra savory depth (not for no-pork diets).',
-      'Use silicone muffin cups for easy removal and zero sticking.',
+    tips: [      'Use silicone muffin cups for easy removal and zero sticking.',
       'Swap feta for cheddar or pepper jack for a different flavor profile.',
     ],
   },

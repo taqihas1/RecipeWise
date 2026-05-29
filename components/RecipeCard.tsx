@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { IconSymbol } from './ui/icon-symbol';
 import { useColors } from '@/hooks/use-colors';
 import { Recipe } from '@/lib/data/recipes';
+import { resolveRecipeImage } from '@/lib/image-resolver';
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -29,7 +30,7 @@ export function RecipeCard({ recipe, style, horizontal = false }: RecipeCardProp
         onPress={() => router.push(`/${recipe.id}` as any)}
       >
         <Image
-          source={{ uri: recipe.imageUrl }}
+          source={resolveRecipeImage(recipe.id, recipe.imageUrl)}
           style={styles.horizontalImage}
           resizeMode="cover"
         />
@@ -71,7 +72,7 @@ export function RecipeCard({ recipe, style, horizontal = false }: RecipeCardProp
       onPress={() => router.push(`/${recipe.id}` as any)}
     >
       <Image
-        source={{ uri: recipe.imageUrl }}
+        source={resolveRecipeImage(recipe.id, recipe.imageUrl)}
         style={styles.image}
         resizeMode="cover"
       />

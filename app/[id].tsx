@@ -10,7 +10,8 @@ import { useColors } from '@/hooks/use-colors';
 import { RECIPES, Recipe } from '@/lib/data/recipes';
 import { saveRecipe, unsaveRecipe, isRecipeSaved } from '@/lib/store';
 import * as Haptics from 'expo-haptics';
-import { Platform } from 'react-native';
+import { resolveRecipeImage } from '@/lib/image-resolver';
+import { useInterstitialAd } from '@/lib/use-interstitial-ad';
 
 export default function RecipeDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -18,6 +19,15 @@ export default function RecipeDetailScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
   const [saved, setSaved] = useState(false);
+  const { showInterstitial } = useInterstitialAd();
+
+  useEffect(() => {
+    // Show interstitial ad 30% of the time when viewing a recipe (not premium)
+    if (Math.random() < 0.3) {
+      const timer = setTimeout(() => showInterstitial(), 2500);
+      return () => clearTimeout(timer);
+    }
+  }, [id]);
   const [servingMultiplier, setServingMultiplier] = useState(1);
   const [useMetric, setUseMetric] = useState(false);
   const [activeTab, setActiveTab] = useState<'ingredients' | 'steps' | 'nutrition'>('ingredients');
@@ -84,7 +94,7 @@ export default function RecipeDetailScreen() {
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Hero Image */}
         <View style={styles.heroContainer}>
-          <Image source={{ uri: recipe.imageUrl }} style={styles.heroImage} resizeMode="cover" />
+          <Image source={resolveRecipeImage(recipe.id, recipe.imageUrl)} style={styles.heroImage} resizeMode="cover" />
           <View style={[styles.heroOverlay]} />
           {/* Back button */}
           <Pressable

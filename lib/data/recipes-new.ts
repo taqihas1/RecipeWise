@@ -5,8 +5,7 @@
 import type { Recipe } from './recipes';
 
 export const NEW_RECIPES: Recipe[] = [
-  // ─── ASIAN: Japanese ───────────────────────────────────────────────────────
-  {
+{
     id: 'r021',
     title: 'Chicken Ramen from Scratch',
     description: 'Rich, golden chicken broth with springy noodles, soft-boiled soy eggs, chashu-style chicken, bamboo shoots, and nori. A soul-warming Japanese classic made at home.',
@@ -51,7 +50,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Use fresh ramen noodles from an Asian grocery store if available.',
     ],
   },
-  {
+{
     id: 'r022',
     title: 'Teriyaki Salmon Bowl',
     description: 'Glossy teriyaki-glazed salmon over steamed rice with edamame, avocado, cucumber, and a drizzle of spicy mayo. A Japanese-inspired bowl that is ready in 25 minutes.',
@@ -94,49 +93,7 @@ export const NEW_RECIPES: Recipe[] = [
       'The spicy mayo can be made ahead and stored in the fridge for up to a week.',
     ],
   },
-  {
-    id: 'r023',
-    title: 'Gyoza (Japanese Pan-Fried Dumplings)',
-    description: 'Crispy-bottomed, juicy pork and cabbage dumplings with a golden crust and steamed top. Served with a tangy soy-vinegar dipping sauce.',
-    imageUrl: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600',
-    mealType: ['lunch', 'dinner', 'snack'],
-    tasteTags: ['savory', 'not-spicy'],
-    dietTags: ['dairy-free', 'high-protein'],
-    difficulty: 'medium',
-    prepTimeMinutes: 30,
-    cookTimeMinutes: 15,
-    servings: 4,
-    rating: 4.7,
-    ratingCount: 5680,
-    ingredients: [
-      { name: 'Ground pork', amount: 300, unit: 'g' },
-      { name: 'Napa cabbage', amount: 200, unit: 'g' },
-      { name: 'Gyoza wrappers', amount: 30, unit: 'pieces' },
-      { name: 'Garlic cloves', amount: 2, unit: 'cloves' },
-      { name: 'Ginger', amount: 1, unit: 'tsp' },
-      { name: 'Soy sauce', amount: 2, unit: 'tbsp' },
-      { name: 'Sesame oil', amount: 1, unit: 'tbsp' },
-      { name: 'Green onions', amount: 3, unit: 'stalks' },
-      { name: 'Rice vinegar', amount: 2, unit: 'tbsp' },
-      { name: 'Vegetable oil', amount: 2, unit: 'tbsp' },
-    ],
-    steps: [
-      { stepNumber: 1, instruction: 'Finely shred cabbage, sprinkle with salt, let sit 5 minutes, then squeeze out excess water. Mince garlic and ginger.' },
-      { stepNumber: 2, instruction: 'Mix pork, cabbage, garlic, ginger, 1 tbsp soy sauce, sesame oil, and green onions until combined.' },
-      { stepNumber: 3, instruction: 'Place 1 tsp filling in the center of each wrapper. Wet the edges, fold in half, and pleat to seal.' },
-      { stepNumber: 4, instruction: 'Heat oil in a large skillet over medium-high. Add gyoza flat-side down and cook until golden, about 3 minutes.', timerMinutes: 3 },
-      { stepNumber: 5, instruction: 'Add 60ml water, cover immediately, and steam for 5 minutes until water evaporates and bottoms are crispy.', timerMinutes: 5 },
-      { stepNumber: 6, instruction: 'Mix remaining soy sauce with rice vinegar for dipping sauce. Serve gyoza immediately.' },
-    ],
-    nutrition: { calories: 320, protein: 18, carbs: 34, fat: 12, fiber: 2 },
-    tips: [
-      'Keep unused wrappers covered with a damp cloth to prevent drying out.',
-      'Freeze uncooked gyoza on a tray before transferring to a bag — cook straight from frozen, adding 2 extra minutes.',
-      'The pleating takes practice — even a simple half-moon fold works perfectly.',
-    ],
-  },
-  // ─── ASIAN: Chinese ────────────────────────────────────────────────────────
-  {
+{
     id: 'r024',
     title: 'Kung Pao Chicken',
     description: 'The iconic Sichuan stir-fry — tender chicken with crunchy peanuts, dried chilies, and a bold sweet-spicy-tangy sauce. Ready in 20 minutes.',
@@ -180,7 +137,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Cashews or walnuts work as a great substitute for peanuts.',
     ],
   },
-  {
+{
     id: 'r025',
     title: 'Egg Fried Rice',
     description: 'The ultimate quick meal — fluffy day-old rice stir-fried with eggs, soy sauce, sesame oil, and vegetables. Better than takeout and ready in 10 minutes.',
@@ -220,51 +177,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add a splash of oyster sauce for extra umami depth.',
     ],
   },
-  {
-    id: 'r026',
-    title: 'Mapo Tofu',
-    description: 'Silken tofu in a fiery, numbing Sichuan sauce with ground pork, fermented black beans, and Sichuan peppercorns. A bold, comforting Chinese classic.',
-    imageUrl: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600',
-    mealType: ['lunch', 'dinner'],
-    tasteTags: ['spicy', 'savory'],
-    dietTags: ['high-protein', 'dairy-free'],
-    difficulty: 'medium',
-    prepTimeMinutes: 10,
-    cookTimeMinutes: 20,
-    servings: 3,
-    rating: 4.7,
-    ratingCount: 6890,
-    ingredients: [
-      { name: 'Silken tofu', amount: 400, unit: 'g' },
-      { name: 'Ground pork', amount: 150, unit: 'g' },
-      { name: 'Doubanjiang (chili bean paste)', amount: 2, unit: 'tbsp' },
-      { name: 'Fermented black beans', amount: 1, unit: 'tbsp' },
-      { name: 'Sichuan peppercorns', amount: 1, unit: 'tsp' },
-      { name: 'Garlic cloves', amount: 3, unit: 'cloves' },
-      { name: 'Ginger', amount: 1, unit: 'tsp' },
-      { name: 'Chicken broth', amount: 200, unit: 'ml' },
-      { name: 'Soy sauce', amount: 1, unit: 'tbsp' },
-      { name: 'Cornstarch', amount: 1, unit: 'tbsp' },
-      { name: 'Vegetable oil', amount: 2, unit: 'tbsp' },
-      { name: 'Green onions', amount: 2, unit: 'stalks' },
-    ],
-    steps: [
-      { stepNumber: 1, instruction: 'Cut tofu into 2cm cubes. Gently simmer in salted water for 3 minutes to firm up slightly. Drain carefully.' },
-      { stepNumber: 2, instruction: 'Toast Sichuan peppercorns in a dry pan until fragrant. Grind coarsely.' },
-      { stepNumber: 3, instruction: 'Heat oil in a wok. Fry doubanjiang and black beans until oil turns red, about 2 minutes. Add garlic and ginger.' },
-      { stepNumber: 4, instruction: 'Add ground pork and cook until browned. Pour in broth and soy sauce. Bring to a simmer.' },
-      { stepNumber: 5, instruction: 'Gently slide in tofu. Simmer 5 minutes. Mix cornstarch with 2 tbsp water and stir in to thicken.', timerMinutes: 5 },
-      { stepNumber: 6, instruction: 'Transfer to a bowl. Sprinkle with ground Sichuan pepper and green onions. Serve with steamed rice.' },
-    ],
-    nutrition: { calories: 310, protein: 22, carbs: 12, fat: 20, fiber: 2 },
-    tips: [
-      'Silken tofu is essential — firm tofu will not absorb the sauce the same way.',
-      'Doubanjiang is the soul of this dish; find it at any Asian grocery store.',
-      'The Sichuan peppercorn numbing sensation (ma) is what makes this dish unique — do not skip it.',
-    ],
-  },
-  // ─── ASIAN: Korean ─────────────────────────────────────────────────────────
-  {
+{
     id: 'r027',
     title: 'Bibimbap (Korean Mixed Rice Bowl)',
     description: 'A vibrant Korean rice bowl topped with seasoned vegetables, bulgogi beef, a fried egg, and gochujang sauce. Mix everything together for an explosion of flavour.',
@@ -309,7 +222,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Leftover vegetables from the fridge work perfectly in bibimbap.',
     ],
   },
-  {
+{
     id: 'r028',
     title: 'Korean Fried Chicken (Dakgangjeong)',
     description: 'Double-fried crispy chicken coated in a sticky, sweet-spicy gochujang glaze. Addictively crunchy on the outside and juicy inside.',
@@ -351,8 +264,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Serve with pickled daikon radish and cold beer for the full Korean experience.',
     ],
   },
-  // ─── ASIAN: Vietnamese ─────────────────────────────────────────────────────
-  {
+{
     id: 'r029',
     title: 'Vietnamese Pho Bo (Beef Noodle Soup)',
     description: 'Aromatic star anise and cinnamon broth with silky rice noodles, thinly sliced beef, and a platter of fresh herbs. Vietnam\'s most beloved comfort food.',
@@ -398,7 +310,7 @@ export const NEW_RECIPES: Recipe[] = [
       'A pressure cooker reduces broth time to 30 minutes.',
     ],
   },
-  {
+{
     id: 'r030',
     title: 'Vietnamese Fresh Spring Rolls (Gỏi Cuốn)',
     description: 'Light, fresh rice paper rolls filled with shrimp, vermicelli, lettuce, mint, and cucumber. Served with a rich peanut dipping sauce.',
@@ -439,8 +351,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add avocado slices for extra creaminess.',
     ],
   },
-  // ─── ASIAN: Thai ───────────────────────────────────────────────────────────
-  {
+{
     id: 'r031',
     title: 'Pad Thai',
     description: 'Thailand\'s beloved stir-fried noodle dish with rice noodles, eggs, tofu, bean sprouts, and a tangy tamarind-based sauce. Topped with crushed peanuts and lime.',
@@ -485,7 +396,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add dried shrimp for a more authentic flavour profile.',
     ],
   },
-  {
+{
     id: 'r032',
     title: 'Thai Green Curry',
     description: 'Fragrant coconut milk curry with homemade-style green curry paste, chicken, Thai eggplant, and kaffir lime leaves. Served with jasmine rice.',
@@ -526,8 +437,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Substitute tofu and vegetable broth for a vegan version.',
     ],
   },
-  // ─── MEDITERRANEAN: Greek ──────────────────────────────────────────────────
-  {
+{
     id: 'r033',
     title: 'Greek Chicken Souvlaki',
     description: 'Juicy marinated chicken skewers with lemon, garlic, and oregano. Served in warm pita with tzatziki, tomatoes, and red onion.',
@@ -569,7 +479,7 @@ export const NEW_RECIPES: Recipe[] = [
       'A cast iron griddle pan gives beautiful char marks indoors.',
     ],
   },
-  {
+{
     id: 'r034',
     title: 'Spanakopita (Greek Spinach Pie)',
     description: 'Flaky golden phyllo pastry filled with spinach, feta, eggs, and herbs. A classic Greek pie that works as a main, side, or appetizer.',
@@ -609,7 +519,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Scoring before baking makes it much easier to cut clean portions after.',
     ],
   },
-  {
+{
     id: 'r035',
     title: 'Greek Salad (Horiatiki)',
     description: 'The authentic village salad — chunky tomatoes, cucumber, Kalamata olives, red onion, and a thick slab of feta, dressed simply with olive oil and oregano.',
@@ -647,8 +557,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add a pinch of dried thyme alongside the oregano for extra depth.',
     ],
   },
-  // ─── MEDITERRANEAN: Lebanese ───────────────────────────────────────────────
-  {
+{
     id: 'r036',
     title: 'Chicken Shawarma',
     description: 'Warmly spiced marinated chicken with cumin, coriander, and turmeric, roasted until caramelised. Served in flatbread with garlic sauce and pickles.',
@@ -692,7 +601,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Toum (Lebanese garlic sauce) is available at Middle Eastern grocery stores or easy to make by blending garlic, lemon, and oil.',
     ],
   },
-  {
+{
     id: 'r037',
     title: 'Hummus with Warm Spiced Chickpeas',
     description: 'Ultra-smooth homemade hummus topped with warm cumin-spiced chickpeas, olive oil, paprika, and fresh parsley. Serve with warm pita.',
@@ -731,55 +640,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Blend for longer than you think necessary — 3-4 minutes gives a silky result.',
     ],
   },
-  // ─── MEDITERRANEAN: Spanish ────────────────────────────────────────────────
-  {
-    id: 'r038',
-    title: 'Spanish Paella',
-    description: 'The iconic Spanish rice dish with saffron, chicken, chorizo, shrimp, and mussels cooked in a wide pan until a crispy socarrat forms on the bottom.',
-    imageUrl: 'https://images.unsplash.com/photo-1534080564583-6be75777b70a?w=600',
-    mealType: ['lunch', 'dinner'],
-    tasteTags: ['savory', 'not-spicy'],
-    dietTags: ['gluten-free', 'dairy-free', 'high-protein'],
-    difficulty: 'hard',
-    prepTimeMinutes: 20,
-    cookTimeMinutes: 40,
-    servings: 6,
-    rating: 4.8,
-    ratingCount: 6540,
-    isFeatured: true,
-    ingredients: [
-      { name: 'Paella rice (bomba or arborio)', amount: 2, unit: 'cups' },
-      { name: 'Chicken thighs', amount: 400, unit: 'g' },
-      { name: 'Chorizo', amount: 150, unit: 'g' },
-      { name: 'Shrimp', amount: 200, unit: 'g' },
-      { name: 'Mussels', amount: 300, unit: 'g' },
-      { name: 'Saffron threads', amount: 0.5, unit: 'tsp' },
-      { name: 'Chicken broth', amount: 900, unit: 'ml' },
-      { name: 'Tomatoes', amount: 2, unit: 'medium' },
-      { name: 'Red bell pepper', amount: 1, unit: 'large' },
-      { name: 'Onion', amount: 1, unit: 'medium' },
-      { name: 'Garlic cloves', amount: 4, unit: 'cloves' },
-      { name: 'Smoked paprika', amount: 2, unit: 'tsp' },
-      { name: 'Olive oil', amount: 3, unit: 'tbsp' },
-      { name: 'Lemon', amount: 1, unit: 'piece' },
-    ],
-    steps: [
-      { stepNumber: 1, instruction: 'Steep saffron in 2 tbsp warm water. Season chicken with salt and smoked paprika.' },
-      { stepNumber: 2, instruction: 'Heat olive oil in a wide paella pan. Brown chicken 4 minutes per side. Remove. Brown chorizo slices. Remove.' },
-      { stepNumber: 3, instruction: 'Sauté onion, garlic, and bell pepper until soft. Add grated tomatoes and cook until thickened, about 5 minutes.' },
-      { stepNumber: 4, instruction: 'Add rice and stir to coat with the sofrito. Pour in broth and saffron water. Arrange chicken and chorizo on top. Do not stir from this point.', timerMinutes: 5 },
-      { stepNumber: 5, instruction: 'Simmer on medium heat for 15 minutes. Nestle shrimp and mussels into the rice. Cook 10 more minutes until mussels open and rice is cooked.', timerMinutes: 25 },
-      { stepNumber: 6, instruction: 'Increase heat for 2 minutes to create the socarrat (crispy bottom). Rest 5 minutes. Serve with lemon wedges.' },
-    ],
-    nutrition: { calories: 580, protein: 38, carbs: 62, fat: 18, fiber: 4 },
-    tips: [
-      'Never stir paella after adding the broth — this is the cardinal rule.',
-      'The socarrat (crispy bottom layer) is the most prized part — listen for a crackling sound.',
-      'Use a wide, shallow pan to maximise the surface area for the socarrat.',
-    ],
-  },
-  // ─── MEXICAN ───────────────────────────────────────────────────────────────
-  {
+{
     id: 'r039',
     title: 'Chicken Tacos al Pastor',
     description: 'Marinated chicken with achiote, pineapple, and chipotle, cooked until caramelised and served in warm corn tortillas with cilantro, onion, and salsa verde.',
@@ -823,7 +684,7 @@ export const NEW_RECIPES: Recipe[] = [
       'The pineapple is not optional — it tenderises the meat and balances the smokiness.',
     ],
   },
-  {
+{
     id: 'r040',
     title: 'Beef Enchiladas with Red Sauce',
     description: 'Corn tortillas filled with seasoned ground beef and cheese, rolled and smothered in rich homemade red chili sauce, then baked until bubbly.',
@@ -866,7 +727,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Make the sauce a day ahead; it deepens in flavour overnight.',
     ],
   },
-  {
+{
     id: 'r041',
     title: 'Classic Guacamole',
     description: 'Perfectly chunky guacamole with ripe avocados, lime, cilantro, jalapeño, and tomato. The only guacamole recipe you will ever need.',
@@ -905,7 +766,7 @@ export const NEW_RECIPES: Recipe[] = [
       'A pinch of cumin adds a subtle smokiness that elevates the whole dish.',
     ],
   },
-  {
+{
     id: 'r042',
     title: 'Shrimp Tacos with Mango Salsa',
     description: 'Chili-lime shrimp in warm corn tortillas with fresh mango salsa, avocado, and a drizzle of chipotle crema. Bright, fresh, and ready in 20 minutes.',
@@ -948,7 +809,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Cabbage slaw adds great crunch if you want extra texture.',
     ],
   },
-  {
+{
     id: 'r043',
     title: 'Black Bean and Cheese Quesadillas',
     description: 'Crispy flour tortillas filled with seasoned black beans, melted cheese, and roasted peppers. A quick, satisfying vegetarian meal ready in 15 minutes.',
@@ -986,8 +847,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add pickled jalapeños for a spicy kick.',
     ],
   },
-  // ─── INDIAN ────────────────────────────────────────────────────────────────
-  {
+{
     id: 'r044',
     title: 'Butter Chicken (Murgh Makhani)',
     description: 'Tender chicken in a velvety, mildly spiced tomato and cream sauce. India\'s most beloved curry — rich, aromatic, and deeply satisfying.',
@@ -1033,7 +893,7 @@ export const NEW_RECIPES: Recipe[] = [
       'A pinch of sugar balances the acidity of the tomatoes.',
     ],
   },
-  {
+{
     id: 'r045',
     title: 'Chicken Tikka Masala',
     description: 'Charred chicken tikka in a creamy, spiced tomato masala sauce. The dish that conquered the world — and for good reason.',
@@ -1078,7 +938,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Fenugreek leaves (kasuri methi) stirred in at the end are the restaurant secret ingredient.',
     ],
   },
-  {
+{
     id: 'r046',
     title: 'Dal Tadka (Yellow Lentil Curry)',
     description: 'Creamy yellow lentils tempered with cumin, mustard seeds, garlic, and dried chilies. A comforting Indian staple that is vegan, cheap, and incredibly satisfying.',
@@ -1121,7 +981,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Squeeze lemon juice just before serving — it brightens all the flavours.',
     ],
   },
-  {
+{
     id: 'r047',
     title: 'Palak Paneer (Spinach and Cheese Curry)',
     description: 'Cubes of fresh paneer in a vibrant, creamy spinach sauce spiced with garam masala and ginger. A vegetarian Indian classic.',
@@ -1162,7 +1022,7 @@ export const NEW_RECIPES: Recipe[] = [
       'A squeeze of lemon juice at the end brightens the earthy spinach flavour.',
     ],
   },
-  {
+{
     id: 'r048',
     title: 'Chicken Biryani',
     description: 'Fragrant basmati rice layered with spiced chicken, caramelised onions, saffron, and fresh herbs. Slow-cooked to perfection in the traditional dum style.',
@@ -1209,8 +1069,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Crispy fried onions (birista) are the most important garnish — make extra.',
     ],
   },
-  // ─── ITALIAN ───────────────────────────────────────────────────────────────
-  {
+{
     id: 'r049',
     title: 'Cacio e Pepe',
     description: 'Rome\'s simplest and most perfect pasta — spaghetti with Pecorino Romano, Parmesan, and an obscene amount of black pepper. Creamy without a drop of cream.',
@@ -1246,7 +1105,7 @@ export const NEW_RECIPES: Recipe[] = [
       'The starchy pasta water is the key emulsifier — do not skip reserving it.',
     ],
   },
-  {
+{
     id: 'r050',
     title: 'Osso Buco with Gremolata',
     description: 'Braised veal shanks in white wine and tomatoes until fall-off-the-bone tender, finished with a bright lemon-parsley-garlic gremolata. A Milanese masterpiece.',
@@ -1291,7 +1150,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Make a day ahead — osso buco is always better reheated the next day.',
     ],
   },
-  {
+{
     id: 'r051',
     title: 'Margherita Pizza',
     description: 'The original Neapolitan pizza — hand-stretched dough with San Marzano tomato sauce, fresh mozzarella, and basil. Simple, perfect, iconic.',
@@ -1333,7 +1192,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add basil after baking, not before, to keep it vibrant and fresh.',
     ],
   },
-  {
+{
     id: 'r052',
     title: 'Risotto ai Funghi (Mushroom Risotto)',
     description: 'Creamy Arborio rice with a medley of wild mushrooms, white wine, Parmesan, and thyme. The ultimate Italian comfort food that rewards patience.',
@@ -1375,7 +1234,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Risotto waits for no one — serve immediately or it becomes stodgy.',
     ],
   },
-  {
+{
     id: 'r053',
     title: 'Tiramisu',
     description: 'The classic Italian dessert — espresso-soaked ladyfingers layered with mascarpone cream and dusted with cocoa. No baking required.',
@@ -1415,8 +1274,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Use the best quality cocoa powder you can find for the final dusting.',
     ],
   },
-  // ─── AMERICAN ──────────────────────────────────────────────────────────────
-  {
+{
     id: 'r054',
     title: 'Classic Beef Burger',
     description: 'A juicy smash-style beef burger with American cheese, caramelised onions, pickles, and special sauce on a toasted brioche bun. Better than any fast food.',
@@ -1457,90 +1315,7 @@ export const NEW_RECIPES: Recipe[] = [
       'A very hot cast iron pan is essential — non-stick pans cannot reach the required temperature.',
     ],
   },
-  {
-    id: 'r055',
-    title: 'BBQ Baby Back Ribs',
-    description: 'Slow-cooked fall-off-the-bone pork ribs with a dry rub, finished with sticky homemade BBQ sauce. The ultimate weekend cook.',
-    imageUrl: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=600',
-    mealType: ['dinner'],
-    tasteTags: ['sweet', 'savory', 'not-spicy'],
-    dietTags: ['high-protein', 'gluten-free', 'dairy-free'],
-    difficulty: 'medium',
-    prepTimeMinutes: 20,
-    cookTimeMinutes: 180,
-    servings: 4,
-    rating: 4.9,
-    ratingCount: 9870,
-    isPremium: true,
-    ingredients: [
-      { name: 'Baby back ribs', amount: 1.5, unit: 'kg' },
-      { name: 'Brown sugar', amount: 3, unit: 'tbsp' },
-      { name: 'Smoked paprika', amount: 2, unit: 'tbsp' },
-      { name: 'Garlic powder', amount: 1, unit: 'tbsp' },
-      { name: 'Onion powder', amount: 1, unit: 'tbsp' },
-      { name: 'Cumin', amount: 1, unit: 'tsp' },
-      { name: 'Ketchup', amount: 150, unit: 'ml' },
-      { name: 'Apple cider vinegar', amount: 3, unit: 'tbsp' },
-      { name: 'Worcestershire sauce', amount: 2, unit: 'tbsp' },
-      { name: 'Honey', amount: 2, unit: 'tbsp' },
-    ],
-    steps: [
-      { stepNumber: 1, instruction: 'Remove the membrane from the back of the ribs. Mix brown sugar, paprika, garlic powder, onion powder, cumin, salt, and pepper for the dry rub. Coat ribs generously.' },
-      { stepNumber: 2, instruction: 'Wrap ribs tightly in foil. Bake at 150°C for 2.5 hours until very tender.', timerMinutes: 150 },
-      { stepNumber: 3, instruction: 'Make BBQ sauce: simmer ketchup, vinegar, Worcestershire, honey, and remaining rub for 10 minutes.' },
-      { stepNumber: 4, instruction: 'Unwrap ribs. Brush generously with BBQ sauce. Grill or broil for 10-15 minutes until caramelised and sticky.', timerMinutes: 12 },
-      { stepNumber: 5, instruction: 'Rest 5 minutes. Cut between bones. Serve with extra sauce and coleslaw.' },
-    ],
-    nutrition: { calories: 680, protein: 48, carbs: 28, fat: 42, fiber: 1 },
-    tips: [
-      'Removing the membrane (silverskin) from the back of the ribs allows the rub to penetrate and makes them easier to eat.',
-      'The foil wrap is the key to tender ribs — it traps steam and braises the meat.',
-      'Finish on high heat to caramelise the sauce — this is what gives ribs their sticky, lacquered appearance.',
-    ],
-  },
-  {
-    id: 'r056',
-    title: 'New England Clam Chowder',
-    description: 'Thick, creamy chowder with tender clams, potatoes, bacon, and thyme. A New England classic that warms you from the inside out.',
-    imageUrl: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600',
-    mealType: ['lunch', 'dinner'],
-    tasteTags: ['savory', 'not-spicy'],
-    dietTags: ['gluten-free', 'high-protein'],
-    difficulty: 'medium',
-    prepTimeMinutes: 15,
-    cookTimeMinutes: 30,
-    servings: 4,
-    rating: 4.7,
-    ratingCount: 5430,
-    ingredients: [
-      { name: 'Canned clams', amount: 400, unit: 'g' },
-      { name: 'Potatoes', amount: 400, unit: 'g' },
-      { name: 'Bacon', amount: 150, unit: 'g' },
-      { name: 'Onion', amount: 1, unit: 'medium' },
-      { name: 'Celery stalks', amount: 2, unit: 'stalks' },
-      { name: 'Heavy cream', amount: 300, unit: 'ml' },
-      { name: 'Clam juice', amount: 200, unit: 'ml' },
-      { name: 'Chicken broth', amount: 200, unit: 'ml' },
-      { name: 'Butter', amount: 2, unit: 'tbsp' },
-      { name: 'Flour', amount: 3, unit: 'tbsp' },
-      { name: 'Fresh thyme', amount: 3, unit: 'sprigs' },
-      { name: 'Bay leaf', amount: 1, unit: 'piece' },
-    ],
-    steps: [
-      { stepNumber: 1, instruction: 'Cook diced bacon in a large pot until crispy. Remove and set aside. Sauté onion and celery in the bacon fat.' },
-      { stepNumber: 2, instruction: 'Add butter and flour. Cook 2 minutes to make a roux.' },
-      { stepNumber: 3, instruction: 'Gradually whisk in clam juice and broth. Add diced potatoes, thyme, and bay leaf. Simmer 15 minutes until potatoes are tender.', timerMinutes: 15 },
-      { stepNumber: 4, instruction: 'Add cream and clams (with their liquid). Simmer gently for 5 minutes. Do not boil after adding cream.', timerMinutes: 5 },
-      { stepNumber: 5, instruction: 'Remove bay leaf and thyme. Season with salt and pepper. Serve in bowls topped with crispy bacon and oyster crackers.' },
-    ],
-    nutrition: { calories: 480, protein: 22, carbs: 32, fat: 30, fiber: 3 },
-    tips: [
-      'Never boil the chowder after adding cream — it will curdle and separate.',
-      'Drain the clam liquid into the soup but add the clams at the very end to prevent them from becoming rubbery.',
-      'Serve in a sourdough bread bowl for the full New England experience.',
-    ],
-  },
-  {
+{
     id: 'r057',
     title: 'Mac and Cheese',
     description: 'The ultimate stovetop mac and cheese with a triple-cheese sauce — sharp cheddar, Gruyère, and cream cheese — coating every elbow of pasta.',
@@ -1581,7 +1356,7 @@ export const NEW_RECIPES: Recipe[] = [
       'A pinch of cayenne adds a subtle heat that balances the richness.',
     ],
   },
-  {
+{
     id: 'r058',
     title: 'Classic Caesar Salad',
     description: 'Crisp romaine lettuce with homemade Caesar dressing, golden croutons, and shaved Parmesan. The dressing is made from scratch — no bottled version comes close.',
@@ -1622,48 +1397,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Use the inner leaves of romaine for the best crunch.',
     ],
   },
-  {
-    id: 'r059',
-    title: 'Pulled Pork Sandwiches',
-    description: 'Slow-cooked pork shoulder with a smoky dry rub, shredded and tossed in tangy BBQ sauce. Piled high on a brioche bun with crunchy coleslaw.',
-    imageUrl: 'https://images.unsplash.com/photo-1558030006-450675393462?w=600',
-    mealType: ['lunch', 'dinner'],
-    tasteTags: ['sweet', 'savory', 'not-spicy'],
-    dietTags: ['high-protein', 'dairy-free'],
-    difficulty: 'medium',
-    prepTimeMinutes: 20,
-    cookTimeMinutes: 240,
-    servings: 8,
-    rating: 4.8,
-    ratingCount: 8760,
-    ingredients: [
-      { name: 'Pork shoulder', amount: 2, unit: 'kg' },
-      { name: 'Brown sugar', amount: 3, unit: 'tbsp' },
-      { name: 'Smoked paprika', amount: 2, unit: 'tbsp' },
-      { name: 'Garlic powder', amount: 1, unit: 'tbsp' },
-      { name: 'Onion powder', amount: 1, unit: 'tbsp' },
-      { name: 'Cumin', amount: 1, unit: 'tsp' },
-      { name: 'BBQ sauce', amount: 200, unit: 'ml' },
-      { name: 'Brioche buns', amount: 8, unit: 'pieces' },
-      { name: 'Coleslaw mix', amount: 300, unit: 'g' },
-      { name: 'Mayonnaise', amount: 3, unit: 'tbsp' },
-      { name: 'Apple cider vinegar', amount: 1, unit: 'tbsp' },
-    ],
-    steps: [
-      { stepNumber: 1, instruction: 'Mix brown sugar, paprika, garlic powder, onion powder, cumin, salt, and pepper. Rub all over pork shoulder.' },
-      { stepNumber: 2, instruction: 'Place in a roasting pan with 100ml water. Cover tightly with foil. Roast at 150°C for 4 hours until falling apart.', timerMinutes: 240 },
-      { stepNumber: 3, instruction: 'Make coleslaw: toss coleslaw mix with mayo, vinegar, salt, and a pinch of sugar.' },
-      { stepNumber: 4, instruction: 'Shred pork with two forks. Toss with BBQ sauce.' },
-      { stepNumber: 5, instruction: 'Toast buns. Pile with pulled pork and coleslaw. Serve with extra BBQ sauce.' },
-    ],
-    nutrition: { calories: 580, protein: 42, carbs: 44, fat: 24, fiber: 2 },
-    tips: [
-      'The longer you cook it, the better — 5-6 hours at 140°C is even better than 4 hours at 150°C.',
-      'Let the pork rest for 20 minutes before shredding for juicier results.',
-      'Freeze leftover pulled pork in portions for quick weeknight meals.',
-    ],
-  },
-  {
+{
     id: 'r060',
     title: 'Pancakes with Maple Syrup',
     description: 'Fluffy, golden American-style pancakes with buttermilk for extra tenderness. Stacked high and drizzled with real maple syrup and fresh berries.',
@@ -1704,8 +1438,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Keep finished pancakes warm in a 90°C oven while you cook the rest.',
     ],
   },
-  // ─── MORE ASIAN ────────────────────────────────────────────────────────────
-  {
+{
     id: 'r061',
     title: 'Miso Soup with Tofu and Wakame',
     description: 'A simple, restorative Japanese soup with silken tofu, wakame seaweed, and green onions in a dashi-based miso broth. Ready in 10 minutes.',
@@ -1739,7 +1472,7 @@ export const NEW_RECIPES: Recipe[] = [
       'A small piece of kombu simmered in the water for 10 minutes makes an excellent quick dashi.',
     ],
   },
-  {
+{
     id: 'r062',
     title: 'Sushi Rice Bowl (Chirashi)',
     description: 'A colourful Japanese scattered sushi bowl with seasoned rice topped with sashimi-grade salmon, tuna, avocado, cucumber, and tobiko.',
@@ -1780,7 +1513,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Serve at room temperature — cold rice loses its texture.',
     ],
   },
-  {
+{
     id: 'r063',
     title: 'Tom Yum Soup',
     description: 'Thailand\'s iconic hot and sour soup with shrimp, mushrooms, lemongrass, kaffir lime, and galangal. Fiery, fragrant, and deeply restorative.',
@@ -1823,7 +1556,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Tom yum goong (with coconut milk) is the creamy version; tom yum nam sai is the clear version — both are delicious.',
     ],
   },
-  {
+{
     id: 'r064',
     title: 'Korean Japchae (Glass Noodles)',
     description: 'Sweet potato glass noodles stir-fried with colourful vegetables, beef, and a sweet soy sesame sauce. A festive Korean dish that is naturally gluten-free.',
@@ -1865,8 +1598,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Substitute mushrooms for the beef to make a delicious vegan version.',
     ],
   },
-  // ─── MORE MEDITERRANEAN ────────────────────────────────────────────────────
-  {
+{
     id: 'r065',
     title: 'Shakshuka',
     description: 'Eggs poached in a spiced tomato and pepper sauce with cumin, paprika, and harissa. A Middle Eastern breakfast classic that works any time of day.',
@@ -1910,7 +1642,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Serve directly from the pan for the best presentation and to keep the eggs warm.',
     ],
   },
-  {
+{
     id: 'r066',
     title: 'Falafel with Tahini Sauce',
     description: 'Crispy, herb-packed chickpea falafel served in warm pita with tahini sauce, pickled vegetables, and fresh salad. The ultimate Middle Eastern street food.',
@@ -1952,7 +1684,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Baking powder is the secret to light, airy falafel that does not feel heavy.',
     ],
   },
-  {
+{
     id: 'r067',
     title: 'Turkish Lamb Köfte',
     description: 'Spiced ground lamb patties with cumin, coriander, and mint, grilled until juicy. Served with flatbread, yogurt sauce, and a fresh tomato salad.',
@@ -1994,47 +1726,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Sumac sprinkled over the tomatoes adds an authentic tangy flavour.',
     ],
   },
-  // ─── MORE ITALIAN ──────────────────────────────────────────────────────────
-  {
-    id: 'r068',
-    title: 'Spaghetti Carbonara',
-    description: 'The authentic Roman carbonara — spaghetti with guanciale, eggs, Pecorino Romano, and black pepper. No cream, no peas, no onions. Just perfection.',
-    imageUrl: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=600',
-    mealType: ['lunch', 'dinner'],
-    tasteTags: ['savory', 'not-spicy'],
-    dietTags: ['high-protein'],
-    difficulty: 'medium',
-    prepTimeMinutes: 5,
-    cookTimeMinutes: 20,
-    servings: 2,
-    rating: 4.9,
-    ratingCount: 18700,
-    isFeatured: true,
-    isTrending: true,
-    ingredients: [
-      { name: 'Spaghetti', amount: 200, unit: 'g' },
-      { name: 'Guanciale or pancetta', amount: 150, unit: 'g' },
-      { name: 'Egg yolks', amount: 4, unit: 'large' },
-      { name: 'Whole egg', amount: 1, unit: 'large' },
-      { name: 'Pecorino Romano', amount: 80, unit: 'g' },
-      { name: 'Parmesan', amount: 40, unit: 'g' },
-      { name: 'Black pepper', amount: 2, unit: 'tsp' },
-    ],
-    steps: [
-      { stepNumber: 1, instruction: 'Cook spaghetti in well-salted water until al dente. Reserve 200ml pasta water.' },
-      { stepNumber: 2, instruction: 'Render guanciale in a cold pan over medium heat until fat is released and edges are crispy. Remove from heat.' },
-      { stepNumber: 3, instruction: 'Whisk egg yolks, whole egg, and finely grated cheeses together. Add 2 tbsp pasta water to temper.' },
-      { stepNumber: 4, instruction: 'Add drained pasta to the guanciale pan (off heat). Toss to coat in the fat.' },
-      { stepNumber: 5, instruction: 'Add egg mixture and toss vigorously, adding pasta water gradually to create a glossy, creamy sauce. The residual heat cooks the eggs — never use direct heat. Season with black pepper.' },
-    ],
-    nutrition: { calories: 680, protein: 32, carbs: 62, fat: 32, fiber: 3 },
-    tips: [
-      'The pan must be off the heat when you add the eggs — direct heat scrambles them.',
-      'Toss quickly and continuously — the goal is a silky sauce, not scrambled eggs.',
-      'Guanciale (cured pork cheek) is traditional; pancetta is a good substitute.',
-    ],
-  },
-  {
+{
     id: 'r069',
     title: 'Penne all\'Arrabbiata',
     description: 'Penne in a fiery tomato sauce with garlic and dried chilies. One of Rome\'s simplest and most satisfying pasta dishes — ready in 20 minutes.',
@@ -2071,7 +1763,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Traditionally served without cheese, but a little Pecorino Romano never hurt anyone.',
     ],
   },
-  {
+{
     id: 'r070',
     title: 'Bruschetta al Pomodoro',
     description: 'Toasted sourdough rubbed with garlic and topped with fresh tomatoes, basil, and olive oil. The simplest Italian appetiser and one of the most delicious.',
@@ -2107,8 +1799,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Serve immediately — bruschetta goes soggy quickly.',
     ],
   },
-  // ─── MORE MEXICAN ──────────────────────────────────────────────────────────
-  {
+{
     id: 'r071',
     title: 'Chicken Tortilla Soup',
     description: 'A hearty Mexican soup with shredded chicken, black beans, corn, and tomatoes in a smoky chipotle broth. Topped with crispy tortilla strips and avocado.',
@@ -2151,7 +1842,7 @@ export const NEW_RECIPES: Recipe[] = [
       'A dollop of sour cream adds a cooling contrast to the spicy broth.',
     ],
   },
-  {
+{
     id: 'r072',
     title: 'Chiles Rellenos',
     description: 'Roasted poblano peppers stuffed with cheese, dipped in a fluffy egg batter, and fried until golden. A classic Mexican dish that is worth every step.',
@@ -2191,8 +1882,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Oaxaca cheese is traditional; mozzarella is the best substitute.',
     ],
   },
-  // ─── MORE INDIAN ───────────────────────────────────────────────────────────
-  {
+{
     id: 'r073',
     title: 'Aloo Gobi (Potato and Cauliflower Curry)',
     description: 'A dry, fragrant Indian curry with potatoes and cauliflower spiced with turmeric, cumin, and coriander. Simple, vegan, and deeply satisfying.',
@@ -2234,7 +1924,7 @@ export const NEW_RECIPES: Recipe[] = [
       'A squeeze of lemon juice at the end brightens all the spices.',
     ],
   },
-  {
+{
     id: 'r074',
     title: 'Lamb Rogan Josh',
     description: 'A Kashmiri slow-braised lamb curry with whole spices, Kashmiri chilies, and yogurt. Deep, aromatic, and rich — one of India\'s great curries.',
@@ -2278,8 +1968,7 @@ export const NEW_RECIPES: Recipe[] = [
       'The dish is always better the next day after the flavours have melded.',
     ],
   },
-  // ─── BREAKFAST ─────────────────────────────────────────────────────────────
-  {
+{
     id: 'r075',
     title: 'Acai Bowl',
     description: 'A thick, vibrant acai smoothie bowl topped with granola, fresh berries, banana, honey, and coconut flakes. A nutritious and beautiful breakfast.',
@@ -2319,47 +2008,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Nut butter drizzled on top adds protein and richness.',
     ],
   },
-  {
-    id: 'r076',
-    title: 'Eggs Benedict',
-    description: 'Toasted English muffins with Canadian bacon, poached eggs, and silky hollandaise sauce. The ultimate brunch classic.',
-    imageUrl: 'https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=600',
-    mealType: ['breakfast'],
-    tasteTags: ['savory', 'not-spicy'],
-    dietTags: ['high-protein'],
-    difficulty: 'hard',
-    prepTimeMinutes: 15,
-    cookTimeMinutes: 20,
-    servings: 2,
-    rating: 4.8,
-    ratingCount: 9870,
-    isPremium: true,
-    ingredients: [
-      { name: 'English muffins', amount: 2, unit: 'pieces' },
-      { name: 'Canadian bacon', amount: 4, unit: 'slices' },
-      { name: 'Eggs', amount: 6, unit: 'large' },
-      { name: 'Butter', amount: 150, unit: 'g' },
-      { name: 'Lemon juice', amount: 1, unit: 'tbsp' },
-      { name: 'White wine vinegar', amount: 1, unit: 'tbsp' },
-      { name: 'Cayenne pepper', amount: 0.25, unit: 'tsp' },
-      { name: 'Salt', amount: 0.5, unit: 'tsp' },
-    ],
-    steps: [
-      { stepNumber: 1, instruction: 'Make hollandaise: melt butter. Whisk 2 egg yolks with lemon juice in a heatproof bowl over barely simmering water until pale and doubled. Slowly drizzle in melted butter while whisking constantly. Season with cayenne and salt.' },
-      { stepNumber: 2, instruction: 'Keep hollandaise warm in the bowl over warm (not hot) water.' },
-      { stepNumber: 3, instruction: 'Bring a wide pan of water to a gentle simmer. Add white wine vinegar. Poach 4 eggs for 3 minutes.', timerMinutes: 3 },
-      { stepNumber: 4, instruction: 'Toast English muffins. Warm Canadian bacon in a pan.' },
-      { stepNumber: 5, instruction: 'Assemble: muffin half, bacon, poached egg, generous hollandaise. Sprinkle paprika. Serve immediately.' },
-    ],
-    nutrition: { calories: 620, protein: 28, carbs: 28, fat: 44, fiber: 2 },
-    tips: [
-      'Hollandaise breaks if it gets too hot — keep the water barely simmering and never let the bowl touch the water.',
-      'Very fresh eggs hold together better when poaching.',
-      'If hollandaise breaks, whisk a new egg yolk in a clean bowl and slowly whisk in the broken sauce.',
-    ],
-  },
-  // ─── DESSERTS ──────────────────────────────────────────────────────────────
-  {
+{
     id: 'r077',
     title: 'Crème Brûlée',
     description: 'Silky vanilla custard with a perfectly caramelised sugar crust that shatters with a spoon. The most satisfying dessert in French cuisine.',
@@ -2395,7 +2044,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Brûlée just before serving — the sugar crust softens after a few minutes.',
     ],
   },
-  {
+{
     id: 'r078',
     title: 'Mango Sticky Rice',
     description: 'Thai sweet sticky rice cooked in coconut milk, served with fresh mango slices and a drizzle of coconut cream. A simple, heavenly dessert.',
@@ -2431,8 +2080,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Use the ripest, sweetest mangoes available — Nam Dok Mai or Ataulfo varieties are ideal.',
     ],
   },
-  // ─── SNACKS & LIGHT MEALS ──────────────────────────────────────────────────
-  {
+{
     id: 'r079',
     title: 'Caprese Salad',
     description: 'The simplest Italian salad — ripe tomatoes, fresh mozzarella, and basil with a drizzle of olive oil and balsamic glaze. Summer on a plate.',
@@ -2468,7 +2116,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Let the tomatoes come to room temperature before serving for maximum flavour.',
     ],
   },
-  {
+{
     id: 'r080',
     title: 'Gazpacho',
     description: 'A chilled Spanish tomato soup blended with cucumber, peppers, garlic, and olive oil. Refreshing, nutritious, and requires no cooking.',
@@ -2507,8 +2155,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Gazpacho improves significantly after resting overnight in the fridge.',
     ],
   },
-  // ─── MORE AMERICAN / COMFORT ───────────────────────────────────────────────
-  {
+{
     id: 'r081',
     title: 'Beef Chili',
     description: 'A hearty, smoky beef chili with kidney beans, chipotle, and dark chocolate. Slow-simmered for deep, complex flavour. Perfect for meal prep.',
@@ -2552,7 +2199,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Freeze in portions for up to 3 months for the ultimate quick weeknight meal.',
     ],
   },
-  {
+{
     id: 'r082',
     title: 'Chicken Pot Pie',
     description: 'A golden, flaky pastry crust over a creamy filling of chicken, peas, carrots, and celery. The ultimate American comfort food.',
@@ -2594,7 +2241,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Rotisserie chicken is a great shortcut — skip the poaching step entirely.',
     ],
   },
-  {
+{
     id: 'r083',
     title: 'French Onion Soup',
     description: 'Deeply caramelised onions in a rich beef broth, topped with a toasted baguette crouton and melted Gruyère. A French bistro classic.',
@@ -2634,7 +2281,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Use oven-safe bowls — the broiling step is non-negotiable.',
     ],
   },
-  {
+{
     id: 'r084',
     title: 'Lemon Garlic Roast Chicken',
     description: 'A whole chicken roasted with lemon, garlic, herbs, and butter until the skin is crackling-crispy and the meat is juicy. The perfect Sunday roast.',
@@ -2674,7 +2321,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Resting is non-negotiable — cutting too soon loses all the juices.',
     ],
   },
-  {
+{
     id: 'r085',
     title: 'Salmon with Lemon Butter Sauce',
     description: 'Pan-seared salmon with a crispy skin and a quick lemon butter caper sauce. Elegant enough for guests, easy enough for a weeknight.',
@@ -2713,7 +2360,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Do not overcook salmon — it should be slightly translucent in the very center.',
     ],
   },
-  {
+{
     id: 'r086',
     title: 'Vegetable Stir-Fry with Tofu',
     description: 'Crispy tofu and colourful vegetables in a savoury ginger-soy sauce. A quick, nutritious vegan meal that is ready in 20 minutes.',
@@ -2755,7 +2402,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add a tablespoon of oyster sauce (or vegan oyster sauce) for extra depth.',
     ],
   },
-  {
+{
     id: 'r087',
     title: 'Lentil Soup',
     description: 'A hearty, warming red lentil soup with cumin, coriander, and a squeeze of lemon. Vegan, nutritious, and ready in 30 minutes.',
@@ -2797,7 +2444,7 @@ export const NEW_RECIPES: Recipe[] = [
       'A swirl of yogurt and crispy fried onions on top makes this soup restaurant-worthy.',
     ],
   },
-  {
+{
     id: 'r088',
     title: 'Chocolate Lava Cake',
     description: 'Individual warm chocolate cakes with a molten, flowing center. The most impressive dessert you can make in 20 minutes.',
@@ -2837,7 +2484,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Use the best quality dark chocolate you can afford — it is the only flavour here.',
     ],
   },
-  {
+{
     id: 'r089',
     title: 'Overnight Oats',
     description: 'No-cook oats soaked overnight in milk with chia seeds, honey, and vanilla. Top with fresh fruit and nut butter for a nutritious, grab-and-go breakfast.',
@@ -2876,7 +2523,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Stir in a tablespoon of cocoa powder for a chocolate version.',
     ],
   },
-  {
+{
     id: 'r090',
     title: 'Mushroom and Spinach Omelette',
     description: 'A perfectly folded French-style omelette filled with sautéed mushrooms, wilted spinach, and Gruyère. A protein-packed meal ready in 10 minutes.',
@@ -2914,8 +2561,7 @@ export const NEW_RECIPES: Recipe[] = [
       'The filling should be warm before adding to the omelette so it heats through quickly.',
     ],
   },
-// ─── HIGH PROTEIN: r091–r100 ─────────────────────────────────────────────
-  {
+{
     id: 'r091',
     title: 'High-Protein Egg White Frittata with Turkey',
     description: 'A fluffy, golden frittata loaded with egg whites, seasoned ground turkey, spinach, and feta. Perfect for meal prep — 30g protein per serving.',
@@ -2955,7 +2601,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Keeps in the fridge for 4 days — reheat in the microwave for 1 minute.',
     ],
   },
-  {
+{
     id: 'r092',
     title: 'Sesame-Crusted Seared Tuna Steak',
     description: 'Restaurant-quality tuna steak coated in black and white sesame seeds, seared rare in the center with a crispy crust. Served with ginger-soy dipping sauce.',
@@ -2997,7 +2643,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Let the tuna rest for 2 minutes before slicing to keep the juices inside.',
     ],
   },
-  {
+{
     id: 'r093',
     title: 'Lean Beef and Broccoli Stir-Fry',
     description: 'Tender strips of lean beef sirloin with crisp-tender broccoli in a savory garlic-ginger sauce. A high-protein Chinese classic made healthier.',
@@ -3038,7 +2684,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add red pepper flakes for a mild kick without overpowering the dish.',
     ],
   },
-  {
+{
     id: 'r094',
     title: 'Greek Yogurt Chicken Salad',
     description: 'A creamy, tangy chicken salad made with Greek yogurt instead of mayo. Packed with protein, loaded with herbs, grapes, and almonds for crunch.',
@@ -3078,7 +2724,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Toasts the almonds in a dry pan for 3 minutes for deeper flavour and crunch.',
     ],
   },
-  {
+{
     id: 'r095',
     title: 'Blackened Cod with Avocado Salsa',
     description: 'Flaky cod fillets rubbed with Cajun spices and seared until blackened, topped with a fresh avocado-cilantro-lime salsa. Light, fresh, and protein-packed.',
@@ -3122,7 +2768,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Substitute tilapia, halibut, or mahi-mahi if cod is unavailable.',
     ],
   },
-  {
+{
     id: 'r096',
     title: 'Turkey Meatball Marinara with Zucchini Noodles',
     description: 'Juicy turkey meatballs baked until golden, simmered in a rich marinara sauce, and served over spiralized zucchini noodles. Low-carb comfort food.',
@@ -3164,7 +2810,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Make a double batch of meatballs and freeze half for quick weeknight meals.',
     ],
   },
-  {
+{
     id: 'r097',
     title: 'High-Protein Cottage Cheese Pancakes',
     description: 'Fluffy pancakes made with cottage cheese, eggs, and oats — no flour needed. Each stack delivers over 25g of protein. Serve with fresh berries.',
@@ -3204,7 +2850,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add a scoop of protein powder to the batter for an extra 10g protein boost.',
     ],
   },
-  {
+{
     id: 'r098',
     title: 'Tempeh Buddha Bowl with Tahini Dressing',
     description: 'A nourishing plant-powered bowl with marinated tempeh, roasted sweet potato, quinoa, kale, and a creamy lemon-tahini dressing. 24g protein, entirely vegan.',
@@ -3247,7 +2893,7 @@ export const NEW_RECIPES: Recipe[] = [
       'The tahini dressing thickens as it sits — thin with a splash of water before serving.',
     ],
   },
-  {
+{
     id: 'r099',
     title: 'Beef and Lentil Stuffed Bell Peppers',
     description: 'Colourful bell peppers stuffed with a hearty mixture of lean ground beef, lentils, tomatoes, and herbs, baked until tender. A complete high-protein meal in one pepper.',
@@ -3289,7 +2935,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Top with shredded cheese in the last 10 minutes of baking for extra richness.',
     ],
   },
-  {
+{
     id: 'r100',
     title: 'Protein Chia Pudding with Whey and Berries',
     description: 'A thick, creamy overnight chia pudding boosted with whey protein powder. Topped with mixed berries and almonds for a dessert-worthy breakfast with 28g protein.',
@@ -3327,7 +2973,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add a tablespoon of cocoa powder for a chocolate protein pudding variation.',
     ],
   },
-  {
+{
     id: 'r101',
     title: 'Grilled Chicken Breast with Chimichurri',
     description: 'Juicy grilled chicken breast topped with a vibrant Argentine chimichurri sauce of parsley, garlic, and red wine vinegar. Fresh, herbaceous, and packed with lean protein.',
@@ -3368,7 +3014,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Substitute flat-leaf parsley for all the herbs if cilantro is not available.',
     ],
   },
-  {
+{
     id: 'r102',
     title: 'Tofu Scramble with Spinach and Mushrooms',
     description: 'A hearty vegan scramble with crumbled firm tofu, sautéed mushrooms, spinach, and turmeric for colour. Satisfying and protein-rich for any time of day.',
@@ -3408,7 +3054,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add diced bell peppers or zucchini for extra colour and nutrients.',
     ],
   },
-  {
+{
     id: 'r103',
     title: 'Baked Salmon with Dill and Lemon',
     description: 'Perfectly baked salmon fillets with a bright dill-lemon butter sauce. Tender, flaky, and rich in omega-3s and protein. Ready in 20 minutes.',
@@ -3447,7 +3093,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Substitute green beans or broccoli if asparagus is out of season.',
     ],
   },
-  {
+{
     id: 'r104',
     title: 'Turkey Chili with Black Beans',
     description: 'A hearty, warming chili made with lean ground turkey, black beans, tomatoes, and smoky chipotle. High in protein, fibre, and bold Southwest flavour.',
@@ -3490,7 +3136,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Top with Greek yogurt instead of sour cream for extra protein.',
     ],
   },
-  {
+{
     id: 'r105',
     title: 'Shrimp and Avocado Salad',
     description: 'A light, refreshing salad with plump grilled shrimp, creamy avocado, crisp cucumber, and a zesty lime-cilantro dressing. Perfect for hot days.',
@@ -3531,7 +3177,7 @@ export const NEW_RECIPES: Recipe[] = [
       'For extra crunch, top with toasted pumpkin seeds or crushed tortilla chips.',
     ],
   },
-  {
+{
     id: 'r106',
     title: 'Beef and Quinoa Stuffed Zucchini Boats',
     description: 'Hollowed zucchini filled with seasoned ground beef, fluffy quinoa, tomatoes, and melted mozzarella. A complete, high-protein meal in every bite.',
@@ -3573,7 +3219,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Prep the filling a day ahead and stuff the zucchini just before baking.',
     ],
   },
-  {
+{
     id: 'r107',
     title: 'Protein Smoothie Bowl',
     description: 'A thick, spoonable smoothie bowl loaded with whey protein, frozen banana, spinach, and almond butter. Topped with granola and fresh fruit for crunch.',
@@ -3613,7 +3259,7 @@ export const NEW_RECIPES: Recipe[] = [
       'For a chocolate version, use chocolate protein powder and add 1 tsp cocoa powder.',
     ],
   },
-  {
+{
     id: 'r108',
     title: 'Pan-Seared Tilapia with Garlic Butter',
     description: 'Mild, flaky tilapia fillets seared until golden and finished with a simple garlic-lemon butter sauce. Ready in 15 minutes and perfect for busy weeknights.',
@@ -3651,7 +3297,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Substitute cod, halibut, or catfish if tilapia is unavailable.',
     ],
   },
-  {
+{
     id: 'r109',
     title: 'Lentil and Walnut Meatless Loaf',
     description: 'A savoury, sliceable loaf made with green lentils, walnuts, oats, and vegetables. Packed with plant protein and perfect as a main or sandwich filling.',
@@ -3695,7 +3341,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Refrigerates for 5 days and freezes well for up to 3 months.',
     ],
   },
-  {
+{
     id: 'r110',
     title: 'Chicken Breast with Pesto and Mozzarella',
     description: 'Juicy chicken breasts topped with fresh basil pesto and melted mozzarella, baked until golden. Italian-inspired comfort with 35g protein per serving.',
@@ -3735,7 +3381,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add a slice of prosciutto under the cheese for extra saltiness — but skip that for this no-pork version!',
     ],
   },
-  {
+{
     id: 'r111',
     title: 'Grilled Salmon with Lemon Herb Quinoa',
     description: 'Flaky grilled salmon fillets served over fragrant lemon-herb quinoa with steamed asparagus. Clean, bright, and packed with omega-3s and protein.',
@@ -3774,7 +3420,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add a dollop of Greek yogurt on the side for extra creaminess and protein.',
     ],
   },
-  {
+{
     id: 'r112',
     title: 'Chicken Shawarma Bowl',
     description: 'Marinated chicken thighs roasted with Middle Eastern spices, served over turmeric rice with tahini sauce, pickled onions, and cucumber.',
@@ -3816,7 +3462,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add harissa paste to the marinade for extra heat.',
     ],
   },
-  {
+{
     id: 'r113',
     title: 'Miso Glazed Black Cod',
     description: 'Butter-soft black cod marinated in sweet miso glaze, broiled until caramelized. Served with bok choy and jasmine rice. A restaurant-quality dish at home.',
@@ -3856,7 +3502,7 @@ export const NEW_RECIPES: Recipe[] = [
       'The longer the marinade, the deeper the flavour — 24 hours is ideal.',
     ],
   },
-  {
+{
     id: 'r114',
     title: 'Turkey and Spinach Meatballs',
     description: 'Juicy baked turkey meatballs packed with spinach, herbs, and parmesan. Served with marinara over zucchini noodles for a low-carb, high-protein feast.',
@@ -3897,7 +3543,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Substitute ground chicken if turkey is unavailable.',
     ],
   },
-  {
+{
     id: 'r115',
     title: 'Cajun Blackened Chicken Breast',
     description: 'Spice-crusted chicken breast seared in a cast iron skillet until blackened and juicy. Served with cilantro-lime rice and charred corn.',
@@ -3937,7 +3583,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Let chicken rest before slicing to keep juices inside.',
     ],
   },
-  {
+{
     id: 'r116',
     title: 'Tuna Poke Bowl',
     description: 'Fresh sashimi-grade tuna cubed and tossed in soy-sesame dressing over sushi rice with avocado, edamame, cucumber, and pickled ginger.',
@@ -3977,7 +3623,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add wasabi or sriracha mayo for extra heat.',
     ],
   },
-  {
+{
     id: 'r117',
     title: 'Egg White and Veggie Breakfast Casserole',
     description: 'A fluffy, protein-packed breakfast casserole loaded with egg whites, spinach, mushrooms, peppers, and feta. Bake once, eat all week.',
@@ -4017,7 +3663,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add sun-dried tomatoes or artichoke hearts for Mediterranean flair.',
     ],
   },
-  {
+{
     id: 'r118',
     title: 'Greek Yogurt Chicken Marinade',
     description: 'Chicken thighs marinated overnight in tangy Greek yogurt with lemon, garlic, and herbs. Grilled to perfection — incredibly tender and flavourful.',
@@ -4055,7 +3701,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Reserve a little marinade (before touching raw chicken) to use as a sauce.',
     ],
   },
-  {
+{
     id: 'r119',
     title: 'Beef Stir-Fry with Snow Peas',
     description: 'Tender strips of flank steak flash-fried with crisp snow peas, ginger, and garlic in a savoury soy-oyster sauce. Faster than takeout.',
@@ -4095,7 +3741,7 @@ export const NEW_RECIPES: Recipe[] = [
       'A carbon steel or cast iron wok gives the best results.',
     ],
   },
-  {
+{
     id: 'r120',
     title: 'Herb-Crusted Baked Cod',
     description: 'Mild, flaky cod topped with a crunchy herb-and-parmesan crust. Baked until golden and served with roasted cherry tomatoes and green beans.',
@@ -4135,7 +3781,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Substitute haddock or tilapia if cod is unavailable.',
     ],
   },
-  {
+{
     id: 'r121',
     title: 'Tandoori Chicken Skewers',
     description: 'Vibrant tandoori-marinated chicken pieces threaded onto skewers and grilled until charred and smoky. Served with cooling cucumber raita.',
@@ -4176,7 +3822,7 @@ export const NEW_RECIPES: Recipe[] = [
       'If grilling indoors, use a grill pan and finish under the broiler for extra char.',
     ],
   },
-  {
+{
     id: 'r122',
     title: 'Seared Duck Breast with Orange Glaze',
     description: 'Restaurant-quality duck breast scored and seared until the skin is shatteringly crisp. Finished with a sweet-tart orange glaze. Decadent yet simple.',
@@ -4215,7 +3861,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Cook to an internal temperature of 57°C (135°F) for perfect medium-rare.',
     ],
   },
-  {
+{
     id: 'r123',
     title: 'Lentil and Turkey Bolognese',
     description: 'A hearty, protein-rich bolognese made with ground turkey and green lentils simmered in a rich tomato-wine sauce. Served over whole wheat pasta or zucchini noodles.',
@@ -4259,7 +3905,7 @@ export const NEW_RECIPES: Recipe[] = [
       'This sauce freezes beautifully. Make a double batch and freeze half.',
     ],
   },
-  {
+{
     id: 'r124',
     title: 'Shrimp and Avocado Lettuce Wraps',
     description: 'Spicy Cajun shrimp tucked into crisp butter lettuce cups with creamy avocado, mango salsa, and a lime crema drizzle. Light, fresh, and high in protein.',
@@ -4299,7 +3945,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add a pinch of chipotle powder to the crema for smoky heat.',
     ],
   },
-  {
+{
     id: 'r125',
     title: 'Protein-Packed Breakfast Burrito',
     description: 'A massive breakfast burrito stuffed with scrambled eggs, black beans, avocado, salsa, and cheese. Wrap it up and eat on the go.',
@@ -4338,7 +3984,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Use whole wheat tortillas for extra fibre and a nuttier flavour.',
     ],
   },
-  {
+{
     id: 'r126',
     title: 'Grilled Lamb Chops with Mint Pesto',
     description: 'Tender lamb chops grilled to medium-rare and finished with a bright mint pesto. An elegant dinner that comes together in under 30 minutes.',
@@ -4378,7 +4024,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Resting is non-negotiable for juicy lamb.',
     ],
   },
-  {
+{
     id: 'r127',
     title: 'Crispy Tofu Buddha Bowl',
     description: 'Golden, crispy baked tofu cubes over quinoa with roasted sweet potato, edamame, pickled cabbage, and a creamy tahini dressing. Fully vegan and protein-rich.',
@@ -4420,7 +4066,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add sriracha to the tahini dressing for a spicy kick.',
     ],
   },
-  {
+{
     id: 'r128',
     title: 'Chicken Fajita Lettuce Cups',
     description: 'Sizzling chicken fajita strips with peppers and onions, served in crisp lettuce cups instead of tortillas. Low-carb, high-protein, and full of Tex-Mex flavour.',
@@ -4459,7 +4105,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add jalapeño slices or hot sauce for extra heat.',
     ],
   },
-  {
+{
     id: 'r129',
     title: 'Baked Halibut with Tomato Olive Relish',
     description: 'Mild, meaty halibut fillets baked until just flaky, topped with a warm relish of burst cherry tomatoes, Kalamata olives, capers, and garlic. Mediterranean perfection.',
@@ -4498,7 +4144,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Serve with crusty bread to soak up the delicious pan juices.',
     ],
   },
-  {
+{
     id: 'r130',
     title: 'Chocolate Peanut Butter Protein Smoothie Bowl',
     description: 'A thick, creamy smoothie bowl that eats like ice cream. Chocolate, peanut butter, banana, and protein powder blended and topped with crunchy granola and fresh berries.',
@@ -4536,7 +4182,7 @@ export const NEW_RECIPES: Recipe[] = [
       'For a nut-free version, use sunflower seed butter instead of peanut butter.',
     ],
   },
-  {
+{
     id: 'r131',
     title: 'Sriracha Lime Chicken Wings',
     description: 'Crispy baked chicken wings tossed in a sticky, spicy sriracha-lime glaze. Finger-licking good and packed with protein.',
@@ -4574,7 +4220,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Serve with celery sticks and blue cheese dressing for the classic wing experience.',
     ],
   },
-  {
+{
     id: 'r132',
     title: 'Grilled Swordfish Steaks with Chimichurri',
     description: 'Thick, meaty swordfish steaks grilled until charred and juicy, topped with vibrant Argentinian chimichurri. A steak-like fish experience.',
@@ -4613,7 +4259,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Leftover chimichurri is excellent on grilled chicken, steak, or vegetables.',
     ],
   },
-  {
+{
     id: 'r133',
     title: 'Loaded Sweet Potato with Blackened Chicken',
     description: 'A baked sweet potato stuffed with spiced blackened chicken, black beans, corn, avocado, and a chipotle crema. A complete, balanced meal.',
@@ -4654,7 +4300,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add pickled jalapeños for an extra tangy kick.',
     ],
   },
-  {
+{
     id: 'r134',
     title: 'Thai Basil Chicken (Pad Krapow)',
     description: 'A fiery Thai street food classic: minced chicken stir-fried with holy basil, chilies, and garlic. Served over jasmine rice with a crispy fried egg on top.',
@@ -4695,7 +4341,7 @@ export const NEW_RECIPES: Recipe[] = [
       'For less heat, use only 1-2 chilies and remove the seeds.',
     ],
   },
-  {
+{
     id: 'r135',
     title: 'Greek Chicken Souvlaki Bowl',
     description: 'Marinated grilled chicken souvlaki served over lemon rice with cucumber-tomato salad, tzatziki, and kalamata olives. A Mediterranean feast in a bowl.',
@@ -4735,7 +4381,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Marinate overnight for the most flavourful chicken.',
     ],
   },
-  {
+{
     id: 'r136',
     title: 'Coconut Curry Mussels',
     description: 'Plump mussels steamed in a fragrant coconut curry broth with lemongrass, ginger, and lime leaves. Serve with crusty bread to soak up every drop.',
@@ -4776,7 +4422,7 @@ export const NEW_RECIPES: Recipe[] = [
       'For a milder version, use only 1 tablespoon of curry paste.',
     ],
   },
-  {
+{
     id: 'r137',
     title: 'Spinach and Feta Stuffed Chicken Breast',
     description: 'Chicken breasts butterflied and stuffed with creamy spinach, feta, and sun-dried tomatoes. Baked until golden and juicy. An impressive yet easy dinner.',
@@ -4815,7 +4461,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Substitute goat cheese or ricotta for feta if desired.',
     ],
   },
-  {
+{
     id: 'r138',
     title: 'Teriyaki Salmon Rice Bowl',
     description: 'Glazed teriyaki salmon flaked over steamed rice with edamame, pickled ginger, avocado, and sesame seeds. A Japanese-inspired bowl that is as beautiful as it is delicious.',
@@ -4856,7 +4502,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add a soft-boiled egg on top for extra richness and protein.',
     ],
   },
-  {
+{
     id: 'r139',
     title: 'Turkey and Black Bean Chili',
     description: 'A hearty, smoky chili made with lean ground turkey, black beans, fire-roasted tomatoes, and a blend of warm spices. Perfect for meal prep or a cozy night in.',
@@ -4899,7 +4545,7 @@ export const NEW_RECIPES: Recipe[] = [
       'This chili freezes perfectly in individual portions.',
     ],
   },
-  {
+{
     id: 'r140',
     title: 'Seared Scallops with Cauliflower Puree',
     description: 'Restaurant-quality seared scallops with golden crusts, served over silky cauliflower puree with a lemon-butter pan sauce. Elegant and surprisingly simple.',
@@ -4939,7 +4585,7 @@ export const NEW_RECIPES: Recipe[] = [
       'The cauliflower puree is a fantastic low-carb substitute for mashed potatoes.',
     ],
   },
-  {
+{
     id: 'r141',
     title: 'Peri-Peri Chicken Thighs',
     description: 'Portuguese-style chicken thighs marinated in a fiery peri-peri sauce with birdseye chilies, garlic, and lemon. Grilled until charred and served with rice.',
@@ -4978,7 +4624,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Save leftover sauce — it keeps in the fridge for a week and improves with age.',
     ],
   },
-  {
+{
     id: 'r142',
     title: 'Lemon Pepper Baked Cod',
     description: 'Mild cod fillets baked with a zesty lemon-pepper crust, served with roasted Brussels sprouts and a garlic butter drizzle. Light, clean, and protein-packed.',
@@ -5017,7 +4663,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Substitute tilapia, haddock, or pollock for cod.',
     ],
   },
-  {
+{
     id: 'r143',
     title: 'Korean Beef Bulgogi Bowl',
     description: 'Thinly sliced beef marinated in a sweet-savory bulgogi sauce, quickly seared and served over rice with kimchi, cucumber, and a fried egg.',
@@ -5059,7 +4705,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Top with toasted sesame seeds and sliced green onions for extra flavour and texture.',
     ],
   },
-  {
+{
     id: 'r144',
     title: 'Cajun Shrimp and Grits',
     description: 'Creamy stone-ground grits topped with spicy Cajun shrimp, andouille-style chicken sausage, and a rich Creole sauce. A Southern comfort classic with a protein boost.',
@@ -5102,7 +4748,7 @@ export const NEW_RECIPES: Recipe[] = [
       'For extra richness, stir a beaten egg into the grits at the end of cooking.',
     ],
   },
-  {
+{
     id: 'r145',
     title: 'Moroccan Spiced Lamb Meatballs',
     description: 'Fragrant lamb meatballs with cumin, coriander, cinnamon, and mint, baked until caramelized and served with a tangy yogurt-tahini sauce over couscous.',
@@ -5146,7 +4792,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Substitute ground beef or turkey for lamb if desired.',
     ],
   },
-  {
+{
     id: 'r146',
     title: 'Egg White Veggie Scramble',
     description: 'A light but protein-dense scramble of egg whites with spinach, mushrooms, tomatoes, and feta. Perfect for a quick, healthy breakfast or post-workout meal.',
@@ -5185,7 +4831,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add avocado on the side for healthy fats and extra richness.',
     ],
   },
-  {
+{
     id: 'r147',
     title: 'Baked Chicken Parmesan (Light)',
     description: 'Crispy, oven-baked chicken cutlets topped with marinara and melted mozzarella — all the comfort of chicken parm without the deep fryer.',
@@ -5226,7 +4872,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Make it lighter by skipping the mozzarella and just using a sprinkle of parmesan.',
     ],
   },
-  {
+{
     id: 'r148',
     title: 'Spicy Tuna Poke Nachos',
     description: 'Crispy wonton chips topped with spicy marinated tuna, avocado, jalapeño, sesame seeds, and a sriracha mayo drizzle. A fusion appetizer that eats like a meal.',
@@ -5267,7 +4913,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Assemble just before serving — the chips will soften if they sit too long.',
     ],
   },
-  {
+{
     id: 'r149',
     title: 'BBQ Chicken Stuffed Sweet Potatoes',
     description: 'Baked sweet potatoes split open and stuffed with shredded BBQ chicken, coleslaw, and pickled onions. A healthy twist on a Southern classic.',
@@ -5307,7 +4953,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Make extra chicken and freeze for quick weeknight stuffed potatoes.',
     ],
   },
-  {
+{
     id: 'r150',
     title: 'Almond Crusted Tilapia',
     description: 'Mild tilapia fillets coated in a crunchy almond-parmesan crust and baked until golden. Served with lemon wedges and a side of roasted green beans.',
@@ -5347,7 +4993,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Substitute cod, halibut, or catfish if tilapia is unavailable.',
     ],
   },
-  {
+{
     id: 'r151',
     title: 'Mediterranean Chickpea and Tuna Salad',
     description: 'A protein-packed salad with chickpeas, tuna, cucumber, tomatoes, olives, and a lemon-herb dressing. Perfect for a light but satisfying lunch.',
@@ -5387,7 +5033,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Serve with crusty bread or pita for a more substantial meal.',
     ],
   },
-  {
+{
     id: 'r152',
     title: 'Korean Spicy Chicken Stir-Fry',
     description: 'Tender chicken strips stir-fried in a spicy gochujang sauce with vegetables. A quick, fiery, protein-rich dinner.',
@@ -5432,7 +5078,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add cashews or peanuts for extra crunch.',
     ],
   },
-  {
+{
     id: 'r153',
     title: 'Baked Turkey Meatballs with Marinara',
     description: 'Lean turkey meatballs baked until golden and simmered in a rich marinara sauce. Served over zucchini noodles for a low-carb, high-protein meal.',
@@ -5472,7 +5118,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Make a double batch and freeze half for quick weeknight dinners.',
     ],
   },
-  {
+{
     id: 'r154',
     title: 'Grilled Swordfish with Mango Salsa',
     description: 'Thick, meaty swordfish steaks grilled to perfection and topped with a fresh, sweet-spicy mango salsa. A tropical protein feast.',
@@ -5511,7 +5157,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Substitute tuna or mahi-mahi if swordfish is unavailable.',
     ],
   },
-  {
+{
     id: 'r155',
     title: 'Cottage Cheese and Veggie Scramble',
     description: 'A creamy, high-protein scramble of eggs and cottage cheese with spinach, tomatoes, and herbs. Fluffy, rich, and perfect for breakfast or brunch.',
@@ -5550,7 +5196,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add smoked salmon on the side for an extra protein boost.',
     ],
   },
-  {
+{
     id: 'r156',
     title: 'Chicken Fajita Lettuce Wraps',
     description: 'Sizzling chicken fajitas with peppers and onions, wrapped in crisp lettuce leaves instead of tortillas. Low-carb, high-protein, and full of Tex-Mex flavour.',
@@ -5589,7 +5235,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add jalapeño slices or hot sauce for extra heat.',
     ],
   },
-  {
+{
     id: 'r157',
     title: 'Mongolian Beef Stir-Fry',
     description: 'Tender beef strips stir-fried in a sweet-savoury soy-ginger sauce with garlic and green onions. A takeout favourite made healthier at home.',
@@ -5631,7 +5277,7 @@ export const NEW_RECIPES: Recipe[] = [
       'For a gluten-free version, use tamari and arrowroot powder instead of soy sauce and cornstarch.',
     ],
   },
-  {
+{
     id: 'r158',
     title: 'Spinach and Ricotta Stuffed Chicken',
     description: 'Chicken breasts stuffed with creamy ricotta, spinach, and sun-dried tomatoes, then baked until golden. Elegant enough for guests, easy enough for weeknights.',
@@ -5670,7 +5316,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Substitute feta or goat cheese for ricotta if desired.',
     ],
   },
-  {
+{
     id: 'r159',
     title: 'Thai Green Curry with Chicken',
     description: 'A fragrant, creamy Thai green curry with tender chicken, bamboo shoots, bell peppers, and Thai basil. Spicy, aromatic, and deeply satisfying.',
@@ -5711,7 +5357,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add kaffir lime leaves for extra citrusy depth if available.',
     ],
   },
-  {
+{
     id: 'r160',
     title: 'Lemon Garlic Butter Shrimp',
     description: 'Plump shrimp sautéed in a rich lemon-garlic butter sauce, finished with fresh parsley. Ready in 10 minutes and perfect over pasta or zucchini noodles.',
@@ -5751,7 +5397,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add a splash of white wine to the sauce for extra depth.',
     ],
   },
-  {
+{
     id: 'r161',
     title: 'Chicken Tikka Masala',
     description: 'Tender chicken tikka pieces simmered in a rich, creamy tomato sauce with warm Indian spices. A beloved classic with serious protein power.',
@@ -5795,7 +5441,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Make the sauce a day ahead — it tastes even better the next day.',
     ],
   },
-  {
+{
     id: 'r162',
     title: 'Baked Cod with Tomato Olive Relish',
     description: 'Mild cod fillets baked until flaky and topped with a warm Mediterranean relish of tomatoes, olives, capers, and garlic. Simple, elegant, and protein-rich.',
@@ -5834,7 +5480,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Serve with crusty bread to soak up the delicious pan juices.',
     ],
   },
-  {
+{
     id: 'r163',
     title: 'Peri-Peri Chicken Thighs',
     description: 'Portuguese-style chicken thighs marinated in a fiery peri-peri sauce with birdseye chilies, garlic, and lemon. Grilled until charred and served with rice.',
@@ -5873,7 +5519,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Save leftover sauce — it keeps in the fridge for a week and improves with age.',
     ],
   },
-  {
+{
     id: 'r164',
     title: 'Cottage Cheese Protein Pancakes',
     description: 'Fluffy, high-protein pancakes made with cottage cheese, oats, and eggs. No flour needed — just blend, pour, and flip. A game-changer for breakfast.',
@@ -5911,7 +5557,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add a scoop of protein powder to the batter for even more protein.',
     ],
   },
-  {
+{
     id: 'r165',
     title: 'Miso Glazed Black Cod',
     description: 'Butter-soft black cod marinated in sweet miso glaze, broiled until caramelized. Served with bok choy and jasmine rice. A restaurant-quality dish at home.',
@@ -5951,7 +5597,7 @@ export const NEW_RECIPES: Recipe[] = [
       'The longer the marinade, the deeper the flavour — 24 hours is ideal.',
     ],
   },
-  {
+{
     id: 'r166',
     title: 'Chicken Souvlaki Skewers',
     description: 'Marinated grilled chicken souvlaki on skewers with lemon, oregano, and garlic. Served with tzatziki, pita, and a Greek salad.',
@@ -5991,7 +5637,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add pepperoncini peppers to the salad for a tangy kick.',
     ],
   },
-  {
+{
     id: 'r167',
     title: 'Spicy Tuna Roll Bowl',
     description: 'All the flavours of a spicy tuna roll in a bowl — sashimi-grade tuna, sushi rice, avocado, cucumber, and a sriracha mayo drizzle.',
@@ -6032,7 +5678,7 @@ export const NEW_RECIPES: Recipe[] = [
       'For a lower-carb version, substitute cauliflower rice.',
     ],
   },
-  {
+{
     id: 'r168',
     title: 'Turkey Taco Salad',
     description: 'A deconstructed taco with seasoned ground turkey, crisp lettuce, black beans, corn, salsa, avocado, and a light lime crema. All the taco flavour without the shell.',
@@ -6074,7 +5720,7 @@ export const NEW_RECIPES: Recipe[] = [
       'This salad keeps well for 2 days — perfect for meal prep lunches.',
     ],
   },
-  {
+{
     id: 'r169',
     title: 'Grilled Calamari with Lemon and Garlic',
     description: 'Tender calamari tubes and tentacles grilled with lemon, garlic, and olive oil. A light, protein-rich Mediterranean appetizer or main.',
@@ -6111,7 +5757,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Serve with a side of white bean salad for a complete Mediterranean meal.',
     ],
   },
-  {
+{
     id: 'r170',
     title: 'Almond Butter Protein Balls',
     description: 'No-bite energy bites made with almond butter, oats, protein powder, and honey. Perfect for a quick snack or pre-workout boost.',
@@ -6148,7 +5794,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Roll in crushed nuts or coconut for a fancy coating.',
     ],
   },
-  {
+{
     id: 'r171',
     title: 'Grilled Venison Steak with Rosemary',
     description: 'Lean venison steaks marinated in red wine, rosemary, and garlic, then grilled to medium-rare. A rich, iron-packed protein source.',
@@ -6184,7 +5830,7 @@ export const NEW_RECIPES: Recipe[] = [
       'If venison is unavailable, substitute bison or very lean beef.',
     ],
   },
-  {
+{
     id: 'r172',
     title: 'Buffalo Chicken Lettuce Wraps',
     description: 'Shredded chicken tossed in spicy buffalo sauce, wrapped in crisp lettuce with celery and a light ranch drizzle. Game day protein, anytime.',
@@ -6223,7 +5869,7 @@ export const NEW_RECIPES: Recipe[] = [
       'These wraps are perfect for meal prep — assemble just before eating to keep lettuce crisp.',
     ],
   },
-  {
+{
     id: 'r173',
     title: 'Sardine and Avocado Toast',
     description: 'Nutrient-dense sardines on whole-grain toast with creamy avocado, lemon, and chilli flakes. A powerhouse breakfast or snack.',
@@ -6259,7 +5905,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add a poached egg on top for even more protein.',
     ],
   },
-  {
+{
     id: 'r174',
     title: 'Protein-Packed Egg Muffins',
     description: 'Mini frittatas baked in a muffin tin with eggs, spinach, feta, and sun-dried tomatoes. Perfect for grab-and-go breakfasts.',
@@ -6298,7 +5944,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Swap fillings freely: mushrooms, peppers, ham (if not avoiding), bacon, or cheddar.',
     ],
   },
-  {
+{
     id: 'r175',
     title: 'Seared Duck Breast with Orange Glaze',
     description: 'Crispy-skinned duck breast scored and seared, finished with a sweet-tart orange glaze. Restaurant-quality protein at home.',
@@ -6336,7 +5982,7 @@ export const NEW_RECIPES: Recipe[] = [
       'For well-done duck, cook 5 minutes on the flesh side.',
     ],
   },
-  {
+{
     id: 'r176',
     title: 'Quinoa and Black Bean Power Bowl',
     description: 'A vibrant, plant-based bowl with quinoa, black beans, roasted sweet potato, avocado, and a lime-tahini dressing. Surprisingly high in protein.',
@@ -6378,7 +6024,7 @@ export const NEW_RECIPES: Recipe[] = [
       'This bowl is great warm or cold — perfect for meal prep.',
     ],
   },
-  {
+{
     id: 'r177',
     title: 'Grilled Lamb Chops with Mint Yogurt',
     description: 'Juicy lamb chops marinated in garlic and lemon, grilled to perfection, and served with a cool mint yogurt sauce. A Mediterranean protein classic.',
@@ -6416,7 +6062,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Substitute fresh rosemary for mint if you prefer a more earthy flavour.',
     ],
   },
-  {
+{
     id: 'r178',
     title: 'Tuna Steak with Sesame Crust',
     description: 'Sashimi-grade tuna steaks coated in sesame seeds and seared rare. Served with a ginger-soy dipping sauce and steamed edamame.',
@@ -6456,7 +6102,7 @@ export const NEW_RECIPES: Recipe[] = [
       'If you prefer cooked tuna, sear 2 minutes per side.',
     ],
   },
-  {
+{
     id: 'r179',
     title: 'Chicken and White Bean Soup',
     description: 'A hearty, comforting soup with tender chicken, creamy white beans, vegetables, and herbs. High in protein and perfect for cold days.',
@@ -6498,7 +6144,7 @@ export const NEW_RECIPES: Recipe[] = [
       'Add a parmesan rind while simmering for extra umami depth.',
     ],
   },
-  {
+{
     id: 'r180',
     title: 'Shrimp and Avocado Salad',
     description: 'Fresh shrimp tossed with creamy avocado, cherry tomatoes, red onion, and a zesty lime dressing. Light, refreshing, and protein-packed.',

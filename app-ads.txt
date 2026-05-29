@@ -1,0 +1,3 @@
+# RecipeWise app-ads.txt
+# Google AdMob Publisher ID: pub-3229563514854040
+google.com, pub-3229563514854040, DIRECT, f08c47fec0942fa0

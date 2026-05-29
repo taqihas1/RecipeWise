@@ -17,14 +17,26 @@
         "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#E6F4FE"
       },
-      "versionCode": 3
+      "versionCode": 3,
+      "permissions": [
+        "INTERNET",
+        "ACCESS_NETWORK_STATE"
+      ]
     },
     "web": {
       "bundler": "metro",
       "output": "static"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "extraProguardRules": "-keep class com.google.android.gms.ads.** { *; }"
+          }
+        }
+      ]
     ],
     "extra": {
       "router": {

@@ -121,6 +121,10 @@ jobs:
         run: |
           echo "✅ Android AAB build succeeded!"
           echo "Download at: https://expo.dev/accounts/${{ github.repository_owner }}/projects"
+          echo ""
+          echo "⚠️  IMPORTANT: Ensure EAS credentials are configured for signing!"
+          echo "   Run locally: eas credentials"
+          echo "   Upload recipewise-release.keystore for production signing"
           echo "Ready for Google Play Store submission!"
 
       - name: Create GitHub Issue on AAB Failure

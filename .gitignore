@@ -1,1 +1,4 @@
 .expo/
+*.keystore
+*.jks
+!android/app/debug.keystore
