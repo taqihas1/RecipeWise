@@ -58,7 +58,7 @@ export default function RecipeDetailScreen() {
   if (!recipe) {
     return (
       <View style={[styles.container, { backgroundColor: colors.background }]}>
-        <Text style={{ color: colors.foreground }}>Recipe not found</Text>
+        <Text style={{ color: colors.text }}>Recipe not found</Text>
       </View>
     );
   }
@@ -143,39 +143,39 @@ export default function RecipeDetailScreen() {
             ))}
             {recipe.dietTags.slice(0, 2).map(tag => (
               <View key={tag} style={[styles.tag, { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }]}>
-                <Text style={[styles.tagText, { color: colors.muted }]}>{formatDietTag(tag)}</Text>
+                <Text style={[styles.tagText, { color: colors.textSecondary }]}>{formatDietTag(tag)}</Text>
               </View>
             ))}
           </View>
 
           {/* Title */}
-          <Text style={[styles.title, { color: colors.foreground }]}>{recipe.title}</Text>
-          <Text style={[styles.description, { color: colors.muted }]}>{recipe.description}</Text>
+          <Text style={[styles.title, { color: colors.text }]}>{recipe.title}</Text>
+          <Text style={[styles.description, { color: colors.textSecondary }]}>{recipe.description}</Text>
 
           {/* Stats Row */}
           <View style={[styles.statsRow, { backgroundColor: colors.surface, borderColor: colors.border }]}>
             <View style={styles.statItem}>
               <IconSymbol name="clock" size={20} color={colors.primary} />
-              <Text style={[styles.statValue, { color: colors.foreground }]}>{totalTime}</Text>
-              <Text style={[styles.statLabel, { color: colors.muted }]}>min</Text>
+              <Text style={[styles.statValue, { color: colors.text }]}>{totalTime}</Text>
+              <Text style={[styles.statLabel, { color: colors.textSecondary }]}>min</Text>
             </View>
             <View style={[styles.statDivider, { backgroundColor: colors.border }]} />
             <View style={styles.statItem}>
-              <IconSymbol name="star.fill" size={20} color={colors.accent} />
-              <Text style={[styles.statValue, { color: colors.foreground }]}>{recipe.rating}</Text>
-              <Text style={[styles.statLabel, { color: colors.muted }]}>({recipe.ratingCount.toLocaleString()})</Text>
+              <IconSymbol name="star.fill" size={20} color={colors.warning} />
+              <Text style={[styles.statValue, { color: colors.text }]}>{recipe.rating}</Text>
+              <Text style={[styles.statLabel, { color: colors.textSecondary }]}>({recipe.ratingCount.toLocaleString()})</Text>
             </View>
             <View style={[styles.statDivider, { backgroundColor: colors.border }]} />
             <View style={styles.statItem}>
               <IconSymbol name="bolt.fill" size={20} color={difficultyColor} />
-              <Text style={[styles.statValue, { color: colors.foreground, textTransform: 'capitalize' }]}>{recipe.difficulty}</Text>
-              <Text style={[styles.statLabel, { color: colors.muted }]}>level</Text>
+              <Text style={[styles.statValue, { color: colors.text, textTransform: 'capitalize' }]}>{recipe.difficulty}</Text>
+              <Text style={[styles.statLabel, { color: colors.textSecondary }]}>level</Text>
             </View>
           </View>
 
           {/* Serving Scaler */}
           <View style={[styles.scalerCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-            <Text style={[styles.scalerLabel, { color: colors.foreground }]}>Servings</Text>
+            <Text style={[styles.scalerLabel, { color: colors.text }]}>Servings</Text>
             <View style={styles.scalerControls}>
               <Pressable
                 style={({ pressed }) => [
@@ -185,9 +185,9 @@ export default function RecipeDetailScreen() {
                 ]}
                 onPress={() => setServingMultiplier(m => Math.max(0.5, Math.round((m - 0.5) * 10) / 10))}
               >
-                <IconSymbol name="minus" size={16} color={colors.foreground} />
+                <IconSymbol name="minus" size={16} color={colors.text} />
               </Pressable>
-              <Text style={[styles.scalerValue, { color: colors.foreground }]}>
+              <Text style={[styles.scalerValue, { color: colors.text }]}>
                 {Math.round(recipe.servings * servingMultiplier * 10) / 10} servings
               </Text>
               <Pressable
@@ -198,7 +198,7 @@ export default function RecipeDetailScreen() {
                 ]}
                 onPress={() => setServingMultiplier(m => Math.round((m + 0.5) * 10) / 10)}
               >
-                <IconSymbol name="plus" size={16} color={colors.foreground} />
+                <IconSymbol name="plus" size={16} color={colors.text} />
               </Pressable>
             </View>
             <Pressable
@@ -209,7 +209,7 @@ export default function RecipeDetailScreen() {
               ]}
               onPress={() => setUseMetric(m => !m)}
             >
-              <Text style={[styles.unitToggleText, { color: useMetric ? '#fff' : colors.muted }]}>
+              <Text style={[styles.unitToggleText, { color: useMetric ? '#fff' : colors.textSecondary }]}>
                 {useMetric ? 'Metric' : 'Imperial'}
               </Text>
             </Pressable>
@@ -228,7 +228,7 @@ export default function RecipeDetailScreen() {
               >
                 <Text style={[
                   styles.tabText,
-                  { color: activeTab === tab ? colors.primary : colors.muted },
+                  { color: activeTab === tab ? colors.primary : colors.textSecondary },
                 ]}>
                   {tab.charAt(0).toUpperCase() + tab.slice(1)}
                 </Text>
@@ -242,8 +242,8 @@ export default function RecipeDetailScreen() {
               {scaledIngredients.map((ing, i) => (
                 <View key={i} style={[styles.ingredientRow, { borderBottomColor: colors.border }]}>
                   <View style={[styles.ingredientDot, { backgroundColor: colors.primary }]} />
-                  <Text style={[styles.ingredientName, { color: colors.foreground }]}>{ing.name}</Text>
-                  <Text style={[styles.ingredientAmount, { color: colors.muted }]}>
+                  <Text style={[styles.ingredientName, { color: colors.text }]}>{ing.name}</Text>
+                  <Text style={[styles.ingredientAmount, { color: colors.textSecondary }]}>
                     {convertAmount(ing.amount, ing.unit)}
                   </Text>
                 </View>
@@ -260,7 +260,7 @@ export default function RecipeDetailScreen() {
                     <Text style={styles.stepNumberText}>{step.stepNumber}</Text>
                   </View>
                   <View style={styles.stepContent}>
-                    <Text style={[styles.stepText, { color: colors.foreground }]}>{step.instruction}</Text>
+                    <Text style={[styles.stepText, { color: colors.text }]}>{step.instruction}</Text>
                     {step.timerMinutes && (
                       <View style={[styles.timerBadge, { backgroundColor: colors.warning + '20' }]}>
                         <IconSymbol name="timer" size={13} color={colors.warning} />
@@ -271,10 +271,10 @@ export default function RecipeDetailScreen() {
                 </View>
               ))}
               {recipe.tips.length > 0 && (
-                <View style={[styles.tipsCard, { backgroundColor: colors.accent + '15', borderColor: colors.accent + '40' }]}>
-                  <Text style={[styles.tipsTitle, { color: colors.accent }]}>💡 Chef's Tips</Text>
+                <View style={[styles.tipsCard, { backgroundColor: colors.warning + '15', borderColor: colors.warning + '40' }]}>
+                  <Text style={[styles.tipsTitle, { color: colors.warning }]}>💡 Chef's Tips</Text>
                   {recipe.tips.map((tip, i) => (
-                    <Text key={i} style={[styles.tipText, { color: colors.foreground }]}>• {tip}</Text>
+                    <Text key={i} style={[styles.tipText, { color: colors.text }]}>• {tip}</Text>
                   ))}
                 </View>
               )}
@@ -284,7 +284,7 @@ export default function RecipeDetailScreen() {
           {/* Nutrition Tab */}
           {activeTab === 'nutrition' && (
             <View style={styles.tabContent}>
-              <Text style={[styles.nutritionNote, { color: colors.muted }]}>
+              <Text style={[styles.nutritionNote, { color: colors.textSecondary }]}>
                 Per serving ({Math.round(recipe.servings * servingMultiplier * 10) / 10} servings total)
               </Text>
               <View style={styles.nutritionGrid}>
@@ -297,8 +297,8 @@ export default function RecipeDetailScreen() {
                 ].map(item => (
                   <View key={item.label} style={[styles.nutritionCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
                     <Text style={[styles.nutritionValue, { color: item.color }]}>{item.value}</Text>
-                    <Text style={[styles.nutritionUnit, { color: colors.muted }]}>{item.unit}</Text>
-                    <Text style={[styles.nutritionLabel, { color: colors.muted }]}>{item.label}</Text>
+                    <Text style={[styles.nutritionUnit, { color: colors.textSecondary }]}>{item.unit}</Text>
+                    <Text style={[styles.nutritionLabel, { color: colors.textSecondary }]}>{item.label}</Text>
                   </View>
                 ))}
               </View>
