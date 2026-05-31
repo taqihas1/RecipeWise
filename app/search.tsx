@@ -1,13 +1,16 @@
 import React, { useState, useMemo } from 'react';
 import {
-  View, Text, TextInput, FlatList, Pressable, StyleSheet, ScrollView
+  View, Text, TextInput, FlatList, Pressable, StyleSheet, ScrollView, Alert
 } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { ScreenContainer } from '@/components/screen-container';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { RecipeCard } from '@/components/RecipeCard';
 import { useColors } from '@/hooks/use-colors';
 import { RECIPES, searchRecipes, MealType, TasteTag, DietTag } from '@/lib/data/recipes';
+import { addMealToPlan } from '@/lib/store';
+import * as Haptics from 'expo-haptics';
+import { Platform } from 'react-native';
 
 const MEAL_FILTERS: { label: string; value: MealType }[] = [
   { label: '🌅 Breakfast', value: 'breakfast' },
@@ -41,6 +44,7 @@ const TIME_FILTERS = [
 
 export default function SearchScreen() {
   const router = useRouter();
+  const params = useLocalSearchParams<{ planner?: string; date?: string; mealType?: string }>();
   const colors = useColors();
   const [query, setQuery] = useState('');
   const [selectedMeal, setSelectedMeal] = useState<MealType | null>(null);
@@ -48,6 +52,10 @@ export default function SearchScreen() {
   const [selectedDiet, setSelectedDiet] = useState<DietTag | null>(null);
   const [maxTime, setMaxTime] = useState<number | null>(null);
   const [showFilters, setShowFilters] = useState(false);
+
+  const isPlannerMode = params.planner === '1';
+  const plannerDate = params.date;
+  const plannerMealType = params.mealType as MealType | undefined;
 
   const results = useMemo(() => {
     let base = query.trim() ? searchRecipes(query) : [...RECIPES];
@@ -59,6 +67,17 @@ export default function SearchScreen() {
   }, [query, selectedMeal, selectedTaste, selectedDiet, maxTime]);
 
   const hasFilters = selectedMeal || selectedTaste || selectedDiet || maxTime;
+
+  const handleAddToPlanner = async (recipeId: string) => {
+    if (!plannerDate || !plannerMealType) return;
+    await addMealToPlan(plannerDate, recipeId, plannerMealType);
+    if (Platform.OS !== 'web') {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    }
+    Alert.alert('Added!', 'Recipe added to your meal planner.', [
+      { text: 'OK', onPress: () => router.back() },
+    ]);
+  };
 
   const clearFilters = () => {
     setSelectedMeal(null);
@@ -231,7 +250,22 @@ export default function SearchScreen() {
         contentContainerStyle={styles.resultsList}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
-          <RecipeCard recipe={item} style={{ marginBottom: 12 }} />
+          <View style={{ marginBottom: 12 }}>
+            <RecipeCard recipe={item} />
+            {isPlannerMode && (
+              <Pressable
+                style={({ pressed }) => [
+                  styles.addToPlanBtn,
+                  { backgroundColor: colors.primary },
+                  pressed && { opacity: 0.85 },
+                ]}
+                onPress={() => handleAddToPlanner(item.id)}
+              >
+                <IconSymbol name="plus.circle.fill" size={18} color="#fff" />
+                <Text style={styles.addToPlanBtnText}>Add to {plannerMealType ? plannerMealType.charAt(0).toUpperCase() + plannerMealType.slice(1) : 'Planner'}</Text>
+              </Pressable>
+            )}
+          </View>
         )}
         ListEmptyComponent={
           <View style={styles.emptyState}>
@@ -283,4 +317,9 @@ const styles = StyleSheet.create({
   },
   fridgeBtnEmoji: { fontSize: 15 },
   fridgeBtnText: { fontSize: 12, fontWeight: '700' },
+  addToPlanBtn: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+    gap: 8, paddingVertical: 12, borderRadius: 14, marginTop: 8,
+  },
+  addToPlanBtnText: { color: '#fff', fontSize: 14, fontWeight: '700' },
 });

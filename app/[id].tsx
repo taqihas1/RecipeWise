@@ -317,10 +317,13 @@ export default function RecipeDetailScreen() {
           ]}
           onPress={() => {
             setActiveTab('steps');
-            scrollViewRef.current?.scrollTo({ y: 0, animated: true });
             if (Platform.OS !== 'web') {
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
             }
+            // Scroll after tab content renders
+            requestAnimationFrame(() => {
+              scrollViewRef.current?.scrollTo({ y: 0, animated: true });
+            });
           }}
         >
           <IconSymbol name="play.fill" size={20} color="#fff" />

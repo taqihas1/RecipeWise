@@ -289,13 +289,17 @@ export default function MyLinksScreen() {
                   )}
                 </View>
                 <Pressable
-                  style={({ pressed }) => [styles.deleteBtn, pressed && { opacity: 0.6 }]}
+                  style={({ pressed }) => [
+                    styles.deleteBtn,
+                    { backgroundColor: colors.error + '15' },
+                    pressed && { opacity: 0.6 },
+                  ]}
                   onPress={(e) => {
                     e.stopPropagation();
                     handleDelete(item);
                   }}
                 >
-                  <IconSymbol name="trash" size={16} color={colors.error} />
+                  <IconSymbol name="trash" size={18} color={colors.error} />
                 </Pressable>
               </Pressable>
             );
@@ -359,5 +363,5 @@ const styles = StyleSheet.create({
   tagRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 4 },
   tag: { paddingHorizontal: 8, paddingVertical: 3, borderRadius: 20 },
   tagText: { fontSize: 10, fontWeight: '600' },
-  deleteBtn: { padding: 4, marginTop: 2 },
+  deleteBtn: { padding: 8, borderRadius: 10, marginTop: 2 },
 });
