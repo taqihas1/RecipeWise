@@ -94,11 +94,10 @@ export default function MyLinksScreen() {
   });
 
   const handleOpenLink = async (url: string) => {
-    const supported = await Linking.canOpenURL(url);
-    if (supported) {
+    try {
       await Linking.openURL(url);
-    } else {
-      Alert.alert('Cannot Open', 'This link cannot be opened on your device.');
+    } catch {
+      Alert.alert('Cannot Open', 'This link cannot be opened on your device. You may need to install the app for this website.');
     }
   };
 
@@ -291,15 +290,17 @@ export default function MyLinksScreen() {
                 <Pressable
                   style={({ pressed }) => [
                     styles.deleteBtn,
-                    { backgroundColor: colors.error + '15' },
-                    pressed && { opacity: 0.6 },
+                    { backgroundColor: colors.error },
+                    pressed && { opacity: 0.8 },
                   ]}
                   onPress={(e) => {
                     e.stopPropagation();
                     handleDelete(item);
                   }}
+                  hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                 >
-                  <IconSymbol name="trash" size={18} color={colors.error} />
+                  <IconSymbol name="trash.fill" size={16} color="#fff" />
+                  <Text style={styles.deleteBtnText}>Delete</Text>
                 </Pressable>
               </Pressable>
             );
@@ -363,5 +364,6 @@ const styles = StyleSheet.create({
   tagRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 4 },
   tag: { paddingHorizontal: 8, paddingVertical: 3, borderRadius: 20 },
   tagText: { fontSize: 10, fontWeight: '600' },
-  deleteBtn: { padding: 8, borderRadius: 10, marginTop: 2 },
+  deleteBtn: { flexDirection: 'row', alignItems: 'center', gap: 4, padding: 8, borderRadius: 10, marginTop: 2 },
+  deleteBtnText: { color: '#fff', fontSize: 10, fontWeight: '700' },
 });
