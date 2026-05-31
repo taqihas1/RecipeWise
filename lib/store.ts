@@ -55,10 +55,21 @@ export interface NutritionLogEntry {
   date: string;
 }
 
+// ─── Safe JSON Parse Helper ─────────────────────────────────────────────────
+function safeParse<T>(json: string | null, fallback: T): T {
+  if (!json) return fallback;
+  try {
+    return JSON.parse(json) as T;
+  } catch {
+    console.warn('AsyncStorage parse error, returning fallback');
+    return fallback;
+  }
+}
+
 // Saved Recipes
 export async function getSavedRecipeIds(): Promise<string[]> {
   const data = await AsyncStorage.getItem(KEYS.SAVED_RECIPES);
-  return data ? JSON.parse(data) : [];
+  return safeParse<string[]>(data, []);
 }
 
 export async function saveRecipe(recipeId: string): Promise<void> {
@@ -81,7 +92,7 @@ export async function isRecipeSaved(recipeId: string): Promise<boolean> {
 // Meal Plan
 export async function getMealPlan(): Promise<MealPlanDay[]> {
   const data = await AsyncStorage.getItem(KEYS.MEAL_PLAN);
-  return data ? JSON.parse(data) : [];
+  return safeParse<MealPlanDay[]>(data, []);
 }
 
 export async function saveMealPlan(plan: MealPlanDay[]): Promise<void> {
@@ -113,7 +124,7 @@ export async function removeMealFromPlan(date: string, recipeId: string, mealTyp
 // Shopping List
 export async function getShoppingList(): Promise<ShoppingItem[]> {
   const data = await AsyncStorage.getItem(KEYS.SHOPPING_LIST);
-  return data ? JSON.parse(data) : [];
+  return safeParse<ShoppingItem[]>(data, []);
 }
 
 export async function saveShoppingList(items: ShoppingItem[]): Promise<void> {
@@ -152,7 +163,7 @@ export async function setOnboardingDone(): Promise<void> {
 // Preferences
 export async function getDietaryPrefs(): Promise<DietaryPrefs> {
   const data = await AsyncStorage.getItem(KEYS.DIETARY_PREFS);
-  return data ? JSON.parse(data) : { vegan: false, vegetarian: false, keto: false, glutenFree: false, dairyFree: false };
+  return safeParse<DietaryPrefs>(data, { vegan: false, vegetarian: false, keto: false, glutenFree: false, dairyFree: false });
 }
 
 export async function saveDietaryPrefs(prefs: DietaryPrefs): Promise<void> {
@@ -161,7 +172,7 @@ export async function saveDietaryPrefs(prefs: DietaryPrefs): Promise<void> {
 
 export async function getTastePrefs(): Promise<TastePrefs> {
   const data = await AsyncStorage.getItem(KEYS.TASTE_PREFS);
-  return data ? JSON.parse(data) : { likesSpicy: true, likesSweet: true, likesSavory: true };
+  return safeParse<TastePrefs>(data, { likesSpicy: true, likesSweet: true, likesSavory: true });
 }
 
 export async function saveTastePrefs(prefs: TastePrefs): Promise<void> {
@@ -189,7 +200,7 @@ export async function saveUnitPref(pref: 'metric' | 'imperial'): Promise<void> {
 // Nutrition Log
 export async function getDailyLog(date: string): Promise<NutritionLogEntry[]> {
   const data = await AsyncStorage.getItem(`${KEYS.DAILY_LOG}_${date}`);
-  return data ? JSON.parse(data) : [];
+  return safeParse<NutritionLogEntry[]>(data, []);
 }
 
 export async function addToNutritionLog(date: string, recipeId: string, servings: number): Promise<void> {

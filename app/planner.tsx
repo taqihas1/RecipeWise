@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   View, Text, Pressable, StyleSheet, ScrollView, Alert
 } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter, useNavigation } from 'expo-router';
 import { ScreenContainer } from '@/components/screen-container';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { useColors } from '@/hooks/use-colors';
@@ -32,6 +32,7 @@ function getWeekDates(): string[] {
 
 export default function MealPlannerScreen() {
   const router = useRouter();
+  const navigation = useNavigation();
   const colors = useColors();
   const [plan, setPlan] = useState<MealPlanDay[]>([]);
   const [loading, setLoading] = useState(true);
@@ -81,9 +82,11 @@ export default function MealPlannerScreen() {
   return (
     <ScreenContainer>
       <View style={styles.header}>
-        <Pressable onPress={() => router.back()} style={styles.backBtn}>
-          <IconSymbol name="chevron.left" size={24} color={colors.text} />
-        </Pressable>
+        {navigation.canGoBack() && (
+          <Pressable onPress={() => router.back()} style={styles.backBtn}>
+            <IconSymbol name="chevron.left" size={24} color={colors.text} />
+          </Pressable>
+        )}
         <Text style={[styles.title, { color: colors.text }]}>Meal Planner</Text>
         <View style={{ width: 40 }} />
       </View>

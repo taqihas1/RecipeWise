@@ -36,6 +36,28 @@ export default function RecipeDetailScreen() {
   const [imageFailed, setImageFailed] = useState(false);
 
   const recipe = RECIPES.find(r => r.id === id);
+  if (!recipe) {
+    return (
+      <View style={[styles.errorContainer, { paddingTop: insets.top, backgroundColor: colors.background }]}>
+        <Text style={[styles.errorEmoji, { color: colors.text }]}>🍳</Text>
+        <Text style={[styles.errorTitle, { color: colors.text }]}>Recipe Not Found</Text>
+        <Text style={[styles.errorSubtitle, { color: colors.textSecondary }]}>
+          This recipe doesn't exist or has been removed.
+        </Text>
+        <Pressable
+          style={({ pressed }) => [
+            styles.errorButton,
+            { backgroundColor: colors.primary },
+            pressed && { opacity: 0.85 },
+          ]}
+          onPress={() => router.back()}
+        >
+          <Text style={styles.errorButtonText}>Go Back</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
   const imageSource = imageFailed
     ? { uri: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600' }
     : resolveRecipeImage(recipe?.id || '', recipe?.imageUrl);
@@ -490,4 +512,21 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
   },
+  errorContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 32,
+    gap: 16,
+  },
+  errorEmoji: { fontSize: 64 },
+  errorTitle: { fontSize: 22, fontWeight: '800' },
+  errorSubtitle: { fontSize: 15, textAlign: 'center', lineHeight: 22 },
+  errorButton: {
+    paddingHorizontal: 32,
+    paddingVertical: 14,
+    borderRadius: 16,
+    marginTop: 8,
+  },
+  errorButtonText: { color: '#fff', fontSize: 16, fontWeight: '700' },
 });

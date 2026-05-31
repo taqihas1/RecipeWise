@@ -5,9 +5,19 @@ const FRIDGE_KEY = 'fridgeIngredients';
 
 // ─── Persistence ────────────────────────────────────────────────────────────
 
+function safeParseFridge<T>(json: string | null, fallback: T): T {
+  if (!json) return fallback;
+  try {
+    return JSON.parse(json) as T;
+  } catch {
+    console.warn('Fridge parse error, returning fallback');
+    return fallback;
+  }
+}
+
 export async function getFridgeIngredients(): Promise<string[]> {
   const data = await AsyncStorage.getItem(FRIDGE_KEY);
-  return data ? JSON.parse(data) : [];
+  return safeParseFridge<string[]>(data, []);
 }
 
 export async function saveFridgeIngredients(ingredients: string[]): Promise<void> {

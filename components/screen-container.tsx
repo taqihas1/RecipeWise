@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Platform } from 'react-native';
+import { View, ScrollView, StyleSheet, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useColors } from '@/hooks/use-colors';
 
@@ -13,22 +13,28 @@ export function ScreenContainer({ children, scrollable, containerClassName }: Sc
   const colors = useColors();
   const insets = useSafeAreaInsets();
 
-  const Container = scrollable ? require('react-native').ScrollView : View;
+  const containerStyle = [
+    styles.container,
+    {
+      backgroundColor: colors.background,
+      paddingTop: insets.top + (Platform.OS === 'web' ? 16 : 8),
+      paddingBottom: insets.bottom + 16,
+      paddingHorizontal: 16,
+    },
+  ];
+
+  if (scrollable) {
+    return (
+      <ScrollView style={containerStyle} showsVerticalScrollIndicator={false}>
+        {children}
+      </ScrollView>
+    );
+  }
 
   return (
-    <Container
-      style={[
-        styles.container,
-        {
-          backgroundColor: colors.background,
-          paddingTop: insets.top + (Platform.OS === 'web' ? 16 : 8),
-          paddingBottom: insets.bottom + 16,
-          paddingHorizontal: 16,
-        },
-      ]}
-    >
+    <View style={containerStyle}>
       {children}
-    </Container>
+    </View>
   );
 }
 
