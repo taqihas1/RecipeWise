@@ -12,7 +12,7 @@ import {
   getIsPremium, setIsPremium, getUnitPref, saveUnitPref, DietaryPrefs, TastePrefs,
   getDailyLog
 } from '@/lib/store';
-import { getSavedLinks, RecipeLink } from './my-links';
+import { resolveRecipeImage } from '@/lib/image-resolver';
 import { RECIPES } from '@/lib/data/recipes';
 
 export default function ProfileScreen() {
@@ -183,7 +183,7 @@ export default function ProfileScreen() {
                   ]}
                   onPress={() => router.push(`/${recipe.id}` as any)}
                 >
-                  <Image source={{ uri: recipe.imageUrl }} style={styles.savedImage} />
+                  <Image source={resolveRecipeImage(recipe.id, recipe.imageUrl)} style={styles.savedImage} />
                   <Text style={[styles.savedTitle, { color: colors.text }]} numberOfLines={2}>
                     {recipe.title}
                   </Text>
