@@ -2,3 +2,6 @@
 *.keystore
 *.jks
 !android/app/debug.keystore
+*.keystore
+*.jks
+.env.build
