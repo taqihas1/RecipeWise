@@ -32,8 +32,12 @@ export default function RecipeDetailScreen() {
   const [useMetric, setUseMetric] = useState(false);
   const [activeTab, setActiveTab] = useState<'ingredients' | 'steps' | 'nutrition'>('ingredients');
   const scrollViewRef = useRef<ScrollView>(null);
+  const [imageFailed, setImageFailed] = useState(false);
 
   const recipe = RECIPES.find(r => r.id === id);
+  const imageSource = imageFailed
+    ? { uri: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600' }
+    : resolveRecipeImage(recipe?.id || '', recipe?.imageUrl);
 
   useEffect(() => {
     if (recipe) {
@@ -94,8 +98,19 @@ export default function RecipeDetailScreen() {
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <ScrollView ref={scrollViewRef} showsVerticalScrollIndicator={false}>
         {/* Hero Image */}
-        <View style={styles.heroContainer}>
-          <Image source={resolveRecipeImage(recipe.id, recipe.imageUrl)} style={styles.heroImage} resizeMode="cover" />
+        <View style={[styles.heroContainer, { backgroundColor: colors.surface }]}>
+          <Image
+            source={imageSource}
+            style={styles.heroImage}
+            resizeMode="cover"
+            onError={() => setImageFailed(true)}
+          />
+          {imageFailed && (
+            <View style={[styles.imagePlaceholder, { backgroundColor: colors.surface }]}>
+              <IconSymbol name="photo" size={48} color={colors.textSecondary} />
+              <Text style={[styles.imagePlaceholderText, { color: colors.textSecondary }]}>Image unavailable</Text>
+            </View>
+          )}
           <View style={[styles.heroOverlay]} />
           {/* Back button */}
           <Pressable
@@ -462,4 +477,14 @@ const styles = StyleSheet.create({
     gap: 10, paddingVertical: 16, borderRadius: 16,
   },
   cookingButtonText: { color: '#fff', fontSize: 17, fontWeight: '700' },
+  imagePlaceholder: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+  },
+  imagePlaceholderText: {
+    fontSize: 14,
+    fontWeight: '600',
+  },
 });

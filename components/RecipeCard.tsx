@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import { IconSymbol } from './ui/icon-symbol';
@@ -15,8 +15,12 @@ interface RecipeCardProps {
 export function RecipeCard({ recipe, style, horizontal = false }: RecipeCardProps) {
   const router = useRouter();
   const colors = useColors();
+  const [imageFailed, setImageFailed] = useState(false);
 
   const totalTime = recipe.cookTimeMinutes + recipe.prepTimeMinutes;
+  const imageSource = imageFailed
+    ? { uri: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600' }
+    : resolveRecipeImage(recipe.id, recipe.imageUrl);
 
   if (horizontal) {
     return (
@@ -30,9 +34,10 @@ export function RecipeCard({ recipe, style, horizontal = false }: RecipeCardProp
         onPress={() => router.push(`/${recipe.id}` as any)}
       >
         <Image
-          source={resolveRecipeImage(recipe.id, recipe.imageUrl)}
+          source={imageSource}
           style={styles.horizontalImage}
           resizeMode="cover"
+          onError={() => setImageFailed(true)}
         />
         <View style={styles.horizontalContent}>
           <View style={styles.tagRow}>
@@ -72,9 +77,10 @@ export function RecipeCard({ recipe, style, horizontal = false }: RecipeCardProp
       onPress={() => router.push(`/${recipe.id}` as any)}
     >
       <Image
-        source={resolveRecipeImage(recipe.id, recipe.imageUrl)}
+        source={imageSource}
         style={styles.image}
         resizeMode="cover"
+        onError={() => setImageFailed(true)}
       />
       {recipe.isPremium && (
         <View style={[styles.premiumBadge, { backgroundColor: colors.primary }]}>
@@ -172,6 +178,7 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 180,
+    backgroundColor: '#E0E0E0',
   },
   premiumBadge: {
     position: 'absolute',
@@ -239,6 +246,7 @@ const styles = StyleSheet.create({
   horizontalImage: {
     width: 100,
     height: '100%',
+    backgroundColor: '#E0E0E0',
   },
   horizontalContent: {
     flex: 1,
