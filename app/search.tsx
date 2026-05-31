@@ -72,7 +72,7 @@ export default function SearchScreen() {
       {/* Search Header */}
       <View style={styles.searchHeader}>
         <View style={styles.searchTitleRow}>
-          <Text style={[styles.pageTitle, { color: colors.foreground }]}>Search Recipes</Text>
+          <Text style={[styles.pageTitle, { color: colors.text }]}>Search Recipes</Text>
           <Pressable
             style={({ pressed }) => [
               styles.fridgeBtn,
@@ -86,11 +86,11 @@ export default function SearchScreen() {
           </Pressable>
         </View>
         <View style={[styles.searchBar, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-          <IconSymbol name="magnifyingglass" size={18} color={colors.muted} />
+          <IconSymbol name="magnifyingglass" size={18} color={colors.textSecondary} />
           <TextInput
-            style={[styles.searchInput, { color: colors.foreground }]}
+            style={[styles.searchInput, { color: colors.text }]}
             placeholder="Search by name, ingredient..."
-            placeholderTextColor={colors.muted}
+            placeholderTextColor={colors.textSecondary}
             value={query}
             onChangeText={setQuery}
             returnKeyType="search"
@@ -98,7 +98,7 @@ export default function SearchScreen() {
           />
           {query.length > 0 && (
             <Pressable onPress={() => setQuery('')}>
-              <IconSymbol name="xmark.circle.fill" size={18} color={colors.muted} />
+              <IconSymbol name="xmark.circle.fill" size={18} color={colors.textSecondary} />
             </Pressable>
           )}
         </View>
@@ -114,8 +114,8 @@ export default function SearchScreen() {
             ]}
             onPress={() => setShowFilters(f => !f)}
           >
-            <IconSymbol name="slider.horizontal.3" size={16} color={showFilters ? '#fff' : colors.foreground} />
-            <Text style={[styles.filterToggleText, { color: showFilters ? '#fff' : colors.foreground }]}>
+            <IconSymbol name="slider.horizontal.3" size={16} color={showFilters ? '#fff' : colors.text} />
+            <Text style={[styles.filterToggleText, { color: showFilters ? '#fff' : colors.text }]}>
               Filters {hasFilters ? '•' : ''}
             </Text>
           </Pressable>
@@ -138,7 +138,7 @@ export default function SearchScreen() {
       {/* Filters Panel */}
       {showFilters && (
         <View style={[styles.filtersPanel, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-          <Text style={[styles.filterGroupTitle, { color: colors.muted }]}>Meal Type</Text>
+          <Text style={[styles.filterGroupTitle, { color: colors.textSecondary }]}>Meal Type</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filterChips}>
             {MEAL_FILTERS.map(f => (
               <Pressable
@@ -152,14 +152,14 @@ export default function SearchScreen() {
                 ]}
                 onPress={() => setSelectedMeal(selectedMeal === f.value ? null : f.value)}
               >
-                <Text style={[styles.chipText, { color: selectedMeal === f.value ? '#fff' : colors.foreground }]}>
+                <Text style={[styles.chipText, { color: selectedMeal === f.value ? '#fff' : colors.text }]}>
                   {f.label}
                 </Text>
               </Pressable>
             ))}
           </ScrollView>
 
-          <Text style={[styles.filterGroupTitle, { color: colors.muted }]}>Taste</Text>
+          <Text style={[styles.filterGroupTitle, { color: colors.textSecondary }]}>Taste</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filterChips}>
             {TASTE_FILTER_LIST.map(f => (
               <Pressable
@@ -173,14 +173,14 @@ export default function SearchScreen() {
                 ]}
                 onPress={() => setSelectedTaste(selectedTaste === f.value ? null : f.value)}
               >
-                <Text style={[styles.chipText, { color: selectedTaste === f.value ? '#fff' : colors.foreground }]}>
+                <Text style={[styles.chipText, { color: selectedTaste === f.value ? '#fff' : colors.text }]}>
                   {f.label}
                 </Text>
               </Pressable>
             ))}
           </ScrollView>
 
-          <Text style={[styles.filterGroupTitle, { color: colors.muted }]}>Diet</Text>
+          <Text style={[styles.filterGroupTitle, { color: colors.textSecondary }]}>Diet</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filterChips}>
             {DIET_FILTERS.map(f => (
               <Pressable
@@ -194,14 +194,14 @@ export default function SearchScreen() {
                 ]}
                 onPress={() => setSelectedDiet(selectedDiet === f.value ? null : f.value)}
               >
-                <Text style={[styles.chipText, { color: selectedDiet === f.value ? '#fff' : colors.foreground }]}>
+                <Text style={[styles.chipText, { color: selectedDiet === f.value ? '#fff' : colors.text }]}>
                   {f.label}
                 </Text>
               </Pressable>
             ))}
           </ScrollView>
 
-          <Text style={[styles.filterGroupTitle, { color: colors.muted }]}>Cook Time</Text>
+          <Text style={[styles.filterGroupTitle, { color: colors.textSecondary }]}>Cook Time</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filterChips}>
             {TIME_FILTERS.map(f => (
               <Pressable
@@ -215,7 +215,7 @@ export default function SearchScreen() {
                 ]}
                 onPress={() => setMaxTime(maxTime === f.value ? null : f.value)}
               >
-                <Text style={[styles.chipText, { color: maxTime === f.value ? '#fff' : colors.foreground }]}>
+                <Text style={[styles.chipText, { color: maxTime === f.value ? '#fff' : colors.text }]}>
                   {f.label}
                 </Text>
               </Pressable>
@@ -236,8 +236,8 @@ export default function SearchScreen() {
         ListEmptyComponent={
           <View style={styles.emptyState}>
             <Text style={styles.emptyEmoji}>🔍</Text>
-            <Text style={[styles.emptyTitle, { color: colors.foreground }]}>No recipes found</Text>
-            <Text style={[styles.emptySubtitle, { color: colors.muted }]}>
+            <Text style={[styles.emptyTitle, { color: colors.text }]}>No recipes found</Text>
+            <Text style={[styles.emptySubtitle, { color: colors.textSecondary }]}>
               Try different keywords or adjust your filters
             </Text>
           </View>

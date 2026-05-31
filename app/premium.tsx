@@ -77,18 +77,18 @@ export default function PremiumScreen() {
           style={({ pressed }) => [styles.closeBtn, { backgroundColor: colors.surface, borderColor: colors.border }, pressed && { opacity: 0.7 }]}
           onPress={() => router.back()}
         >
-          <IconSymbol name="xmark" size={18} color={colors.foreground} />
+          <IconSymbol name="xmark" size={18} color={colors.text} />
         </Pressable>
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 120 }}>
         {/* Hero */}
         <View style={styles.hero}>
-          <View style={[styles.crownContainer, { backgroundColor: colors.accent + '20' }]}>
-            <IconSymbol name="crown.fill" size={40} color={colors.accent} />
+          <View style={[styles.crownContainer, { backgroundColor: colors.primary + '20' }]}>
+            <IconSymbol name="crown.fill" size={40} color={colors.primary} />
           </View>
-          <Text style={[styles.heroTitle, { color: colors.foreground }]}>RecipeWise Premium</Text>
-          <Text style={[styles.heroSubtitle, { color: colors.muted }]}>
+          <Text style={[styles.heroTitle, { color: colors.text }]}>RecipeWise Premium</Text>
+          <Text style={[styles.heroSubtitle, { color: colors.textSecondary }]}>
             Unlock the full cooking experience with meal planning, nutrition tracking, and AI-powered suggestions.
           </Text>
           <View style={[styles.trialBadge, { backgroundColor: colors.success + '20', borderColor: colors.success + '40' }]}>
@@ -98,7 +98,7 @@ export default function PremiumScreen() {
 
         {/* Feature Comparison */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.foreground }]}>What's included</Text>
+          <Text style={[styles.sectionTitle, { color: colors.text }]}>What's included</Text>
           <View style={[styles.featuresCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
             {FEATURES.map((feature, i) => (
               <View
@@ -110,16 +110,16 @@ export default function PremiumScreen() {
               >
                 <Text style={styles.featureIcon}>{feature.icon}</Text>
                 <View style={styles.featureContent}>
-                  <Text style={[styles.featureTitle, { color: colors.foreground }]}>{feature.title}</Text>
-                  <Text style={[styles.featureDesc, { color: colors.muted }]}>{feature.desc}</Text>
+                  <Text style={[styles.featureTitle, { color: colors.text }]}>{feature.title}</Text>
+                  <Text style={[styles.featureDesc, { color: colors.textSecondary }]}>{feature.desc}</Text>
                 </View>
                 <View style={[
                   styles.featureBadge,
-                  { backgroundColor: feature.premium ? colors.accent + '20' : colors.border + '60' }
+                  { backgroundColor: feature.premium ? colors.primary + '20' : colors.border + '60' }
                 ]}>
                   <Text style={[
                     styles.featureBadgeText,
-                    { color: feature.premium ? colors.accent : colors.muted }
+                    { color: feature.premium ? colors.primary : colors.textSecondary }
                   ]}>
                     {feature.premium ? 'PRO' : 'Free'}
                   </Text>
@@ -131,7 +131,7 @@ export default function PremiumScreen() {
 
         {/* Pricing Plans */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Choose your plan</Text>
+          <Text style={[styles.sectionTitle, { color: colors.text }]}>Choose your plan</Text>
           <View style={styles.plansContainer}>
             {PLANS.map(plan => (
               <Pressable
@@ -168,9 +168,9 @@ export default function PremiumScreen() {
                     <View style={styles.planRadioInner} />
                   )}
                 </View>
-                <Text style={[styles.planLabel, { color: colors.muted }]}>{plan.label}</Text>
-                <Text style={[styles.planPrice, { color: colors.foreground }]}>{plan.price}</Text>
-                <Text style={[styles.planPeriod, { color: colors.muted }]}>{plan.period}</Text>
+                <Text style={[styles.planLabel, { color: colors.textSecondary }]}>{plan.label}</Text>
+                <Text style={[styles.planPrice, { color: colors.text }]}>{plan.price}</Text>
+                <Text style={[styles.planPeriod, { color: colors.textSecondary }]}>{plan.period}</Text>
                 {(plan as any).monthlyEquiv && (
                   <Text style={[styles.planEquiv, { color: colors.primary }]}>{(plan as any).monthlyEquiv}</Text>
                 )}
@@ -183,10 +183,10 @@ export default function PremiumScreen() {
         <View style={styles.section}>
           <View style={[styles.reviewCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
             <Text style={styles.stars}>⭐⭐⭐⭐⭐</Text>
-            <Text style={[styles.reviewText, { color: colors.foreground }]}>
+            <Text style={[styles.reviewText, { color: colors.text }]}>
               "Finally a recipe app that actually helps me plan my week. The meal planner and shopping list are game-changers!"
             </Text>
-            <Text style={[styles.reviewer, { color: colors.muted }]}>— Sarah K., Premium user</Text>
+            <Text style={[styles.reviewer, { color: colors.textSecondary }]}>— Sarah K., Premium user</Text>
           </View>
         </View>
       </ScrollView>
@@ -196,7 +196,7 @@ export default function PremiumScreen() {
         <Pressable
           style={({ pressed }) => [
             styles.subscribeBtn,
-            { backgroundColor: colors.accent },
+            { backgroundColor: colors.primary },
             pressed && { opacity: 0.85, transform: [{ scale: 0.98 }] },
           ]}
           onPress={handleSubscribe}
@@ -206,7 +206,7 @@ export default function PremiumScreen() {
             Start 7-Day Free Trial
           </Text>
         </Pressable>
-        <Text style={[styles.disclaimer, { color: colors.muted }]}>
+        <Text style={[styles.disclaimer, { color: colors.textSecondary }]}>
           Cancel anytime. No charges during trial.
         </Text>
       </View>

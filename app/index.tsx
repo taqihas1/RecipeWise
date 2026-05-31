@@ -158,7 +158,7 @@ export default function DiscoverScreen() {
 
         {/* ═══ QUICK ACTIONS ═══ */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Quick Actions</Text>
+          <Text style={[styles.sectionTitle, { color: colors.text }]}>Quick Actions</Text>
           <View style={styles.quickActionsRow}>
             {QUICK_ACTIONS.map(action => (
               <Pressable
@@ -179,7 +179,7 @@ export default function DiscoverScreen() {
 
         {/* ═══ MEAL CATEGORIES ═══ */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Meal Time</Text>
+          <Text style={[styles.sectionTitle, { color: colors.text }]}>Meal Time</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.categoryScroll}>
             {MEAL_CATEGORIES.map(cat => (
               <Pressable
@@ -209,7 +209,7 @@ export default function DiscoverScreen() {
 
         {/* ═══ PROTEIN FILTERS ═══ */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Protein Power</Text>
+          <Text style={[styles.sectionTitle, { color: colors.text }]}>Protein Power</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filterScroll}>
             {PROTEIN_FILTERS.map(filter => (
               <Pressable
@@ -235,9 +235,9 @@ export default function DiscoverScreen() {
           <>
             <View style={styles.section}>
               <View style={styles.sectionHeader}>
-                <Text style={[styles.sectionTitle, { color: colors.foreground }]}>💪 High Protein Hits</Text>
+                <Text style={[styles.sectionTitle, { color: colors.text }]}>💪 High Protein Hits</Text>
                 <Pressable onPress={() => setActiveFilter('High Protein')}>
-                  <Text style={[styles.seeAll, { color: colors.accent }]}>See All</Text>
+                  <Text style={[styles.seeAll, { color: colors.primary }]}>See All</Text>
                 </Pressable>
               </View>
               <FlatList
@@ -257,7 +257,7 @@ export default function DiscoverScreen() {
             {/* ═══ TRENDING ═══ */}
             <View style={styles.section}>
               <View style={styles.sectionHeader}>
-                <Text style={[styles.sectionTitle, { color: colors.foreground }]}>🔥 Trending Now</Text>
+                <Text style={[styles.sectionTitle, { color: colors.text }]}>🔥 Trending Now</Text>
               </View>
               <View style={styles.trendingGrid}>
                 {trendingRecipes.map(recipe => (
@@ -271,7 +271,7 @@ export default function DiscoverScreen() {
             {/* ═══ QUICK & EASY ═══ */}
             <View style={styles.section}>
               <View style={styles.sectionHeader}>
-                <Text style={[styles.sectionTitle, { color: colors.foreground }]}>⚡ Quick & Easy</Text>
+                <Text style={[styles.sectionTitle, { color: colors.text }]}>⚡ Quick & Easy</Text>
               </View>
               <FlatList
                 horizontal
@@ -293,11 +293,11 @@ export default function DiscoverScreen() {
         {isFiltering && filteredRecipes.length > 0 && (
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Text style={[styles.sectionTitle, { color: colors.foreground }]}>
+              <Text style={[styles.sectionTitle, { color: colors.text }]}>
                 {selectedMeal ? MEAL_CATEGORIES.find(c => c.type === selectedMeal)?.label : activeFilter} Recipes
               </Text>
               <Pressable onPress={() => { setSelectedMeal(null); setActiveFilter(null); }}>
-                <Text style={[styles.seeAll, { color: colors.accent }]}>Clear</Text>
+                <Text style={[styles.seeAll, { color: colors.primary }]}>Clear</Text>
               </Pressable>
             </View>
             <View style={styles.filteredGrid}>
@@ -313,7 +313,7 @@ export default function DiscoverScreen() {
         {isFiltering && filteredRecipes.length === 0 && (
           <View style={styles.emptyState}>
             <Text style={{ fontSize: 40, marginBottom: 12 }}>🍽️</Text>
-            <Text style={[styles.emptyText, { color: colors.muted }]}>No recipes found</Text>
+            <Text style={[styles.emptyText, { color: colors.textSecondary }]}>No recipes found</Text>
           </View>
         )}
 

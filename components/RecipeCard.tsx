@@ -42,19 +42,19 @@ export function RecipeCard({ recipe, style, horizontal = false }: RecipeCardProp
               </View>
             ))}
             {recipe.isPremium && (
-              <View style={[styles.tag, { backgroundColor: colors.accent }]}>
+              <View style={[styles.tag, { backgroundColor: colors.primary }]}>
                 <Text style={[styles.tagText, { color: '#fff' }]}>PRO</Text>
               </View>
             )}
           </View>
-          <Text style={[styles.horizontalTitle, { color: colors.foreground }]} numberOfLines={2}>
+          <Text style={[styles.horizontalTitle, { color: colors.text }]} numberOfLines={2}>
             {recipe.title}
           </Text>
           <View style={styles.metaRow}>
-            <IconSymbol name="clock" size={13} color={colors.muted} />
-            <Text style={[styles.metaText, { color: colors.muted }]}>{totalTime} min</Text>
-            <IconSymbol name="star.fill" size={13} color={colors.accent} />
-            <Text style={[styles.metaText, { color: colors.muted }]}>{recipe.rating}</Text>
+            <IconSymbol name="clock" size={13} color={colors.textSecondary} />
+            <Text style={[styles.metaText, { color: colors.textSecondary }]}>{totalTime} min</Text>
+            <IconSymbol name="star.fill" size={13} color={colors.warning} />
+            <Text style={[styles.metaText, { color: colors.textSecondary }]}>{recipe.rating}</Text>
           </View>
         </View>
       </Pressable>
@@ -77,7 +77,7 @@ export function RecipeCard({ recipe, style, horizontal = false }: RecipeCardProp
         resizeMode="cover"
       />
       {recipe.isPremium && (
-        <View style={[styles.premiumBadge, { backgroundColor: colors.accent }]}>
+        <View style={[styles.premiumBadge, { backgroundColor: colors.primary }]}>
           <IconSymbol name="crown.fill" size={10} color="#fff" />
           <Text style={styles.premiumText}>PRO</Text>
         </View>
@@ -90,7 +90,7 @@ export function RecipeCard({ recipe, style, horizontal = false }: RecipeCardProp
             </View>
           )}
           {recipe.isPremium && (
-            <View style={[styles.premiumBadgeSmall, { backgroundColor: colors.accent }]}>
+            <View style={[styles.premiumBadgeSmall, { backgroundColor: colors.primary }]}>
               <IconSymbol name="crown.fill" size={10} color="#fff" />
               <Text style={styles.premiumBadgeText}>PRO</Text>
             </View>
@@ -103,17 +103,17 @@ export function RecipeCard({ recipe, style, horizontal = false }: RecipeCardProp
             </View>
           ))}
         </View>
-        <Text style={[styles.title, { color: colors.foreground }]} numberOfLines={2}>
+        <Text style={[styles.title, { color: colors.text }]} numberOfLines={2}>
           {recipe.title}
         </Text>
         <View style={styles.metaRow}>
-          <IconSymbol name="clock" size={13} color={colors.muted} />
-          <Text style={[styles.metaText, { color: colors.muted }]}>{totalTime} min</Text>
+          <IconSymbol name="clock" size={13} color={colors.textSecondary} />
+          <Text style={[styles.metaText, { color: colors.textSecondary }]}>{totalTime} min</Text>
           <View style={styles.dot} />
-          <IconSymbol name="star.fill" size={13} color={colors.accent} />
-          <Text style={[styles.metaText, { color: colors.muted }]}>{recipe.rating}</Text>
+          <IconSymbol name="star.fill" size={13} color={colors.warning} />
+          <Text style={[styles.metaText, { color: colors.textSecondary }]}>{recipe.rating}</Text>
           <View style={styles.dot} />
-          <Text style={[styles.metaText, { color: colors.muted }]}>{recipe.difficulty}</Text>
+          <Text style={[styles.metaText, { color: colors.textSecondary }]}>{recipe.difficulty}</Text>
         </View>
       </View>
     </Pressable>
@@ -127,7 +127,7 @@ function getTagColor(tag: string, colors: any): string {
     case 'savory': return '#2D9B4E';
     case 'not-spicy': return '#5B8DB8';
     case 'sour': return '#9B6B2D';
-    default: return colors.muted;
+    default: return colors.textSecondary;
   }
 }
 

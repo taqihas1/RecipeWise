@@ -76,7 +76,7 @@ function HouseAd() {
         <View style={[styles.badge, { backgroundColor: colors.primary + '18' }]}>
           <Text style={[styles.badgeText, { color: colors.primary }]}>✨ PRO</Text>
         </View>
-        <Text style={[styles.houseAdText, { color: colors.foreground }]}>
+        <Text style={[styles.houseAdText, { color: colors.text }]}>
           Unlock no ads, meal planning & nutrition tracking
         </Text>
         <Text style={[styles.houseAdCta, { color: colors.primary }]}>Try free →</Text>

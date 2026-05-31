@@ -133,8 +133,8 @@ export default function MyLinksScreen() {
       {/* Header */}
       <View style={styles.header}>
         <View>
-          <Text style={[styles.pageTitle, { color: colors.foreground }]}>My Recipe Links</Text>
-          <Text style={[styles.subtitle, { color: colors.muted }]}>
+          <Text style={[styles.pageTitle, { color: colors.text }]}>My Recipe Links</Text>
+          <Text style={[styles.subtitle, { color: colors.textSecondary }]}>
             {links.length} saved {links.length === 1 ? 'link' : 'links'}
           </Text>
         </View>
@@ -152,17 +152,17 @@ export default function MyLinksScreen() {
 
       {/* Search */}
       <View style={[styles.searchRow, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-        <IconSymbol name="magnifyingglass" size={16} color={colors.muted} />
+        <IconSymbol name="magnifyingglass" size={16} color={colors.textSecondary} />
         <TextInput
-          style={[styles.searchInput, { color: colors.foreground }]}
+          style={[styles.searchInput, { color: colors.text }]}
           placeholder="Search your links..."
-          placeholderTextColor={colors.muted}
+          placeholderTextColor={colors.textSecondary}
           value={searchQuery}
           onChangeText={setSearchQuery}
         />
         {searchQuery.length > 0 && (
           <Pressable onPress={() => setSearchQuery('')}>
-            <IconSymbol name="xmark.circle.fill" size={16} color={colors.muted} />
+            <IconSymbol name="xmark.circle.fill" size={16} color={colors.textSecondary} />
           </Pressable>
         )}
       </View>
@@ -185,7 +185,7 @@ export default function MyLinksScreen() {
             ]}
             onPress={() => setSelectedSource(null)}
           >
-            <Text style={[styles.filterChipText, { color: selectedSource === null ? '#fff' : colors.foreground }]}>
+            <Text style={[styles.filterChipText, { color: selectedSource === null ? '#fff' : colors.text }]}>
               All
             </Text>
           </Pressable>
@@ -204,7 +204,7 @@ export default function MyLinksScreen() {
                 onPress={() => setSelectedSource(selectedSource === key ? null : key)}
               >
                 <Text style={{ fontSize: 12 }}>{meta.emoji}</Text>
-                <Text style={[styles.filterChipText, { color: selectedSource === key ? '#fff' : colors.foreground }]}>
+                <Text style={[styles.filterChipText, { color: selectedSource === key ? '#fff' : colors.text }]}>
                   {meta.name} ({sourceCounts[key]})
                 </Text>
               </Pressable>
@@ -217,8 +217,8 @@ export default function MyLinksScreen() {
       {links.length === 0 ? (
         <View style={styles.emptyState}>
           <Text style={styles.emptyEmoji}>📚</Text>
-          <Text style={[styles.emptyTitle, { color: colors.foreground }]}>No saved links yet</Text>
-          <Text style={[styles.emptySubtitle, { color: colors.muted, textAlign: 'center', paddingHorizontal: 40 }]}>
+          <Text style={[styles.emptyTitle, { color: colors.text }]}>No saved links yet</Text>
+          <Text style={[styles.emptySubtitle, { color: colors.textSecondary, textAlign: 'center', paddingHorizontal: 40 }]}>
             Save recipe links from YouTube, Instagram, TikTok, Pinterest, or any website to keep them all in one place.
           </Text>
           <Pressable
@@ -235,8 +235,8 @@ export default function MyLinksScreen() {
       ) : filteredLinks.length === 0 ? (
         <View style={styles.emptyState}>
           <Text style={styles.emptyEmoji}>🔍</Text>
-          <Text style={[styles.emptyTitle, { color: colors.foreground }]}>No matches found</Text>
-          <Text style={[styles.emptySubtitle, { color: colors.muted }]}>
+          <Text style={[styles.emptyTitle, { color: colors.text }]}>No matches found</Text>
+          <Text style={[styles.emptySubtitle, { color: colors.textSecondary }]}>
             Try a different search or filter
           </Text>
         </View>
@@ -267,14 +267,14 @@ export default function MyLinksScreen() {
                   <Text style={{ fontSize: 18 }}>{meta.emoji}</Text>
                 </View>
                 <View style={styles.linkContent}>
-                  <Text style={[styles.linkTitle, { color: colors.foreground }]} numberOfLines={1}>
+                  <Text style={[styles.linkTitle, { color: colors.text }]} numberOfLines={1}>
                     {item.title || 'Untitled Link'}
                   </Text>
-                  <Text style={[styles.linkUrl, { color: colors.muted }]} numberOfLines={1}>
+                  <Text style={[styles.linkUrl, { color: colors.textSecondary }]} numberOfLines={1}>
                     {item.url}
                   </Text>
                   {item.notes ? (
-                    <Text style={[styles.linkNotes, { color: colors.muted }]} numberOfLines={2}>
+                    <Text style={[styles.linkNotes, { color: colors.textSecondary }]} numberOfLines={2}>
                       {item.notes}
                     </Text>
                   ) : null}

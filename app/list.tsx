@@ -166,9 +166,9 @@ export default function ShoppingListScreen() {
       {/* Header */}
       <View style={styles.header}>
         <View>
-          <Text style={[styles.pageTitle, { color: colors.foreground }]}>Shopping List</Text>
+          <Text style={[styles.pageTitle, { color: colors.text }]}>Shopping List</Text>
           {totalCount > 0 && (
-            <Text style={[styles.progress, { color: colors.muted }]}>
+            <Text style={[styles.progress, { color: colors.textSecondary }]}>
               {checkedCount} of {totalCount} items
             </Text>
           )}
@@ -214,9 +214,9 @@ export default function ShoppingListScreen() {
       {showAddInput && (
         <View style={[styles.addInput, { backgroundColor: colors.surface, borderColor: colors.border }]}>
           <TextInput
-            style={[styles.input, { color: colors.foreground }]}
+            style={[styles.input, { color: colors.text }]}
             placeholder="Add item..."
-            placeholderTextColor={colors.muted}
+            placeholderTextColor={colors.textSecondary}
             value={newItem}
             onChangeText={setNewItem}
             returnKeyType="done"
@@ -236,8 +236,8 @@ export default function ShoppingListScreen() {
       {totalCount === 0 ? (
         <View style={styles.emptyState}>
           <Text style={styles.emptyEmoji}>🛒</Text>
-          <Text style={[styles.emptyTitle, { color: colors.foreground }]}>Your list is empty</Text>
-          <Text style={[styles.emptySubtitle, { color: colors.muted }]}>
+          <Text style={[styles.emptyTitle, { color: colors.text }]}>Your list is empty</Text>
+          <Text style={[styles.emptySubtitle, { color: colors.textSecondary }]}>
             Add items manually or generate from your meal plan
           </Text>
         </View>
@@ -249,7 +249,7 @@ export default function ShoppingListScreen() {
           showsVerticalScrollIndicator={false}
           renderItem={({ item: category }) => (
             <View style={styles.categorySection}>
-              <Text style={[styles.categoryTitle, { color: colors.muted }]}>{category}</Text>
+              <Text style={[styles.categoryTitle, { color: colors.textSecondary }]}>{category}</Text>
               {groupedItems[category].map(item => (
                 <Pressable
                   key={item.id}
@@ -273,12 +273,12 @@ export default function ShoppingListScreen() {
                   <View style={styles.itemContent}>
                     <Text style={[
                       styles.itemName,
-                      { color: colors.foreground },
+                      { color: colors.text },
                       item.checked && { textDecorationLine: 'line-through' },
                     ]}>
                       {item.name}
                     </Text>
-                    <Text style={[styles.itemAmount, { color: colors.muted }]}>
+                    <Text style={[styles.itemAmount, { color: colors.textSecondary }]}>
                       {item.amount} {item.unit}
                     </Text>
                   </View>
@@ -324,8 +324,8 @@ export default function ShoppingListScreen() {
             {/* Handle */}
             <View style={[styles.sheetHandle, { backgroundColor: colors.border }]} />
 
-            <Text style={[styles.sheetTitle, { color: colors.foreground }]}>Choose a Delivery Service</Text>
-            <Text style={[styles.sheetSubtitle, { color: colors.muted }]}>
+            <Text style={[styles.sheetTitle, { color: colors.text }]}>Choose a Delivery Service</Text>
+            <Text style={[styles.sheetSubtitle, { color: colors.textSecondary }]}>
               {uncheckedCount} item{uncheckedCount !== 1 ? 's' : ''} will be searched
             </Text>
 
@@ -344,16 +344,16 @@ export default function ShoppingListScreen() {
                     <Text style={styles.serviceEmoji}>{service.emoji}</Text>
                   </View>
                   <View style={styles.serviceInfo}>
-                    <Text style={[styles.serviceName, { color: colors.foreground }]}>{service.name}</Text>
-                    <Text style={[styles.serviceDesc, { color: colors.muted }]}>{service.description}</Text>
+                    <Text style={[styles.serviceName, { color: colors.text }]}>{service.name}</Text>
+                    <Text style={[styles.serviceDesc, { color: colors.textSecondary }]}>{service.description}</Text>
                   </View>
-                  <IconSymbol name="chevron.right" size={16} color={colors.muted} />
+                  <IconSymbol name="chevron.right" size={16} color={colors.textSecondary} />
                 </Pressable>
               ))}
             </ScrollView>
 
             <View style={[styles.affiliateNote, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-              <Text style={[styles.affiliateNoteText, { color: colors.muted }]}>
+              <Text style={[styles.affiliateNoteText, { color: colors.textSecondary }]}>
                 💡 Links may include affiliate codes. RecipeWise may earn a small commission on purchases.
               </Text>
             </View>
@@ -362,7 +362,7 @@ export default function ShoppingListScreen() {
               style={[styles.cancelBtn, { borderColor: colors.border }]}
               onPress={() => setShowDeliveryPicker(false)}
             >
-              <Text style={[styles.cancelBtnText, { color: colors.foreground }]}>Cancel</Text>
+              <Text style={[styles.cancelBtnText, { color: colors.text }]}>Cancel</Text>
             </Pressable>
           </Pressable>
         </Pressable>

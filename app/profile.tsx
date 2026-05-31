@@ -77,7 +77,7 @@ export default function ProfileScreen() {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 40 }}>
         {/* Header */}
         <View style={styles.header}>
-          <Text style={[styles.pageTitle, { color: colors.foreground }]}>Profile</Text>
+          <Text style={[styles.pageTitle, { color: colors.text }]}>Profile</Text>
         </View>
 
         {/* Protein Tracker Card */}
@@ -87,8 +87,8 @@ export default function ProfileScreen() {
               <IconSymbol name="flame.fill" size={20} color="#fff" />
             </View>
             <View style={{ flex: 1 }}>
-              <Text style={[styles.proteinCardTitle, { color: colors.foreground }]}>Protein Tracker</Text>
-              <Text style={[styles.proteinCardSubtitle, { color: colors.muted }]}>Daily Goal: {proteinGoal}g</Text>
+              <Text style={[styles.proteinCardTitle, { color: colors.text }]}>Protein Tracker</Text>
+              <Text style={[styles.proteinCardSubtitle, { color: colors.textSecondary }]}>Daily Goal: {proteinGoal}g</Text>
             </View>
             <Text style={[styles.proteinValue, { color: colors.primary }]}>{todayProtein}g</Text>
           </View>
@@ -103,7 +103,7 @@ export default function ProfileScreen() {
               ]}
             />
           </View>
-          <Text style={[styles.proteinPercent, { color: colors.muted }]}>
+          <Text style={[styles.proteinPercent, { color: colors.textSecondary }]}>
             {Math.round((todayProtein / proteinGoal) * 100)}% of daily goal
           </Text>
         </View>
@@ -113,7 +113,7 @@ export default function ProfileScreen() {
           <Pressable
             style={({ pressed }) => [
               styles.premiumBanner,
-              { backgroundColor: colors.accent },
+              { backgroundColor: colors.primary },
               pressed && { opacity: 0.9 },
             ]}
             onPress={() => router.push('/premium' as any)}
@@ -149,25 +149,25 @@ export default function ProfileScreen() {
               <IconSymbol name="link" size={18} color="#fff" />
             </View>
             <View>
-              <Text style={[styles.linksCardTitle, { color: colors.foreground }]}>
+              <Text style={[styles.linksCardTitle, { color: colors.text }]}>
                 My Recipe Links
               </Text>
-              <Text style={[styles.linksCardSubtitle, { color: colors.muted }]}>
+              <Text style={[styles.linksCardSubtitle, { color: colors.textSecondary }]}>
                 {savedLinks.length} saved {savedLinks.length === 1 ? 'link' : 'links'}
               </Text>
             </View>
           </View>
-          <IconSymbol name="chevron.right" size={20} color={colors.muted} />
+          <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
         </Pressable>
 
         {/* Saved Recipes */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.foreground }]}>
+          <Text style={[styles.sectionTitle, { color: colors.text }]}>
             ❤️ Saved Recipes ({savedRecipes.length})
           </Text>
           {savedRecipes.length === 0 ? (
             <View style={[styles.emptyCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-              <Text style={[styles.emptyText, { color: colors.muted }]}>
+              <Text style={[styles.emptyText, { color: colors.textSecondary }]}>
                 No saved recipes yet. Tap the heart on any recipe to save it!
               </Text>
             </View>
@@ -184,7 +184,7 @@ export default function ProfileScreen() {
                   onPress={() => router.push(`/${recipe.id}` as any)}
                 >
                   <Image source={{ uri: recipe.imageUrl }} style={styles.savedImage} />
-                  <Text style={[styles.savedTitle, { color: colors.foreground }]} numberOfLines={2}>
+                  <Text style={[styles.savedTitle, { color: colors.text }]} numberOfLines={2}>
                     {recipe.title}
                   </Text>
                 </Pressable>
@@ -195,7 +195,7 @@ export default function ProfileScreen() {
 
         {/* Dietary Preferences */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.foreground }]}>🥗 Dietary Preferences</Text>
+          <Text style={[styles.sectionTitle, { color: colors.text }]}>🥗 Dietary Preferences</Text>
           <View style={[styles.settingsCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
             {[
               { key: 'vegan' as const, label: '🌱 Vegan' },
@@ -211,12 +211,12 @@ export default function ProfileScreen() {
                   i < arr.length - 1 && { borderBottomWidth: 1, borderBottomColor: colors.border },
                 ]}
               >
-                <Text style={[styles.settingLabel, { color: colors.foreground }]}>{item.label}</Text>
+                <Text style={[styles.settingLabel, { color: colors.text }]}>{item.label}</Text>
                 <Switch
                   value={dietaryPrefs[item.key]}
                   onValueChange={v => updateDietaryPref(item.key, v)}
                   trackColor={{ false: colors.border, true: colors.primary + '80' }}
-                  thumbColor={dietaryPrefs[item.key] ? colors.primary : colors.muted}
+                  thumbColor={dietaryPrefs[item.key] ? colors.primary : colors.textSecondary}
                 />
               </View>
             ))}
@@ -225,7 +225,7 @@ export default function ProfileScreen() {
 
         {/* Taste Preferences */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.foreground }]}>👅 Taste Preferences</Text>
+          <Text style={[styles.sectionTitle, { color: colors.text }]}>👅 Taste Preferences</Text>
           <View style={[styles.settingsCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
             {[
               { key: 'likesSpicy' as const, label: '🌶 I like spicy food' },
@@ -239,12 +239,12 @@ export default function ProfileScreen() {
                   i < arr.length - 1 && { borderBottomWidth: 1, borderBottomColor: colors.border },
                 ]}
               >
-                <Text style={[styles.settingLabel, { color: colors.foreground }]}>{item.label}</Text>
+                <Text style={[styles.settingLabel, { color: colors.text }]}>{item.label}</Text>
                 <Switch
                   value={tastePrefs[item.key]}
                   onValueChange={v => updateTastePref(item.key, v)}
                   trackColor={{ false: colors.border, true: colors.primary + '80' }}
-                  thumbColor={tastePrefs[item.key] ? colors.primary : colors.muted}
+                  thumbColor={tastePrefs[item.key] ? colors.primary : colors.textSecondary}
                 />
               </View>
             ))}
@@ -253,14 +253,14 @@ export default function ProfileScreen() {
 
         {/* App Settings */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.foreground }]}>⚙️ Settings</Text>
+          <Text style={[styles.sectionTitle, { color: colors.text }]}>⚙️ Settings</Text>
           <View style={[styles.settingsCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
             <View style={[styles.settingRow, { borderBottomWidth: 1, borderBottomColor: colors.border }]}>
               <View>
-                <Text style={[styles.settingLabel, { color: colors.foreground }]}>
+                <Text style={[styles.settingLabel, { color: colors.text }]}>
                   {isDark ? '🌙 Dark Mode' : '☀️ Light Mode'}
                 </Text>
-                <Text style={[styles.settingSubtitle, { color: colors.muted }]}>
+                <Text style={[styles.settingSubtitle, { color: colors.textSecondary }]}>
                   Follows system setting
                 </Text>
               </View>
@@ -268,15 +268,15 @@ export default function ProfileScreen() {
                 value={isDark}
                 disabled={true}
                 trackColor={{ false: colors.border, true: colors.primary + '80' }}
-                thumbColor={isDark ? colors.primary : colors.muted}
+                thumbColor={isDark ? colors.primary : colors.textSecondary}
               />
             </View>
             <View style={[styles.settingRow, { borderBottomWidth: 1, borderBottomColor: colors.border }]}>
               <View>
-                <Text style={[styles.settingLabel, { color: colors.foreground }]}>
+                <Text style={[styles.settingLabel, { color: colors.text }]}>
                   📏 Units: {unitPref === 'metric' ? 'Metric' : 'Imperial'}
                 </Text>
-                <Text style={[styles.settingSubtitle, { color: colors.muted }]}>
+                <Text style={[styles.settingSubtitle, { color: colors.textSecondary }]}>
                   {unitPref === 'metric' ? 'ml, g, °C' : 'cups, oz, °F'}
                 </Text>
               </View>
@@ -284,16 +284,16 @@ export default function ProfileScreen() {
                 value={unitPref === 'metric'}
                 onValueChange={toggleUnit}
                 trackColor={{ false: colors.border, true: colors.primary + '80' }}
-                thumbColor={unitPref === 'metric' ? colors.primary : colors.muted}
+                thumbColor={unitPref === 'metric' ? colors.primary : colors.textSecondary}
               />
             </View>
             {/* Demo: toggle premium */}
             <View style={styles.settingRow}>
               <View>
-                <Text style={[styles.settingLabel, { color: colors.foreground }]}>
+                <Text style={[styles.settingLabel, { color: colors.text }]}>
                   👑 Premium Status (Demo)
                 </Text>
-                <Text style={[styles.settingSubtitle, { color: colors.muted }]}>
+                <Text style={[styles.settingSubtitle, { color: colors.textSecondary }]}>
                   Toggle to test premium features
                 </Text>
               </View>
@@ -303,8 +303,8 @@ export default function ProfileScreen() {
                   setIsPremiumState(v);
                   await setIsPremium(v);
                 }}
-                trackColor={{ false: colors.border, true: colors.accent + '80' }}
-                thumbColor={isPremium ? colors.accent : colors.muted}
+                trackColor={{ false: colors.border, true: colors.primary + '80' }}
+                thumbColor={isPremium ? colors.primary : colors.textSecondary}
               />
             </View>
           </View>
@@ -314,8 +314,8 @@ export default function ProfileScreen() {
         <View style={styles.section}>
           <View style={[styles.settingsCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
             <View style={[styles.settingRow, { borderBottomWidth: 1, borderBottomColor: colors.border }]}>
-              <Text style={[styles.settingLabel, { color: colors.foreground }]}>Version</Text>
-              <Text style={[styles.settingValue, { color: colors.muted }]}>1.0.0</Text>
+              <Text style={[styles.settingLabel, { color: colors.text }]}>Version</Text>
+              <Text style={[styles.settingValue, { color: colors.textSecondary }]}>1.0.0</Text>
             </View>
             <Pressable
               style={({ pressed }) => [styles.settingRow, pressed && { opacity: 0.7 }]}

@@ -100,21 +100,21 @@ export default function AddLinkScreen() {
             <IconSymbol name="chevron.left" size={20} color={colors.primary} />
             <Text style={[styles.backText, { color: colors.primary }]}>Back</Text>
           </Pressable>
-          <Text style={[styles.pageTitle, { color: colors.foreground }]}>Add Recipe Link</Text>
+          <Text style={[styles.pageTitle, { color: colors.text }]}>Add Recipe Link</Text>
           <View style={{ width: 60 }} />
         </View>
 
         {/* URL Input */}
         <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-          <Text style={[styles.label, { color: colors.foreground }]}>Recipe URL</Text>
-          <Text style={[styles.hint, { color: colors.muted }]}>
+          <Text style={[styles.label, { color: colors.text }]}>Recipe URL</Text>
+          <Text style={[styles.hint, { color: colors.textSecondary }]}>
             Paste a link from YouTube, Instagram, TikTok, Pinterest, or any recipe website
           </Text>
           <View style={[styles.inputRow, { backgroundColor: colors.background, borderColor: colors.border }]}>
             <TextInput
-              style={[styles.input, { color: colors.foreground }]}
+              style={[styles.input, { color: colors.text }]}
               placeholder="https://..."
-              placeholderTextColor={colors.muted}
+              placeholderTextColor={colors.textSecondary}
               value={url}
               onChangeText={setUrl}
               autoCapitalize="none"
@@ -127,14 +127,14 @@ export default function AddLinkScreen() {
 
         {/* Title Input */}
         <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-          <Text style={[styles.label, { color: colors.foreground }]}>Title</Text>
-          <Text style={[styles.hint, { color: colors.muted }]}>
+          <Text style={[styles.label, { color: colors.text }]}>Title</Text>
+          <Text style={[styles.hint, { color: colors.textSecondary }]}>
             Give it a name so you can find it easily
           </Text>
           <TextInput
-            style={[styles.textInput, { color: colors.foreground, backgroundColor: colors.background, borderColor: colors.border }]}
+            style={[styles.textInput, { color: colors.text, backgroundColor: colors.background, borderColor: colors.border }]}
             placeholder="e.g. High-Protein Chicken Stir Fry"
-            placeholderTextColor={colors.muted}
+            placeholderTextColor={colors.textSecondary}
             value={title}
             onChangeText={setTitle}
           />
@@ -142,8 +142,8 @@ export default function AddLinkScreen() {
 
         {/* Source Selector */}
         <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-          <Text style={[styles.label, { color: colors.foreground }]}>Source</Text>
-          <Text style={[styles.hint, { color: colors.muted }]}>
+          <Text style={[styles.label, { color: colors.text }]}>Source</Text>
+          <Text style={[styles.hint, { color: colors.textSecondary }]}>
             Auto-detected from URL. Tap to change if needed.
           </Text>
           <View style={styles.sourceGrid}>
@@ -163,7 +163,7 @@ export default function AddLinkScreen() {
                 <Text style={{ fontSize: 20 }}>{opt.emoji}</Text>
                 <Text style={[
                   styles.sourceText,
-                  { color: source === opt.id ? opt.color : colors.foreground },
+                  { color: source === opt.id ? opt.color : colors.text },
                 ]}>
                   {opt.name}
                 </Text>
@@ -174,11 +174,11 @@ export default function AddLinkScreen() {
 
         {/* Notes */}
         <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-          <Text style={[styles.label, { color: colors.foreground }]}>Notes (optional)</Text>
+          <Text style={[styles.label, { color: colors.text }]}>Notes (optional)</Text>
           <TextInput
-            style={[styles.textArea, { color: colors.foreground, backgroundColor: colors.background, borderColor: colors.border }]}
+            style={[styles.textArea, { color: colors.text, backgroundColor: colors.background, borderColor: colors.border }]}
             placeholder="e.g. Use less salt, double the chicken..."
-            placeholderTextColor={colors.muted}
+            placeholderTextColor={colors.textSecondary}
             value={notes}
             onChangeText={setNotes}
             multiline
@@ -188,14 +188,14 @@ export default function AddLinkScreen() {
 
         {/* Tags */}
         <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-          <Text style={[styles.label, { color: colors.foreground }]}>Tags (optional)</Text>
-          <Text style={[styles.hint, { color: colors.muted }]}>
+          <Text style={[styles.label, { color: colors.text }]}>Tags (optional)</Text>
+          <Text style={[styles.hint, { color: colors.textSecondary }]}>
             Separate with commas — e.g. high-protein, meal-prep, quick
           </Text>
           <TextInput
-            style={[styles.textInput, { color: colors.foreground, backgroundColor: colors.background, borderColor: colors.border }]}
+            style={[styles.textInput, { color: colors.text, backgroundColor: colors.background, borderColor: colors.border }]}
             placeholder="high-protein, meal-prep, favorite"
-            placeholderTextColor={colors.muted}
+            placeholderTextColor={colors.textSecondary}
             value={tags}
             onChangeText={setTags}
           />
@@ -205,7 +205,7 @@ export default function AddLinkScreen() {
         <Pressable
           style={({ pressed }) => [
             styles.saveBtn,
-            { backgroundColor: isSaving ? colors.muted : colors.primary },
+            { backgroundColor: isSaving ? colors.textSecondary : colors.primary },
             pressed && !isSaving && { opacity: 0.85 },
           ]}
           onPress={handleSave}

@@ -53,18 +53,18 @@ function MatchCard({ match, colors, onPress }: { match: RecipeMatch; colors: any
 
       {/* Content */}
       <View style={styles.matchContent}>
-        <Text style={[styles.matchTitle, { color: colors.foreground }]} numberOfLines={2}>
+        <Text style={[styles.matchTitle, { color: colors.text }]} numberOfLines={2}>
           {recipe.title}
         </Text>
 
         {/* Meta row */}
         <View style={styles.metaRow}>
-          <IconSymbol name="clock" size={13} color={colors.muted} />
-          <Text style={[styles.metaText, { color: colors.muted }]}>{totalTime} min</Text>
-          <IconSymbol name="star.fill" size={13} color={colors.accent} />
-          <Text style={[styles.metaText, { color: colors.muted }]}>{recipe.rating}</Text>
-          <View style={[styles.difficultyDot, { backgroundColor: colors.muted }]} />
-          <Text style={[styles.metaText, { color: colors.muted }]}>{recipe.difficulty}</Text>
+          <IconSymbol name="clock" size={13} color={colors.textSecondary} />
+          <Text style={[styles.metaText, { color: colors.textSecondary }]}>{totalTime} min</Text>
+          <IconSymbol name="star.fill" size={13} color={colors.warning} />
+          <Text style={[styles.metaText, { color: colors.textSecondary }]}>{recipe.rating}</Text>
+          <View style={[styles.difficultyDot, { backgroundColor: colors.textSecondary }]} />
+          <Text style={[styles.metaText, { color: colors.textSecondary }]}>{recipe.difficulty}</Text>
         </View>
 
         {/* Available ingredients */}
@@ -72,7 +72,7 @@ function MatchCard({ match, colors, onPress }: { match: RecipeMatch; colors: any
           <Text style={[styles.ingredientLabel, { color: colors.success }]}>
             ✓ You have ({availableIngredients.length})
           </Text>
-          <Text style={[styles.ingredientList, { color: colors.muted }]} numberOfLines={2}>
+          <Text style={[styles.ingredientList, { color: colors.textSecondary }]} numberOfLines={2}>
             {availableIngredients.join(', ')}
           </Text>
         </View>
@@ -83,7 +83,7 @@ function MatchCard({ match, colors, onPress }: { match: RecipeMatch; colors: any
             <Text style={[styles.ingredientLabel, { color: colors.warning }]}>
               ✗ Still need ({missingIngredients.length})
             </Text>
-            <Text style={[styles.ingredientList, { color: colors.muted }]} numberOfLines={2}>
+            <Text style={[styles.ingredientList, { color: colors.textSecondary }]} numberOfLines={2}>
               {missingIngredients.join(', ')}
             </Text>
           </View>
@@ -209,11 +209,11 @@ export default function FridgeScreen() {
           style={({ pressed }) => [styles.backBtn, pressed && { opacity: 0.6 }]}
           onPress={() => router.back()}
         >
-          <IconSymbol name="chevron.left" size={22} color={colors.foreground} />
+          <IconSymbol name="chevron.left" size={22} color={colors.text} />
         </Pressable>
         <View style={styles.headerCenter}>
-          <Text style={[styles.headerTitle, { color: colors.foreground }]}>🧊 My Fridge</Text>
-          <Text style={[styles.headerSubtitle, { color: colors.muted }]}>
+          <Text style={[styles.headerTitle, { color: colors.text }]}>🧊 My Fridge</Text>
+          <Text style={[styles.headerSubtitle, { color: colors.textSecondary }]}>
             {fridgeItems.length > 0
               ? `${fridgeItems.length} ingredient${fridgeItems.length > 1 ? 's' : ''} · ${matches.length} recipe${matches.length !== 1 ? 's' : ''} found`
               : 'Add ingredients to find recipes'}
@@ -237,12 +237,12 @@ export default function FridgeScreen() {
         {/* Input Section */}
         <View style={styles.inputSection}>
           <View style={[styles.inputRow, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-            <IconSymbol name="magnifyingglass" size={18} color={colors.muted} />
+            <IconSymbol name="magnifyingglass" size={18} color={colors.textSecondary} />
             <TextInput
               ref={inputRef}
-              style={[styles.input, { color: colors.foreground }]}
+              style={[styles.input, { color: colors.text }]}
               placeholder="Type an ingredient (e.g. chicken, eggs...)"
-              placeholderTextColor={colors.muted}
+              placeholderTextColor={colors.textSecondary}
               value={query}
               onChangeText={setQuery}
               onSubmitEditing={() => handleAddIngredient(query)}
@@ -273,7 +273,7 @@ export default function FridgeScreen() {
                   onPress={() => handleAddIngredient(s)}
                 >
                   <IconSymbol name="plus.circle.fill" size={16} color={colors.primary} />
-                  <Text style={[styles.suggestionText, { color: colors.foreground }]}>{s}</Text>
+                  <Text style={[styles.suggestionText, { color: colors.text }]}>{s}</Text>
                 </Pressable>
               ))}
             </View>
@@ -283,7 +283,7 @@ export default function FridgeScreen() {
         {/* Current Fridge Items */}
         {fridgeItems.length > 0 && (
           <View style={styles.section}>
-            <Text style={[styles.sectionTitle, { color: colors.foreground }]}>
+            <Text style={[styles.sectionTitle, { color: colors.text }]}>
               In Your Fridge
             </Text>
             <View style={styles.tagsWrap}>
@@ -308,7 +308,7 @@ export default function FridgeScreen() {
         {/* Quick Add Chips */}
         {fridgeItems.length < 15 && (
           <View style={styles.section}>
-            <Text style={[styles.sectionTitle, { color: colors.foreground }]}>
+            <Text style={[styles.sectionTitle, { color: colors.text }]}>
               Quick Add
             </Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, paddingRight: 16 }}>
@@ -322,8 +322,8 @@ export default function FridgeScreen() {
                   ]}
                   onPress={() => handleAddIngredient(chip)}
                 >
-                  <IconSymbol name="plus" size={12} color={colors.muted} />
-                  <Text style={[styles.quickChipText, { color: colors.foreground }]}>{chip}</Text>
+                  <IconSymbol name="plus" size={12} color={colors.textSecondary} />
+                  <Text style={[styles.quickChipText, { color: colors.text }]}>{chip}</Text>
                 </Pressable>
               ))}
             </ScrollView>
@@ -353,10 +353,10 @@ export default function FridgeScreen() {
             {matches.length > 0 ? (
               <>
                 <View style={styles.resultsHeader}>
-                  <Text style={[styles.sectionTitle, { color: colors.foreground }]}>
+                  <Text style={[styles.sectionTitle, { color: colors.text }]}>
                     {matches.length} Recipe{matches.length !== 1 ? 's' : ''} Found
                   </Text>
-                  <Text style={[styles.resultsSubtitle, { color: colors.muted }]}>
+                  <Text style={[styles.resultsSubtitle, { color: colors.textSecondary }]}>
                     Sorted by best match
                   </Text>
                 </View>
@@ -372,8 +372,8 @@ export default function FridgeScreen() {
             ) : (
               <View style={[styles.emptyState, { backgroundColor: colors.surface, borderColor: colors.border }]}>
                 <Text style={styles.emptyEmoji}>🤷</Text>
-                <Text style={[styles.emptyTitle, { color: colors.foreground }]}>No matches yet</Text>
-                <Text style={[styles.emptySubtitle, { color: colors.muted }]}>
+                <Text style={[styles.emptyTitle, { color: colors.text }]}>No matches yet</Text>
+                <Text style={[styles.emptySubtitle, { color: colors.textSecondary }]}>
                   Try adding more ingredients — even pantry staples like garlic, olive oil, or eggs can unlock many recipes.
                 </Text>
               </View>
@@ -386,10 +386,10 @@ export default function FridgeScreen() {
           <View style={styles.section}>
             <View style={[styles.emptyHero, { backgroundColor: colors.surface, borderColor: colors.border }]}>
               <Text style={styles.emptyHeroEmoji}>🧊</Text>
-              <Text style={[styles.emptyHeroTitle, { color: colors.foreground }]}>
+              <Text style={[styles.emptyHeroTitle, { color: colors.text }]}>
                 What's in your fridge?
               </Text>
-              <Text style={[styles.emptyHeroSubtitle, { color: colors.muted }]}>
+              <Text style={[styles.emptyHeroSubtitle, { color: colors.textSecondary }]}>
                 Type ingredients above or tap the quick-add chips. We'll find the best recipes you can make right now.
               </Text>
             </View>

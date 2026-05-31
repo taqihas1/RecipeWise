@@ -69,7 +69,7 @@ export default function MealPlannerScreen() {
     return (
       <ScreenContainer>
         <View style={[styles.loading, { backgroundColor: colors.background }]}>
-          <Text style={{ color: colors.foreground }}>Loading planner...</Text>
+          <Text style={{ color: colors.text }}>Loading planner...</Text>
         </View>
       </ScreenContainer>
     );
@@ -82,13 +82,13 @@ export default function MealPlannerScreen() {
     <ScreenContainer>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
-          <IconSymbol name="chevron.left" size={24} color={colors.foreground} />
+          <IconSymbol name="chevron.left" size={24} color={colors.text} />
         </Pressable>
-        <Text style={[styles.title, { color: colors.foreground }]}>Meal Planner</Text>
+        <Text style={[styles.title, { color: colors.text }]}>Meal Planner</Text>
         <View style={{ width: 40 }} />
       </View>
 
-      <Text style={[styles.subtitle, { color: colors.muted }]}>
+      <Text style={[styles.subtitle, { color: colors.textSecondary }]}>
         Plan your week, hit your protein goals
       </Text>
 
@@ -109,10 +109,10 @@ export default function MealPlannerScreen() {
                 },
               ]}
             >
-              <Text style={[styles.dayPillDay, { color: isSelected ? '#fff' : colors.muted }]}>
+              <Text style={[styles.dayPillDay, { color: isSelected ? '#fff' : colors.textSecondary }]}>
                 {day}
               </Text>
-              <Text style={[styles.dayPillDate, { color: isSelected ? '#fff' : colors.foreground }]}>
+              <Text style={[styles.dayPillDate, { color: isSelected ? '#fff' : colors.text }]}>
                 {dateNum}
               </Text>
             </Pressable>
@@ -123,7 +123,7 @@ export default function MealPlannerScreen() {
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
         {/* Selected Day Summary */}
         <View style={[styles.dayCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
-          <Text style={[styles.dayCardTitle, { color: colors.foreground }]}>
+          <Text style={[styles.dayCardTitle, { color: colors.text }]}>
             {FULL_DAYS[selectedDay]}
           </Text>
 
@@ -132,7 +132,7 @@ export default function MealPlannerScreen() {
             return (
               <View key={mealType} style={styles.mealSection}>
                 <View style={styles.mealHeader}>
-                  <Text style={[styles.mealTypeLabel, { color: colors.muted }]}>
+                  <Text style={[styles.mealTypeLabel, { color: colors.textSecondary }]}>
                     {mealType.charAt(0).toUpperCase() + mealType.slice(1)}
                   </Text>
                   {meals.length === 0 && (
@@ -151,8 +151,8 @@ export default function MealPlannerScreen() {
                     onPress={() => addRecipe(selectedDate, mealType)}
                     style={[styles.emptySlot, { borderColor: colors.border }]}
                   >
-                    <IconSymbol name="fork.knife" size={20} color={colors.muted + '60'} />
-                    <Text style={[styles.emptyText, { color: colors.muted }]}>
+                    <IconSymbol name="fork.knife" size={20} color={colors.textSecondary + '60'} />
+                    <Text style={[styles.emptyText, { color: colors.textSecondary }]}>
                       Tap to add a recipe
                     </Text>
                   </Pressable>
@@ -167,7 +167,7 @@ export default function MealPlannerScreen() {
                           onPress={() => removeMeal(selectedDate, slot.recipeId, mealType)}
                           style={styles.removeBtn}
                         >
-                          <IconSymbol name="xmark.circle.fill" size={22} color={colors.muted} />
+                          <IconSymbol name="xmark.circle.fill" size={22} color={colors.textSecondary} />
                         </Pressable>
                       </View>
                     );
@@ -182,7 +182,7 @@ export default function MealPlannerScreen() {
         <View style={[styles.proteinCard, { backgroundColor: colors.primary + '08', borderColor: colors.primary + '30' }]}>
           <View style={styles.proteinHeader}>
             <IconSymbol name="flame.fill" size={20} color={colors.primary} />
-            <Text style={[styles.proteinTitle, { color: colors.foreground }]}>
+            <Text style={[styles.proteinTitle, { color: colors.text }]}>
               Weekly Protein Preview
             </Text>
           </View>
@@ -195,8 +195,8 @@ export default function MealPlannerScreen() {
               }, 0) || 0;
               return (
                 <View key={date} style={styles.proteinDay}>
-                  <Text style={[styles.proteinDayLabel, { color: colors.muted }]}>{DAYS[idx]}</Text>
-                  <Text style={[styles.proteinDayValue, { color: totalProtein > 0 ? colors.primary : colors.muted }]}>
+                  <Text style={[styles.proteinDayLabel, { color: colors.textSecondary }]}>{DAYS[idx]}</Text>
+                  <Text style={[styles.proteinDayValue, { color: totalProtein > 0 ? colors.primary : colors.textSecondary }]}>
                     {totalProtein}g
                   </Text>
                 </View>

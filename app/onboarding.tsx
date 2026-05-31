@@ -80,7 +80,7 @@ export default function OnboardingScreen() {
           style={({ pressed }) => [styles.skipBtn, pressed && { opacity: 0.6 }]}
           onPress={handleGetStarted}
         >
-          <Text style={[styles.skipText, { color: colors.muted }]}>Skip</Text>
+          <Text style={[styles.skipText, { color: colors.textSecondary }]}>Skip</Text>
         </Pressable>
       </View>
 
@@ -98,8 +98,8 @@ export default function OnboardingScreen() {
             <View style={[styles.emojiContainer, { backgroundColor: s.bg }]}>
               <Text style={styles.emoji}>{s.emoji}</Text>
             </View>
-            <Text style={[styles.slideTitle, { color: colors.foreground }]}>{s.title}</Text>
-            <Text style={[styles.slideSubtitle, { color: colors.muted }]}>{s.subtitle}</Text>
+            <Text style={[styles.slideTitle, { color: colors.text }]}>{s.title}</Text>
+            <Text style={[styles.slideSubtitle, { color: colors.textSecondary }]}>{s.subtitle}</Text>
           </View>
         ))}
       </ScrollView>
@@ -137,7 +137,7 @@ export default function OnboardingScreen() {
         </Pressable>
 
         {currentIndex === SLIDES.length - 1 && (
-          <Text style={[styles.disclaimer, { color: colors.muted }]}>
+          <Text style={[styles.disclaimer, { color: colors.textSecondary }]}>
             Free to use. Premium features available.
           </Text>
         )}
