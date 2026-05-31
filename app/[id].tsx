@@ -32,6 +32,7 @@ export default function RecipeDetailScreen() {
   const [useMetric, setUseMetric] = useState(false);
   const [activeTab, setActiveTab] = useState<'ingredients' | 'steps' | 'nutrition'>('ingredients');
   const scrollViewRef = useRef<ScrollView>(null);
+  const tabContentRef = useRef<View>(null);
   const [imageFailed, setImageFailed] = useState(false);
 
   const recipe = RECIPES.find(r => r.id === id);
@@ -268,7 +269,7 @@ export default function RecipeDetailScreen() {
 
           {/* Steps Tab */}
           {activeTab === 'steps' && (
-            <View style={styles.tabContent}>
+            <View ref={tabContentRef} style={styles.tabContent}>
               {recipe.steps.map((step) => (
                 <View key={step.stepNumber} style={[styles.stepCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
                   <View style={[styles.stepNumber, { backgroundColor: colors.primary }]}>
@@ -335,9 +336,11 @@ export default function RecipeDetailScreen() {
             if (Platform.OS !== 'web') {
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
             }
-            // Scroll after tab content renders
+            // Scroll to the steps tab content, not the top of the page
             requestAnimationFrame(() => {
-              scrollViewRef.current?.scrollTo({ y: 0, animated: true });
+              tabContentRef.current?.measure((x, y, width, height, pageX, pageY) => {
+                scrollViewRef.current?.scrollTo({ y: pageY - 16, animated: true });
+              });
             });
           }}
         >

@@ -8,6 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { useColors } from '@/hooks/use-colors';
 import * as Haptics from 'expo-haptics';
+import { resolveRecipeImage } from '@/lib/image-resolver';
 import {
   getFridgeIngredients, saveFridgeIngredients, addFridgeIngredient,
   removeFridgeIngredient, clearFridgeIngredients, matchRecipesToFridge,
@@ -44,7 +45,7 @@ function MatchCard({ match, colors, onPress }: { match: RecipeMatch; colors: any
       onPress={onPress}
     >
       {/* Image */}
-      <Image source={{ uri: recipe.imageUrl }} style={styles.matchImage} resizeMode="cover" />
+      <Image source={resolveRecipeImage(recipe.id, recipe.imageUrl)} style={styles.matchImage} resizeMode="cover" />
 
       {/* Match badge overlay */}
       <View style={styles.badgeOverlay}>
