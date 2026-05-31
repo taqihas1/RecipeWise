@@ -1,4 +1,5 @@
 import { ImageSourcePropType } from 'react-native';
+import { RECIPE_IMAGE_URLS } from '@/lib/data/recipe-images';
 
 // ─── AI-GENERATED IMAGES (better matches for specific recipes) ─────────────
 const AI_IMAGES: Record<string, any> = {
@@ -6,7 +7,7 @@ const AI_IMAGES: Record<string, any> = {
   'r212': require('../assets/images/r212-protein-pancakes-ai.jpg'), // Perfect protein pancakes
 };
 
-// ─── CURATED UNSPLASH IMAGES — professional food photography ───────────────
+// ─── CURATED UNSPLASH IMAGES - professional food photography ───────────────
 const UNSPLASH_IMAGES: Record<string, any> = {
   'r181': require('../assets/images/r181-buffalo-chicken-bowl.jpg'),
   'r182': require('../assets/images/r182-lemon-herb-chicken.jpg'),
@@ -44,21 +45,30 @@ const UNSPLASH_IMAGES: Record<string, any> = {
 };
 
 /**
- * Resolve recipe image source — AI images take priority for accuracy,
- * then falls back to Unsplash professional photography
+ * Resolve recipe image source — priority order:
+ * 1. AI-generated images (most accurate)
+ * 2. Curated Unsplash professional photography (per-recipe mapping)
+ * 3. Local bundled Unsplash images
+ * 4. Recipe's own imageUrl
+ * 5. Generic fallback
  */
 export function resolveRecipeImage(recipeId: string, imageUrl?: string): ImageSourcePropType {
-  // AI images are more accurate for specific recipes
+  // AI images are most accurate for specific recipes
   if (AI_IMAGES[recipeId]) {
     return AI_IMAGES[recipeId];
   }
-  
-  // Curated Unsplash professional food photography
+
+  // Curated per-recipe Unsplash URLs from recipe-images.ts
+  if (RECIPE_IMAGE_URLS[recipeId]) {
+    return { uri: RECIPE_IMAGE_URLS[recipeId] };
+  }
+
+  // Local bundled Unsplash images (high protein batch)
   if (UNSPLASH_IMAGES[recipeId]) {
     return UNSPLASH_IMAGES[recipeId];
   }
-  
-  // Fall back to remote URL
+
+  // Fall back to recipe's own URL or generic fallback
   return { uri: imageUrl || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600' };
 }
 
