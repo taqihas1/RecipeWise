@@ -23,6 +23,12 @@ const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const CARD_WIDTH = SCREEN_WIDTH * 0.42;
 const HERO_HEIGHT = 280;
 
+const QUICK_ACTIONS = [
+  { label: 'My Fridge', emoji: '🧊', route: '/fridge', color: '#3B82F6' },
+  { label: 'My Links', emoji: '🔗', route: '/my-links', color: '#8B5CF6' },
+  { label: 'Favorites', emoji: '❤️', route: '/profile', color: '#EF4444' },
+];
+
 const MEAL_CATEGORIES: { label: string; type: MealType; emoji: string; gradient: readonly [string, string] }[] = [
   { label: 'Breakfast', type: 'breakfast', emoji: '🌅', gradient: ['#FF9A56', '#FF6B6B'] as const },
   { label: 'Lunch', type: 'lunch', emoji: '☀️', gradient: ['#4ECDC4', '#44A08D'] as const },
@@ -149,6 +155,27 @@ export default function DiscoverScreen() {
             </Pressable>
           </Animated.View>
         )}
+
+        {/* ═══ QUICK ACTIONS ═══ */}
+        <View style={styles.section}>
+          <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Quick Actions</Text>
+          <View style={styles.quickActionsRow}>
+            {QUICK_ACTIONS.map(action => (
+              <Pressable
+                key={action.label}
+                onPress={() => router.push(action.route as any)}
+                style={({ pressed }) => [
+                  styles.quickActionBtn,
+                  { backgroundColor: action.color + '15', borderColor: action.color + '30' },
+                  pressed && { opacity: 0.8, transform: [{ scale: 0.97 }] },
+                ]}
+              >
+                <Text style={styles.quickActionEmoji}>{action.emoji}</Text>
+                <Text style={[styles.quickActionLabel, { color: action.color }]}>{action.label}</Text>
+              </Pressable>
+            ))}
+          </View>
+        </View>
 
         {/* ═══ MEAL CATEGORIES ═══ */}
         <View style={styles.section}>
@@ -298,6 +325,26 @@ export default function DiscoverScreen() {
 }
 
 const styles = StyleSheet.create({
+  quickActionsRow: {
+    flexDirection: 'row',
+    gap: 10,
+  },
+  quickActionBtn: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 16,
+    borderRadius: 16,
+    borderWidth: 1.5,
+    gap: 6,
+  },
+  quickActionEmoji: {
+    fontSize: 28,
+  },
+  quickActionLabel: {
+    fontSize: 13,
+    fontWeight: '700',
+  },
   heroContainer: {
     height: HERO_HEIGHT,
     width: '100%',

@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   View, Text, Image, ScrollView, Pressable,
-  StyleSheet, Alert, Share
+  StyleSheet, Alert, Share, Platform
 } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -31,6 +31,7 @@ export default function RecipeDetailScreen() {
   const [servingMultiplier, setServingMultiplier] = useState(1);
   const [useMetric, setUseMetric] = useState(false);
   const [activeTab, setActiveTab] = useState<'ingredients' | 'steps' | 'nutrition'>('ingredients');
+  const scrollViewRef = useRef<ScrollView>(null);
 
   const recipe = RECIPES.find(r => r.id === id);
 
@@ -91,7 +92,7 @@ export default function RecipeDetailScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView ref={scrollViewRef} showsVerticalScrollIndicator={false}>
         {/* Hero Image */}
         <View style={styles.heroContainer}>
           <Image source={resolveRecipeImage(recipe.id, recipe.imageUrl)} style={styles.heroImage} resizeMode="cover" />
@@ -307,14 +308,20 @@ export default function RecipeDetailScreen() {
       </ScrollView>
 
       {/* Start Cooking Button */}
-      <View style={[styles.cookingButtonContainer, { paddingBottom: insets.bottom + 16, backgroundColor: colors.background }]}>
+      <View style={[styles.cookingButtonContainer, { paddingBottom: insets.bottom + 16, backgroundColor: colors.background, zIndex: 10 }]}>
         <Pressable
           style={({ pressed }) => [
             styles.cookingButton,
             { backgroundColor: colors.primary },
             pressed && { opacity: 0.85, transform: [{ scale: 0.98 }] },
           ]}
-          onPress={() => setActiveTab('steps')}
+          onPress={() => {
+            setActiveTab('steps');
+            scrollViewRef.current?.scrollTo({ y: 0, animated: true });
+            if (Platform.OS !== 'web') {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+            }
+          }}
         >
           <IconSymbol name="play.fill" size={20} color="#fff" />
           <Text style={styles.cookingButtonText}>Start Cooking</Text>
