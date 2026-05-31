@@ -83,7 +83,6 @@ export default function TabLayout() {
       {/* Hide non-tab routes from tab bar */}
       <Tabs.Screen name="[id]" options={{ href: null }} />
       <Tabs.Screen name="add-link" options={{ href: null }} />
-      <Tabs.Screen name="my-links" options={{ href: null }} />
       <Tabs.Screen name="onboarding" options={{ href: null }} />
       <Tabs.Screen name="premium" options={{ href: null }} />
     </Tabs>
