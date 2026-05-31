@@ -12,7 +12,7 @@ import {
   getFridgeIngredients, saveFridgeIngredients, addFridgeIngredient,
   removeFridgeIngredient, clearFridgeIngredients, matchRecipesToFridge,
   getIngredientSuggestions, COMMON_INGREDIENTS, RecipeMatch,
-} from './fridge';
+} from './fridge-utils';
 
 // ─── Match Badge ─────────────────────────────────────────────────────────────
 

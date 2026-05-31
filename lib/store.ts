@@ -197,3 +197,6 @@ export async function addToNutritionLog(date: string, recipeId: string, servings
   log.push({ recipeId, servings, date });
   await AsyncStorage.setItem(`${KEYS.DAILY_LOG}_${date}`, JSON.stringify(log));
 }
+
+// Re-export types used by consumers
+export type { MealType } from './data/recipes';

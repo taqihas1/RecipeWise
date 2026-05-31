@@ -7,7 +7,7 @@ import {
   getQuickRecipes,
   searchRecipes,
   getRecipesByDiet,
-} from '../lib/data/recipes';
+} from './recipes';
 
 describe('Recipe Data', () => {
   it('should have at least 15 recipes', () => {

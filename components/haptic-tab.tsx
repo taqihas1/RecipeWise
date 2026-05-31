@@ -5,7 +5,7 @@ import * as Haptics from 'expo-haptics';
 interface HapticTabProps {
   children: React.ReactNode;
   onPress?: (e: GestureResponderEvent) => void;
-  onPressIn?: (e: GestureResponderEvent) => void;
+  onPressIn?: ((e: GestureResponderEvent) => void) | null;
 }
 
 export function HapticTab({ children, onPress, onPressIn }: HapticTabProps) {

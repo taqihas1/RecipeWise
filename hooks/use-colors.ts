@@ -7,6 +7,7 @@ export function useColors() {
   return {
     background: isDark ? '#121212' : '#FFFFFF',
     surface: isDark ? '#1E1E1E' : '#F5F5F5',
+    card: isDark ? '#1E1E1E' : '#FFFFFF',
     primary: '#2E7D32',
     text: isDark ? '#FFFFFF' : '#121212',
     textSecondary: isDark ? '#AAAAAA' : '#666666',

@@ -66,12 +66,12 @@ export function resolveRecipeImage(recipeId: string, imageUrl?: string): ImageSo
  * Check if a recipe has a local image available
  */
 export function hasLocalImage(recipeId: string): boolean {
-  return !!LOCAL_IMAGES[recipeId];
+  return !!AI_IMAGES[recipeId] || !!UNSPLASH_IMAGES[recipeId];
 }
 
 /**
  * Get all local image IDs
  */
 export function getLocalImageIds(): string[] {
-  return Object.keys(LOCAL_IMAGES);
+  return [...Object.keys(AI_IMAGES), ...Object.keys(UNSPLASH_IMAGES)];
 }

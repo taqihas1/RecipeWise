@@ -6,9 +6,10 @@ import { useColors } from '@/hooks/use-colors';
 interface ScreenContainerProps {
   children: React.ReactNode;
   scrollable?: boolean;
+  containerClassName?: string;
 }
 
-export function ScreenContainer({ children, scrollable }: ScreenContainerProps) {
+export function ScreenContainer({ children, scrollable, containerClassName }: ScreenContainerProps) {
   const colors = useColors();
   const insets = useSafeAreaInsets();
 

@@ -3,7 +3,7 @@ import {
   matchRecipesToFridge,
   getIngredientSuggestions,
   COMMON_INGREDIENTS,
-} from '../lib/fridge';
+} from './fridge-utils';
 import { RECIPES } from '../lib/data/recipes';
 
 describe('Fridge Matching', () => {
