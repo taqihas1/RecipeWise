@@ -13,6 +13,7 @@ import {
   getDailyLog
 } from '@/lib/store';
 import { resolveRecipeImage } from '@/lib/image-resolver';
+import { getSavedLinks, RecipeLink } from './my-links';
 import { RECIPES } from '@/lib/data/recipes';
 
 export default function ProfileScreen() {
